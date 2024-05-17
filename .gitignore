@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Hamoj/DesignTimeBuild/.dtbcache.v2
+/.vs/Hamoj/FileContentIndex/9562bebb-b8fd-4073-a156-f967c192a016.vsidx
+/.vs/slnx.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/Hamojnew/v17/.wsuo
+/.vs/Hamojnew/v17/DocumentLayout.json

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamoj.web", "Hamoj.web\Hamoj.web.csproj", "{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamoj.DB", "Hamoj.DB\Hamoj.DB.csproj", "{3BE77E2C-B78A-454C-8DBE-FD071D9D24D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamoj.Service", "Hamoj.Service\Hamoj.Service.csproj", "{A22EBB56-098E-4698-A830-7C721617A3FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BE77E2C-B78A-454C-8DBE-FD071D9D24D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BE77E2C-B78A-454C-8DBE-FD071D9D24D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BE77E2C-B78A-454C-8DBE-FD071D9D24D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BE77E2C-B78A-454C-8DBE-FD071D9D24D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22EBB56-098E-4698-A830-7C721617A3FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22EBB56-098E-4698-A830-7C721617A3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22EBB56-098E-4698-A830-7C721617A3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22EBB56-098E-4698-A830-7C721617A3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9898406A-578E-4D81-AEC4-4A8A0E7FB7D5}
+	EndGlobalSection
+EndGlobal

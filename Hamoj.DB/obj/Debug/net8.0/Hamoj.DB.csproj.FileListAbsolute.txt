@@ -1,0 +1,15 @@
+E:\Project\Hamoj\Hamoj\Hamoj.DB\bin\Debug\net8.0\Hamoj.DB.deps.json
+E:\Project\Hamoj\Hamoj\Hamoj.DB\bin\Debug\net8.0\Hamoj.DB.runtimeconfig.json
+E:\Project\Hamoj\Hamoj\Hamoj.DB\bin\Debug\net8.0\Hamoj.DB.dll
+E:\Project\Hamoj\Hamoj\Hamoj.DB\bin\Debug\net8.0\Hamoj.DB.pdb
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.csproj.AssemblyReference.cache
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.GeneratedMSBuildEditorConfig.editorconfig
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.AssemblyInfoInputs.cache
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.AssemblyInfo.cs
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.csproj.CoreCompileInputs.cache
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.dll
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\refint\Hamoj.DB.dll
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.pdb
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.genruntimeconfig.cache
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\ref\Hamoj.DB.dll
+E:\Project\Hamoj\Hamoj\Hamoj.DB\obj\Debug\net8.0\Hamoj.DB.sourcelink.json
