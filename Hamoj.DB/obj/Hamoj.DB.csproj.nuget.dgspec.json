@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Hamoj\\Hamoj.DB\\Hamoj.DB.csproj": {}
+    "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj": {}
   },
   "projects": {
-    "E:\\Hamoj\\Hamoj.DB\\Hamoj.DB.csproj": {
+    "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Hamoj\\Hamoj.DB\\Hamoj.DB.csproj",
+        "projectUniqueName": "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj",
         "projectName": "Hamoj.DB",
-        "projectPath": "E:\\Hamoj\\Hamoj.DB\\Hamoj.DB.csproj",
-        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "E:\\Hamoj\\Hamoj.DB\\obj\\",
+        "projectPath": "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj",
+        "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
+        "outputPath": "E:\\Project\\Hamojnew\\Hamoj.DB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

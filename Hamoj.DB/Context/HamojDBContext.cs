@@ -21,7 +21,7 @@ namespace Hamoj.DB.Context
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Order> Order { get; set; }
-        public DbSet<VendorProduct> Vendor_Product { get; set; }
+        public DbSet<VendorProduct> VendorProduct { get; set; }
         public DbSet<UserRights> UserRights { get; set; }
         public DbSet<Customer> Customer {  get; set; }
         public DbSet<OrderDetails> OrderDetails {  get; set; }

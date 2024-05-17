@@ -141,3 +141,6 @@
 *.v2
 /.vs/Hamoj/v17/.wsuo
 *.bin
+/Hamoj.DB/obj/Hamoj.DB.csproj.nuget.dgspec.json
+/Hamoj.DB/obj/Hamoj.DB.csproj.nuget.g.props
+/Hamoj.DB/obj/project.assets.json
