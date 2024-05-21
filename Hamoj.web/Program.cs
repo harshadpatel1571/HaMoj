@@ -1,4 +1,6 @@
 using Hamoj.DB.Context;
+using Hamoj.Service.Interface;
+using Hamoj.Service.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<HamojDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
+
+//Service Register
+builder.Services.AddScoped<ICatagoryService,CatagoryService>();
 
 var app = builder.Build();
 
