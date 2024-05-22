@@ -16,5 +16,12 @@ namespace Hamoj.web.Controllers
             await _catagoryService.GetAllAsync();
             return View();
         }
+
+        public async Task<IActionResult> BindData () 
+        {
+         var Categorybind =   await _catagoryService.GetAllAsync();
+
+            return Json(new { data = Categorybind, status = true, });
+        }
     }
 }
