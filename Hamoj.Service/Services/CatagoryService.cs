@@ -24,6 +24,8 @@ public class CatagoryService : ICatagoryService
             is_Delete = x.is_Delete,
         }).ToListAsync();
 
+        await _context.SaveChangesAsync();
+
         return data;
     }
 }
