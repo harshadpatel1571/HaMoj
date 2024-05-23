@@ -6,25 +6,16 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="example3" class="display" style="min-width: 845px" id="dtatable">
+                <table id="dataGrid" class="display" style="min-width: 845px">
                     <thead>
                         <tr>
+                            <th>Id</th>
                             <th>Image</th>
                             <th>Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @* <tr id="Category_Table">
-                        <td><img class="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""></td>
-                        <td id="categoryname" asp-for="Category_Name">Tiger Nixon</td>
-                        <td>
-                        <div class="d-flex">
-                        <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                        <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
-                        </div>
-                        </td>
-                        </tr> *@
                     </tbody>
                 </table>
             </div>
@@ -32,54 +23,37 @@
     </div>
 </div>
 
+
 @section Scripts {
     <script>
-        function BindGrid(pURL, pColumns, pdfColumn, excelColumn, printColumn, isPaging = true, isSearching = true) {
-            $('#dtatable').DataTable().destroy();
-            $('#dtatable').DataTable({
-            paging: isPaging,
-            lengthChange: true,
-            searching: isSearching,
-            ordering: true,
-            lengthMenu: [[10, 25, 50, 75, 100, 250], [10, 25, 50, 75, 100, 250]],
-            info: true,
-            autoWidth: true,
-            responsive: true,
-            processing: true,
-            //serverSide: true,
-            filter: true,
-            ajax: pURL,
-            columns: pColumns,
-        });
+        
 
-        restrictSearchFilter();
-    }
-
-    function restrictSearchFilter() {
-            const table = $('#dtatable').DataTable();
-        $('.dataTables_filter input')
-            .unbind()
-            .bind('input', function (e) {
-                if (this.value.length >= 3 || e.keyCode === 13) {
-                    table.search(this.value).draw();
-                }
-                if (this.value === "") {
-                    table.search("").draw();
-                }
-            });
-    }
-    </script>
-
-    <script type="text/javascript">
         $(document).ready(function () {
             columns = [
-                { data: "order_id", name: "Order Id", "autoWidth": true, type: "string", className: 'dt-center' },
-                { data: "customer_details.name", name: "Customer Name", type: "string", "autoWidth": true, },
-                { data: "customer_details.name", name: "Customer Name", type: "string", "autoWidth": true, },
-                
+                { data: "id" },
+                {
+                    data: "image",
+                    render: function (data,type,row) {
+                        console.log(row);
+                        return `<img class="rounded-circle" width="35" src="${row.image}" alt=" "/>`;
+                    }
+                },
+                { data: "name" },
+
+                {
+                    data: "id",
+
+                    render: function (row) {
+                        return `<div class="d-flex">
+                                            <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
+                                        </div>`;
+                    }
+                }
             ];
 
             BindGrid('/Category/BindData', columns);
         });
+
     </script>
-}                 
+}
