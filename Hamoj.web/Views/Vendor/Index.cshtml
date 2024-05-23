@@ -1,0 +1,72 @@
+﻿
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Hi, welcome back!</h4>
+            <span>Datatable</span>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Datatable</a></li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Vendor</h4>
+            <button type="submit" class="btn btn-primary">Add Vendor</button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="dataGrid" class="display" style="min-width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Contact Phone</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            columns = [
+                { data: "id" },
+                { data: "name"},
+                { data: "email" },
+                { data: "phone" },
+                { data: "contact_Phone" },
+                { data: "address" },
+                {
+                    data: "id",
+
+                    render: function (row) {
+                        return `<div class="d-flex">
+                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fas fa-trash"></i></a>
+                                                </div>`;
+                    }
+                }
+            ];
+
+            BindGrid('/Vendor/BindData', columns);
+        });
+
+    </script>
+}

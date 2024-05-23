@@ -9,6 +9,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" href="~/images/favicon.png">
     <link href="~/css/LineIcons.css" rel="stylesheet">
+    <link href="~/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
@@ -765,7 +766,7 @@
                             <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="app-profile.html">Vendors</a></li>
+                            <li><a class="ai-icon" asp-controller="Vendor" asp-action="Index" aria-expanded="false">Vendors</a></li>
                             <li><a href="post-details.html">Customers</a></li>
                             <li><a href="post-details.html">Admin</a></li>
                         </ul>
