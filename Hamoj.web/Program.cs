@@ -13,7 +13,7 @@ builder.Services.AddDbContext<HamojDBContext>(options => options.UseSqlServer(bu
 
 //Service Register
 builder.Services.AddScoped<ICatagoryService,CatagoryService>();
-
+builder.Services.AddScoped<IVendorService,VendorService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
