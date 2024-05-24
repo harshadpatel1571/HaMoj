@@ -7,4 +7,8 @@ public interface IVendorService
 {
     Task<List<VendorDto>> GetAllAsync();
 
+    Task<VendorDto> AddEditVendor(VendorDto dto);
+
+    Task<VendorDto> GetDataById(int id);
+  
 }
