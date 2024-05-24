@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.AspNetCore.Http;
+
 namespace Hamoj.Service.Dto;
 
 public class CatrgoryDto:BaseDto
@@ -8,4 +10,6 @@ public class CatrgoryDto:BaseDto
     public string Name { get; set; }
 
     public string Image { get; set; }
+
+    public IFormFile Imagefile { get; set; }
 }

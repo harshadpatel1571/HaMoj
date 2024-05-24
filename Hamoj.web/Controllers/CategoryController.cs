@@ -1,5 +1,8 @@
-﻿using Hamoj.Service.Interface;
+﻿using Hamoj.DB.Migrations;
+using Hamoj.Service.Dto;
+using Hamoj.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.AccessControl;
 
 namespace Hamoj.web.Controllers
 {
@@ -13,7 +16,6 @@ namespace Hamoj.web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            await _catagoryService.GetAllAsync();
             return View();
         }
 
@@ -25,5 +27,25 @@ namespace Hamoj.web.Controllers
 
             return Json(new { data = Categorybind, status = true, });
         }
+
+        public async Task<IActionResult> AddEdit(int id)
+        {
+            if (id > 0)
+            {
+                var Edit = await _catagoryService.GetDataById(id);
+                return View(Edit);
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+
+        public async Task<IActionResult> AddEdit(CatrgoryDto dto)
+        {
+            var AddEdit = _catagoryService.AddEditCategory(dto);
+            return RedirectToAction("Index");
+        }
     }
+
 }
