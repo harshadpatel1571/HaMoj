@@ -13,6 +13,11 @@ public class CatagoryService : ICatagoryService
         _context = context;
     }
 
+    public Task<CatrgoryDto> AddEdit()
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<CatrgoryDto>> GetAllAsync()
     {
         var data = await _context.Category.Select(x=> new CatrgoryDto
