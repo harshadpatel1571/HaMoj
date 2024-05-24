@@ -27,4 +27,5 @@ public class CatagoryService : ICatagoryService
 
         return data;
     }
+
 }

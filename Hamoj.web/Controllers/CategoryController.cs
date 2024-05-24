@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hamoj.web.Controllers
 {
-    public class Category : Controller
+    public class CategoryController : Controller
     {
         private readonly ICatagoryService _catagoryService;
-        public Category(ICatagoryService catagoryService)
+        public CategoryController(ICatagoryService catagoryService)
         {
             _catagoryService = catagoryService;
         }

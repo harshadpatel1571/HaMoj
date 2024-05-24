@@ -5,4 +5,6 @@ namespace Hamoj.Service.Interface;
 public interface ICatagoryService
 {
     Task<List<CatrgoryDto>> GetAllAsync();
+
+    Task<CatrgoryDto> AddEdit();
 }
