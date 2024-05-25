@@ -64,6 +64,23 @@ public class VendorService : IVendorService
         return dto;
     }
 
+    public async Task<bool> Delete(int id)
+    {
+        try
+        {
+        var dbmodel = await _context.Vendor.Where(x=>x.Id == id).FirstOrDefaultAsync();
+        _context.Vendor.Remove(dbmodel);
+        _context.SaveChanges();
+            return true;
+        }
+
+        catch(Exception ex) 
+        {
+            return false;
+        }
+         
+    }
+
     public async Task<List<VendorDto>> GetAllAsync()
     {
         var data = await _context.Vendor.Select(a => new VendorDto

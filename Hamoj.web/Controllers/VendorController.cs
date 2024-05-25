@@ -2,6 +2,7 @@
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace Hamoj.web.Controllers
 {
@@ -44,5 +45,12 @@ namespace Hamoj.web.Controllers
             var AddEdit = await _vendorService.AddEditVendor(dto);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id) 
+        {
+            var Delete = await _vendorService.Delete(id);
+            return Json(new {data= Delete,status = true,});
+        }      
     }
 }

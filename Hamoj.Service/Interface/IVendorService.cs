@@ -10,5 +10,7 @@ public interface IVendorService
     Task<VendorDto> AddEditVendor(VendorDto dto);
 
     Task<VendorDto> GetDataById(int id);
+
+    Task<bool> Delete(int id);
   
 }

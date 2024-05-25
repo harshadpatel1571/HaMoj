@@ -1,6 +1,4 @@
-﻿
-
-namespace Hamoj.DB.Datamodel;
+﻿namespace Hamoj.DB.Datamodel;
 
 public class basemodel
 {
