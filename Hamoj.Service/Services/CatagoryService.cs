@@ -42,7 +42,7 @@ public class CatagoryService : ICatagoryService
 
         if (dto.Id > 0)
         {
-
+             
             // Update The data 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
@@ -64,6 +64,21 @@ public class CatagoryService : ICatagoryService
         _context.SaveChanges();
         
         return dto;
+    }
+
+    public async Task<bool> Delete(int id)
+    {
+        try{
+            var dbmodel = await _context.Category.Where(x => x.Id == id).FirstOrDefaultAsync();
+            _context.Category.Remove(dbmodel);
+            _context.SaveChanges();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+        
     }
 
     public async Task<List<CatrgoryDto>> GetAllAsync()

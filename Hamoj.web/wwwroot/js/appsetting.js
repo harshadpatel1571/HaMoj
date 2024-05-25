@@ -31,3 +31,45 @@ function restrictSearchFilter() {
             }
         });
 }
+
+function toaster(type, message) {
+
+    var options = {
+        timeOut: 1000,
+        closeButton: !0,
+        debug: !1,
+        newestOnTop: !0,
+        progressBar: !0,
+        positionClass: "toast-top-right",
+        preventDuplicates: !0,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+        tapToDismiss: !1
+    };
+
+    switch (type) {
+        case 'success':
+            toastr.success(message, "Success", options);
+            break;
+        case 'warning':
+            toastr.warning(message, "Warning", options);
+            break;
+        case 'error':
+            toastr.error(message, "Error", options);
+            break;
+        default:
+            toastr.info(message, "Info", options);
+    }
+}
+
+//// Example usage:
+//toaster('success', 'This is a success message');
+//toaster('warning', 'This is a warning message');
+//toaster('error', 'This is an error message');
+
