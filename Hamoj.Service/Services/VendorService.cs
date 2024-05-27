@@ -24,7 +24,7 @@ public class VendorService : IVendorService
         {
 
             //Find Specific Data From Datatabse for cheaking previous Data
-            dbmodel = _context.Vendor.Where(x => x.Id == dto.Id).FirstOrDefault();
+            dbmodel =  _context.Vendor.Where(x => x.Id == dto.Id).FirstOrDefault();
             if (dbmodel == null)
             {
                 dbmodel = new Vendor();
