@@ -1,4 +1,9 @@
-﻿<div class="col-12">
+﻿@{
+    ViewData["Title"] = "Vendor List";
+}
+
+<partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+<div class="col-12">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Vendor</h4>
@@ -72,11 +77,7 @@
                         success: function (result) {
                             var table = $('#dataGrid').DataTable();
                             table.ajax.reload();
-                            Swal.fire(
-                                'Deleted!',
-                                'Your category has been deleted.',
-                                'success'
-                            );
+                            toaster('success', 'Record Deleted');
                         },
                     });
                 }
