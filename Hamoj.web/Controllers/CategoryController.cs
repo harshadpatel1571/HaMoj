@@ -52,7 +52,7 @@ namespace Hamoj.web.Controllers
             {
                 dto.Image = dto.Imagefile.FileName;
             }
-            var AddEdit = _catagoryService.AddEditCategory(dto);
+            var AddEdit = _catagoryService.AddEdit(dto);
             //set image in folder
             if (AddEdit != null)
             {

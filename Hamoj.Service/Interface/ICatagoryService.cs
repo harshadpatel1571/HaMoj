@@ -7,7 +7,7 @@ public interface ICatagoryService
 {
     Task<List<CatrgoryDto>> GetAllAsync();
 
-    Task<CatrgoryDto> AddEditCategory(CatrgoryDto dto);
+    Task<CatrgoryDto> AddEdit(CatrgoryDto dto);
 
     Task<CatrgoryDto> GetDataById(int id);
     Task<bool> Delete(int id);

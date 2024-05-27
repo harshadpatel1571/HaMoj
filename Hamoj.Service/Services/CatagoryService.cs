@@ -18,7 +18,7 @@ public class CatagoryService : ICatagoryService
         _context = context;
     }
 
-    public async Task<CatrgoryDto> AddEditCategory(CatrgoryDto dto)
+    public async Task<CatrgoryDto> AddEdit(CatrgoryDto dto)
     {
         // Generate Table Object 
         var dbmodel = new Category();
