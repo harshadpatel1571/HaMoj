@@ -769,7 +769,7 @@
                         <ul aria-expanded="false">
                             <li><a class="ai-icon" asp-controller="Vendor" asp-action="Index" aria-expanded="false">Vendors</a></li>
                             <li><a asp-controller="Customer" asp-action="Index">Customers</a></li>
-                            <li><a href="post-details.html">Admin</a></li>
+                            <li><a asp-controller="User" asp-action="Index">Admin</a></li>
                         </ul>
                     </li>
                     <li>
@@ -843,6 +843,10 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/appsetting.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)
