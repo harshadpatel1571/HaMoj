@@ -18,7 +18,7 @@ public class CatagoryService : ICatagoryService
         _context = context;
     }
 
-    public async Task<CatrgoryDto> AddEdit(CatrgoryDto dto)
+    public async Task<CategoryDto> AddEdit(CategoryDto dto)
     {
         // Generate Table Object 
         var dbmodel = new Category();
@@ -42,7 +42,7 @@ public class CatagoryService : ICatagoryService
 
         if (dto.Id > 0)
         {
-             
+
             // Update The data 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
@@ -62,13 +62,14 @@ public class CatagoryService : ICatagoryService
         }
         // Save Database Transection
         _context.SaveChanges();
-        
+
         return dto;
     }
 
     public async Task<bool> Delete(int id)
     {
-        try{
+        try
+        {
             var dbmodel = await _context.Category.Where(x => x.Id == id).FirstOrDefaultAsync();
             _context.Category.Remove(dbmodel);
             _context.SaveChanges();
@@ -78,12 +79,23 @@ public class CatagoryService : ICatagoryService
         {
             return false;
         }
-        
     }
 
-    public async Task<List<CatrgoryDto>> GetAllAsync()
+    public async Task<CategoryDto> FindDuplicate(string name, int? id)
     {
-        var data = await _context.Category.Select(x => new CatrgoryDto
+        return await _context.Category.Where(x => x.Name == name &&  x.Id != id.Value).Select(x => new CategoryDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Image = x.Image,
+            })
+            .FirstOrDefaultAsync();
+    }
+
+
+    public async Task<List<CategoryDto>> GetAllAsync()
+    {
+        var data = await _context.Category.Select(x => new CategoryDto
         {
             Id = x.Id,
             Name = x.Name,
@@ -91,23 +103,19 @@ public class CatagoryService : ICatagoryService
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).ToListAsync();
-
-
         return data;
     }
 
-    public async Task<CatrgoryDto> GetDataById(int id)
+    public async Task<CategoryDto> GetDataById(int id)
     {
-        return  await _context.Category.Where(x => x.Id == id).Select(x => new CatrgoryDto
+        return await _context.Category.Where(x => x.Id == id).Select(x => new CategoryDto
         {
             Id = x.Id,
             Name = x.Name,
-            Image =x.Image,
+            Image = x.Image,
             is_Active = x.is_Active,
             is_Delete = x.is_Delete
-            
+
         }).FirstOrDefaultAsync();
-
-
     }
 }

@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICatagoryService,CatagoryService>();
 builder.Services.AddScoped<IVendorService,VendorService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<ICustomerService,CustomerService>();
+builder.Services.AddScoped<IProductService,ProductService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

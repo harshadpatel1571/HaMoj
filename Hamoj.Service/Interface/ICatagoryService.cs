@@ -5,12 +5,14 @@ namespace Hamoj.Service.Interface;
 
 public interface ICatagoryService
 {
-    Task<List<CatrgoryDto>> GetAllAsync();
+    Task<List<CategoryDto>> GetAllAsync();
 
-    Task<CatrgoryDto> AddEdit(CatrgoryDto dto);
+    Task<CategoryDto> AddEdit(CategoryDto dto);
 
-    Task<CatrgoryDto> GetDataById(int id);
+    Task<CategoryDto> GetDataById(int id);
     Task<bool> Delete(int id);
 
-    
+    Task<CategoryDto> FindDuplicate(string name, int? id);
+
+
 }

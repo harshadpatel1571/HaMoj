@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Customer List";
+}
+
+<partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Products</h4>
+            <a type="submit" class="btn btn-primary" asp-controller="Product" asp-action="AddEdit">Add Products</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="dataGrid" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            columns = [
+                { data: "id" },
+                { data: "category" },
+                { data: "name" },
+                { data: "price" },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return `<div class="d-flex">
+                                           <a href="/Product/AddEdit/${row.id}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                           <a href="#" class="btn btn-danger shadow btn-xs sharp" onclick="deleteCustomer(${row.id})"><i class="fas fa-trash"></i></a>
+                                           </div>`;
+                    }
+                }
+            ];
+
+            BindGrid('/Product/BindData', columns);
+        });
+    </script>
+}

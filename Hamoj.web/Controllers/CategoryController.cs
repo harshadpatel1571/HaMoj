@@ -43,34 +43,47 @@ public class CategoryController : Controller
 
     [HttpPost]
 
-    public async Task<IActionResult> AddEdit(CatrgoryDto dto)
+    public async Task<IActionResult> AddEdit(CategoryDto dto)
     {
-        //check of file exit or not 
-        if(dto.Imagefile != null)
+        // Check if a file exists and set the image name in the DTO
+        if (dto.Imagefile != null)
         {
             dto.Image = dto.Imagefile.FileName;
         }
-        var AddEdit = _catagoryService.AddEdit(dto);
-        //set image in folder
-        if (AddEdit != null)
+
+        var duplicate = await _catagoryService.FindDuplicate(dto.Name, dto.Id);
+        if (duplicate != null)
+        {
+            ModelState.AddModelError("Name", "Category name already exists.");
+            return View(dto); 
+        }
+
+        // Add or edit the category
+        var addEditResult = await _catagoryService.AddEdit(dto); 
+
+        // Save the image to the folder if the add/edit was successful
+        if (addEditResult != null)
         {
             string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "CategoryImage");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
+
             if (dto.Imagefile != null)
             {
                 string filePath = Path.Combine(uploadsFolder, dto.Imagefile.FileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    dto.Imagefile.CopyTo(fileStream);
+                    await dto.Imagefile.CopyToAsync(fileStream);
                 }
             }
         }
+
         return RedirectToAction("Index");
     }
+
 
     public async Task<IActionResult> Delete(int id)
     {
