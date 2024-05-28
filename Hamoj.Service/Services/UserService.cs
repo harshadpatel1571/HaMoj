@@ -42,7 +42,6 @@ public class UserService : IUserService
 
         if (dto.Id > 0)
         {
-
             // Update The data 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
@@ -81,6 +80,20 @@ public class UserService : IUserService
         {
             return false;
         }
+    }
+
+    public async Task<UserDto> FindDuplicate(string Email, int? id)
+    {
+
+        return await _context.User.Where(x => x.Email == Email && x.Id != id.Value).Select(x => new UserDto
+        {
+            Id = x.Id,
+            Name = x.Name,
+            Email = x.Email,
+            Password = x.Password,
+        }).FirstOrDefaultAsync();
+
+
     }
 
     public async Task<List<UserDto>> GetAllAsync()

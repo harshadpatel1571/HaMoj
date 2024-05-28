@@ -3,6 +3,7 @@ using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
+using System.Xml;
 
 namespace Hamoj.web.Controllers
 {
@@ -42,6 +43,15 @@ namespace Hamoj.web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEdit(VendorDto dto)
         {
+            var Duplicate = await _vendorService.FindDuplicate(dto.Email,dto.Contact_Phone,dto.Id);
+            if(Duplicate != null)
+            {
+            
+                ModelState.AddModelError("Email", "Email already exists.");
+                ModelState.AddModelError("Contact_Phone", "Contact Phone already exists.");
+                
+                return View(dto);
+            }
             var AddEdit = await _vendorService.AddEditVendor(dto);
             return RedirectToAction("Index");
         }

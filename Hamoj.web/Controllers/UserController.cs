@@ -42,6 +42,12 @@ namespace Hamoj.web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddEdit(UserDto dto)
         {
+            var Duplicate = await _userService.FindDuplicate(dto.Email,dto.Id);
+            if(Duplicate != null)
+            {
+                ModelState.AddModelError("Email", "Email already exists."); 
+                return View(dto);
+            }
             var AddEdit = await _userService.AddEdit(dto);
             return RedirectToAction("Index");
         }

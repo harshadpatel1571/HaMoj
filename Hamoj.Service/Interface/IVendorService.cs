@@ -12,5 +12,7 @@ public interface IVendorService
     Task<VendorDto> GetDataById(int id);
 
     Task<bool> Delete(int id);
-  
+
+    Task<VendorDto> FindDuplicate(string Email, string Contact_Phone, int? id);
+
 }

@@ -11,5 +11,8 @@ public interface IUserService
 
     Task<UserDto> GetDataById(int id);
     Task<bool> Delete(int id);
+    Task<UserDto> FindDuplicate(string Email,int? id);
+
+
 
 }
