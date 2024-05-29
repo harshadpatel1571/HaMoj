@@ -14,7 +14,7 @@ public class DropDownBindService : IDropDownBindService
 
     }
 
-    public async Task<List<DropDownDto>>BrindCategoryDropDown()
+    public async Task<List<DropDownDto>>BindCategoryDropDown()
     {
         var data = await _context.Category.Select(x => new DropDownDto
         {

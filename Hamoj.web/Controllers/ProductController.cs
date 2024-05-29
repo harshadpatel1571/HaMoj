@@ -33,7 +33,7 @@ namespace Hamoj.web.Controllers
 
         public async Task<IActionResult> AddEdit(int id)
         {
-            var CategoryList = await _dropDownBrindService.BrindCategoryDropDown();
+            var CategoryList = await _dropDownBrindService.BindCategoryDropDown();
             ViewBag.CategoryList = new SelectList(CategoryList, "Id", "Name");
 
             if (id > 0)

@@ -4,6 +4,6 @@ namespace Hamoj.Service.Interface;
 
 public interface IDropDownBindService
 {
-    Task<List<DropDownDto>> BrindCategoryDropDown();
+    Task<List<DropDownDto>> BindCategoryDropDown();
 
 }
