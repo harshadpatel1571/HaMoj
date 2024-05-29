@@ -2,7 +2,7 @@
 
 namespace Hamoj.Service.Interface;
 
-public interface IDropDownBrindService
+public interface IDropDownBindService
 {
     Task<List<DropDownDto>> BrindCategoryDropDown();
 

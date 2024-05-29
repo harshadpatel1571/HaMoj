@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hamoj.Service.Services;
 
-public class DropDownBrindService : IDropDownBrindService
+public class DropDownBindService : IDropDownBindService
 {
     private readonly HamojDBContext _context;
-    public DropDownBrindService(HamojDBContext context)
+    public DropDownBindService(HamojDBContext context)
     {
         _context = context;
 

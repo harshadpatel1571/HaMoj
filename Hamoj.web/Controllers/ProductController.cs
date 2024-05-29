@@ -11,10 +11,10 @@ namespace Hamoj.web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IDropDownBrindService _dropDownBrindService;
+        private readonly IDropDownBindService _dropDownBrindService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IProductService productService , IDropDownBrindService dropDownBrindService, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductService productService , IDropDownBindService dropDownBrindService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
             _dropDownBrindService = dropDownBrindService;
