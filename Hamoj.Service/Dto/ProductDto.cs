@@ -1,4 +1,6 @@
-﻿
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hamoj.Service.Dto;
 
@@ -6,9 +8,17 @@ public class ProductDto :BaseDto
 {
     public int Id { get; set; }
 
-    public string Category { get; set; }
+    [Required(ErrorMessage = "Please Select Category !")]
+    public int CategoryId { get; set; }
+
+    [Required(ErrorMessage = "Name is required !")]
     public string Name { get; set; }
+
+    [Required(ErrorMessage = "Product Price is required !")]
     public int Price { get; set; }
     public string Description { get; set; }
     public string? Image { get; set; }
+    public IFormFile? Imagefile { get; set; }
+
+    public CategoryDto CategoryDto { get; set; }
 }

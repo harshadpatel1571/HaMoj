@@ -30,7 +30,7 @@ public class ProductService : IProductService
         }
 
         dbmodel.Id = dto.Id;
-        dbmodel.Category = dto.Category;
+        dbmodel.CategoryId = dto.CategoryId;
         dbmodel.Name = dto.Name;
         dbmodel.Price = dto.Price;
         dbmodel.Description = dto.Description;
@@ -63,20 +63,57 @@ public class ProductService : IProductService
         return dto;
     }
 
+    public async Task<bool> DeleteProduct(int id)
+    {
+       try
+        {
+            var dbmodel = await _context.Product.Where(x => x.Id == id).FirstOrDefaultAsync();
+            _context.Product.Remove(dbmodel);
+            _context.SaveChanges();
+            return true;
+        }
+         
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<ProductDto>> GetAllAsync()
     {
         var data = await _context.Product.Select(x => new ProductDto
         {
             Id = x.Id,
-            Category = x.Category,
             Name = x.Name,
             Price = x.Price,
             Description = x.Description,
             Image = x.Image,
+            CategoryDto= new CategoryDto
+            {
+                Id=x.Category.Id,
+                Name=x.Category.Name,
+                Image = x.Category.Image,
+            },
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).ToListAsync();
 
         return data;
+    }
+
+    public async Task<ProductDto> GetDataById(int id)
+    {
+        return await _context.Product.Where(x => x.Id == id).Select(x => new ProductDto
+        {
+            Id = x.Id,
+            CategoryId = x.CategoryId,
+            Name = x.Name,
+            Price = x.Price,
+            Description = x.Description,
+            Image = x.Image,
+            is_Active = x.is_Active, 
+            is_Delete = x.is_Delete,
+
+        }).FirstOrDefaultAsync();
     }
 }

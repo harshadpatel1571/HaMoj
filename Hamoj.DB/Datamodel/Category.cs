@@ -6,11 +6,10 @@ namespace Hamoj.DB.Datamodel
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Name is required !")]
         public string Name { get; set; }
 
         public string? Image { get; set; }
 
-
+        public List<Product> ProductList { get; set; } = new List<Product>();
     }
 }

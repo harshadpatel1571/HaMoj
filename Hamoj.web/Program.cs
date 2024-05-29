@@ -3,7 +3,6 @@ using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
 using Microsoft.EntityFrameworkCore;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,6 +16,8 @@ builder.Services.AddScoped<IVendorService,VendorService>();
 builder.Services.AddScoped<IUserService,UserService>();
 builder.Services.AddScoped<ICustomerService,CustomerService>();
 builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IDropDownBrindService,DropDownBrindService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
