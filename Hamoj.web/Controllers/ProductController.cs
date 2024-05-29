@@ -11,13 +11,13 @@ namespace Hamoj.web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IDropDownBindService _dropDownBrindService;
+        private readonly IDropDownBindService _dropDownBindService;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IProductService productService , IDropDownBindService dropDownBrindService, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductService productService , IDropDownBindService dropDownBindService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
-            _dropDownBrindService = dropDownBrindService;
+            _dropDownBindService = dropDownBindService;
             _webHostEnvironment = webHostEnvironment;
         }
         public async Task<IActionResult> Index()
@@ -33,7 +33,7 @@ namespace Hamoj.web.Controllers
 
         public async Task<IActionResult> AddEdit(int id)
         {
-            var CategoryList = await _dropDownBrindService.BindCategoryDropDown();
+            var CategoryList = await _dropDownBindService.BindCategoryDropDown();
             ViewBag.CategoryList = new SelectList(CategoryList, "Id", "Name");
 
             if (id > 0)
