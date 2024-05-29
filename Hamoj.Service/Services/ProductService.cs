@@ -33,6 +33,7 @@ public class ProductService : IProductService
         dbmodel.CategoryId = dto.CategoryId;
         dbmodel.Name = dto.Name;
         dbmodel.Price = dto.Price;
+        dbmodel.Image = dto.Image;
         dbmodel.Description = dto.Description;
         dbmodel.is_Active = dto.is_Active;
         dbmodel.is_Delete = dto.is_Delete;
