@@ -18,4 +18,6 @@ public class Vendor : basemodel
     [Required(ErrorMessage = "Address is required !")]
     public string Address { get; set; }
 
+    public List<Order> orderList { get; set; }
+
 }

@@ -21,4 +21,6 @@ public class ProductDto :BaseDto
     public IFormFile? Imagefile { get; set; }
 
     public CategoryDto CategoryDto { get; set; }
+
+    public OrderDetailsDto orderDetailsListDto { get; set; }
 }

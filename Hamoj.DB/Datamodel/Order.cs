@@ -1,15 +1,24 @@
 ﻿
 
+using Hamoj.DB.Migrations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Hamoj.DB.Datamodel;
 
 public class Order : basemodel
 {
     public int ID { get; set; }
+    public int VendorID { get; set; }
+    public int CustomerId { get; set; }
+    public decimal Gst { get; set; }
+    public decimal GrandTotal { get; set; }
+    public int OrderStatus { get; set; }
+    [ForeignKey(nameof(VendorID))]
+    public Vendor vendor { get; set; }
 
-    public int Cust_Id { get; set; }
-    public string Name { get; set; }
-    public int Qty { get; set; }
-    public int Gst { get; set; }
-    public int Amount { get; set; }
+    [ForeignKey(nameof(CustomerId))]
+    public Customer Customer { get; set; }
+
+    public List<OrderDetails> orderDetailsList {  get; set; }
 
 }

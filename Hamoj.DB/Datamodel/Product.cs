@@ -15,4 +15,6 @@ public class Product : basemodel
     public string? Image { get; set; }
     [ForeignKey(nameof(CategoryId))]
     public Category Category { get; set; }
+
+    public List<OrderDetails> orderDetailsList {  get; set; }
 }

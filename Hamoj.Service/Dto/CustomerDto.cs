@@ -16,4 +16,8 @@ public class CustomerDto : BaseDto
     public string? City { get; set; }
     public string? State { get; set; }
     public int? Pincode { get; set; }
+
+    public OrderDto OrderDtoList { get; set; }
+
+
 }

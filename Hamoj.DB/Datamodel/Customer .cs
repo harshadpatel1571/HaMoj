@@ -21,5 +21,8 @@ public class Customer : basemodel
     public string? State { get; set; }
     public int? Pincode { get; set; }
 
+    public List<Order> orderList { get; set; }
+
+
 
 }

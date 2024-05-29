@@ -1,10 +1,8 @@
 ﻿
 
-using System.ComponentModel.DataAnnotations.Schema;
+namespace Hamoj.Service.Dto;
 
-namespace Hamoj.DB.Datamodel;
-
-public class OrderDetails : basemodel
+public class OrderDetailsDto:BaseDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
@@ -13,13 +11,7 @@ public class OrderDetails : basemodel
     public decimal Amount { get; set; }
     public decimal TotalAmounnt { get; set; }
     public int OrderStatus { get; set; }
-    [ForeignKey(nameof(OrderId))]
-    public Order order {  get; set; }
 
-    [ForeignKey(nameof(ProductId))]
-    public Product product {  get; set; }
-
-
-    
-
+    public OrderDto orderDto { get; set; }
+    public ProductDto productDto { get; set; }
 }
