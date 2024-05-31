@@ -1,0 +1,80 @@
+﻿@model List<Hamoj.Service.Dto.ProductDto>;
+
+@{
+    ViewData["Title"] = "Order Add";
+}
+
+<partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+<div class="basic-form">
+    <form method="post">
+        <div class="d-flex flex-wrap">
+            @foreach (var product in Model)
+            {
+                <div class="card m-2">
+                    <div class="card-header">
+                        <p class="card-text">@product.Name (@product.Price /-)</p>
+                    </div>
+                    <div class="card-body" style="width:12rem">
+                        <img src="~/ProductImage/@product.Image" class="card-img-top" width="100px" height="100px">
+                    </div>
+                    <div class="col-auto mb-2">
+                        <div class="input-group p-2">
+                            <div class="input-group-text btn btn-primary btn-sm">Qty.</div>
+                            <input type="text" class="form-control form-control-sm" placeholder="Qty" id="@product.Id">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <button type="button" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $("#btnOrder").click(function () {
+            var products = [];
+            $('.card').each(function () {
+                var id = $(this).find('input[type="text"]').attr('id');
+                var quantity = $(this).find('input[type="text"]').val();
+                if (quantity) {
+                    products.push({ id: id, quantity: quantity });
+                }
+            });
+
+
+            if (products.length > 0) {
+
+                let OrderList = [];
+
+                $.each(products, function (key, val) {
+
+                    var model = {
+                        Id: val.id,
+                        Qtty: val.quantity
+                    };
+
+                    OrderList.push(model);
+                });
+
+                $.ajax({
+                    url: `/Order/CustomerProductOrder`,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(OrderList), // Serialize data to JSON
+                    success: function (result) {
+                        alert(result.msg);
+                        window.location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX error:', error);
+                    }
+                });
+            }
+            else {
+                toaster('error', 'Select atlist one product');
+            }
+
+        });
+    </script>
+}
