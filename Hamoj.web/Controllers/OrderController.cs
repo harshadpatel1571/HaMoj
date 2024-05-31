@@ -1,13 +1,15 @@
 ﻿using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
-namespace Hamoj.web.Controllers
-{
-    public class OrderController : Controller
+namespace Hamoj.web.Controllers;
+[Authorize]
+
+public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
 

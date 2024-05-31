@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.Json;
 using Hamoj.DB.Enum;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hamoj.web.Controllers;
+[Authorize]
 
 public class AccountController : Controller
 {

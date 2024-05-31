@@ -1,14 +1,17 @@
 ﻿using Hamoj.DB.Migrations;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.AccessControl;
 
 namespace Hamoj.web.Controllers;
 
+[Authorize]
 public class CategoryController : Controller
 {
+    
     private readonly ICatagoryService _catagoryService;
 
     //find to base path 

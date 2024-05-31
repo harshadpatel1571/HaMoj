@@ -2,10 +2,13 @@
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hamoj.web.Controllers;
+
+[Authorize]
 
 public class CustomerController : Controller
 {
