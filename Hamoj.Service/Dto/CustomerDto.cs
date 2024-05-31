@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Hamoj.Service.Dto;
 
 public class CustomerDto : BaseDto
@@ -16,6 +18,9 @@ public class CustomerDto : BaseDto
     public string? City { get; set; }
     public string? State { get; set; }
     public int? Pincode { get; set; }
+
+    [Required(ErrorMessage = "Password Is required !")]
+    public String Password { get; set; }
 
     public OrderDto OrderDtoList { get; set; }
 

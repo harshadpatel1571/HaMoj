@@ -21,6 +21,11 @@ public class Customer : basemodel
     public string? State { get; set; }
     public int? Pincode { get; set; }
 
+    [Required(ErrorMessage = "Password Is required !")]
+
+    public String Password { get; set; }
+
+
     public List<Order> orderList { get; set; }
 
 

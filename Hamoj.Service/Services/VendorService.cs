@@ -24,7 +24,7 @@ public class VendorService : IVendorService
         {
 
             //Find Specific Data From Datatabse for cheaking previous Data
-            dbmodel =  _context.Vendor.Where(x => x.Id == dto.Id).FirstOrDefault();
+            dbmodel = _context.Vendor.Where(x => x.Id == dto.Id).FirstOrDefault();
             if (dbmodel == null)
             {
                 dbmodel = new Vendor();
@@ -37,12 +37,13 @@ public class VendorService : IVendorService
         dbmodel.Phone = dto.Phone;
         dbmodel.Contact_Phone = dto.Contact_Phone;
         dbmodel.Address = dto.Address;
+        dbmodel.Password = dto.Password;
 
         if (dto.Id > 0)
         {
             //Update Data
-            dbmodel.Id= dto.Id;
-            dbmodel.Modified_by =1;
+            dbmodel.Id = dto.Id;
+            dbmodel.Modified_by = 1;
             dbmodel.Modified_Date = DateTime.Now;
             _context.Vendor.Update(dbmodel);
 
@@ -68,30 +69,32 @@ public class VendorService : IVendorService
     {
         try
         {
-        var dbmodel = await _context.Vendor.Where(x=>x.Id == id).FirstOrDefaultAsync();
-        _context.Vendor.Remove(dbmodel);
-        _context.SaveChanges();
+            var dbmodel = await _context.Vendor.Where(x => x.Id == id).FirstOrDefaultAsync();
+            _context.Vendor.Remove(dbmodel);
+            _context.SaveChanges();
             return true;
         }
 
-        catch(Exception ex) 
+        catch (Exception ex)
         {
             return false;
         }
-         
+
     }
 
 
     public async Task<VendorDto> FindDuplicate(string Email, string Contact_Phone, int? id)
     {
         return await _context.Vendor.Where(x => (x.Email == Email || x.Contact_Phone == Contact_Phone) && x.Id != id.Value).Select(x => new VendorDto
-            {
-                Id = x.Id,
-                Email = x.Email,
-                Contact_Phone = x.Contact_Phone,
-                Phone = x.Phone,
-                Address = x.Address,
-            })
+        {
+            Id = x.Id,
+            Email = x.Email,
+            Contact_Phone = x.Contact_Phone,
+            Phone = x.Phone,
+            Address = x.Address,
+            Password = x.Password,
+
+        })
             .FirstOrDefaultAsync();
     }
 
@@ -106,12 +109,13 @@ public class VendorService : IVendorService
             Phone = a.Phone,
             Contact_Phone = a.Contact_Phone,
             Address = a.Address,
+            Password= a.Password,
 
         }).ToListAsync();
         return data;
     }
 
-  
+
 
     public async Task<VendorDto> GetDataById(int id)
     {
@@ -123,6 +127,7 @@ public class VendorService : IVendorService
             Phone = x.Phone,
             Contact_Phone = x.Contact_Phone,
             Address = x.Address,
+            Password = x.Password,
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).FirstOrDefaultAsync();

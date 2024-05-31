@@ -1,12 +1,14 @@
 ﻿using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 using System.Xml;
 
 namespace Hamoj.web.Controllers
 {
+    [Authorize]
     public class VendorController : Controller
     {
         private readonly IVendorService _vendorService;
@@ -27,7 +29,6 @@ namespace Hamoj.web.Controllers
 
             return Json(new { data = vendorbind, status = true, });
         }
-        
 
         public async Task<IActionResult> AddEdit(int id)
         {

@@ -93,7 +93,6 @@ public class UserService : IUserService
             Password = x.Password,
         }).FirstOrDefaultAsync();
 
-
     }
 
     public async Task<List<UserDto>> GetAllAsync()
