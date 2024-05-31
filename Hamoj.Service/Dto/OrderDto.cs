@@ -14,4 +14,11 @@ public class OrderDto:BaseDto
     public CustomerDto customerDto { get; set; }
 
     public OrderDetailsDto orderDetailsListDto { get; set; }
+
+   
+}
+public class CustomerProductOrder
+{
+    public int Id { get; set; }
+    public int Qtty { get; set; }
 }

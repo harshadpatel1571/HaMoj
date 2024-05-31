@@ -40,6 +40,14 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+//Service Register
+builder.Services.AddScoped<ICatagoryService,CatagoryService>();
+builder.Services.AddScoped<IVendorService,VendorService>();
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<ICustomerService,CustomerService>();
+builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<IDropDownBindService,DropDownBindService>();
+builder.Services.AddScoped<IOrderService,OrderService>();
 // Add response compression services
 builder.Services.AddResponseCompression();
 
