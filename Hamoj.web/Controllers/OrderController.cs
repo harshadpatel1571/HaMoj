@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace Hamoj.web.Controllers;
+
 [Authorize]
 
 public class OrderController : Controller
@@ -30,5 +31,5 @@ public class OrderController : Controller
             return Json(new { msg = "Success", status = true });
         }
     }
-}
+
 
