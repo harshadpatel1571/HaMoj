@@ -1,4 +1,23 @@
-﻿@{
+﻿@model List<Hamoj.Service.Dto.OrderDetailsDto>
+@{
     Layout = "~/Views/Shared/_Vendor.cshtml";
 }
-<h1>Order</h1>
+
+<div class="d-flex flex-wrap">
+    @foreach (var order in Model)
+    {
+        <div class="card m-2" style="width: 18rem;">
+            <div class="card-header">
+                <h3>Office No: @order.orderDto.customerDto.Office_No</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@order.productDto.Name <img src="~/ProductImage/@order.productDto.Image" width="100px" height="100px"/></h5>
+                <p class="card-text">Qty: @order.Qty</p>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-success" >Confirm</button>
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

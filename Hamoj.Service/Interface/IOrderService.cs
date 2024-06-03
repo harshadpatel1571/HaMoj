@@ -10,4 +10,6 @@ public interface IOrderService
 
     Task<bool> AddOrder(List<CustomerProductOrder> dto,int CustomerID);
 
+    Task<List<OrderDetailsDto>> OrderList ();
+
 }

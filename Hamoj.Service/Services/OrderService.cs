@@ -22,7 +22,7 @@ namespace Hamoj.Service.Services
         {
             var order = new Order
             {
-                CustomerId = CustomerID,  
+                CustomerId = 1,  
                 VendorID = 5003,   
                 Gst = 0,
                 GrandTotal = 0,  
@@ -70,6 +70,27 @@ namespace Hamoj.Service.Services
                 Name = x.Name,
                 Image = x.Image,
                 Price = x.Price
+            }).ToListAsync();
+        }
+
+        public async Task<List<OrderDetailsDto>> OrderList()
+        {
+            return await _context.OrderDetails.Select(x => new OrderDetailsDto
+            {
+                Id= x.Id,
+                Qty = x.Qty,
+                productDto = new ProductDto { 
+                    Name = x.product.Name,
+                    Image = x.product.Image,
+                },
+                orderDto = new OrderDto
+                {
+                    customerDto = new CustomerDto
+                    {
+                        Office_No = x.order.Customer.Office_No
+                    },
+                }
+
             }).ToListAsync();
         }
     }

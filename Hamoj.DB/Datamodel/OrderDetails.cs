@@ -19,7 +19,6 @@ public class OrderDetails : basemodel
     [ForeignKey(nameof(ProductId))]
     public Product product {  get; set; }
 
-
     
 
 }

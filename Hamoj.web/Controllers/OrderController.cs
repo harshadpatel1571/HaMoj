@@ -27,7 +27,7 @@ public class OrderController : Controller
         return View(productList);
     }
 
-    [HttpPost]
+    [HttpPost]    
     public async Task<IActionResult> CustomerProductOrder([FromBody] List<CustomerProductOrder> dto)
     {
 
@@ -37,7 +37,8 @@ public class OrderController : Controller
 
     public async Task<IActionResult> OrderList()
     {
-        return View();
+        var data = await _orderService.OrderList();
+        return View(data);
     }
 }
 

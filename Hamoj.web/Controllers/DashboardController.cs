@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hamoj.Service.Interface;
+using Hamoj.Service.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hamoj.web.Controllers
 {

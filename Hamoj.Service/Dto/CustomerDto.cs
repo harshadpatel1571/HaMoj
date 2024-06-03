@@ -24,5 +24,5 @@ public class CustomerDto : BaseDto
 
     public OrderDto OrderDtoList { get; set; }
 
-
+    public OrderDetailsDto OrderDetailsDtoList { get; set; }
 }
