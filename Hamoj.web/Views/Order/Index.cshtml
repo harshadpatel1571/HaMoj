@@ -1,7 +1,9 @@
 ﻿@model List<Hamoj.Service.Dto.ProductDto>;
 
 @{
+    Layout = "~/Views/Shared/_Customer.cshtml";
     ViewData["Title"] = "Order Add";
+
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
@@ -42,26 +44,12 @@
                 }
             });
 
-
             if (products.length > 0) {
-
-                let OrderList = [];
-
-                $.each(products, function (key, val) {
-
-                    var model = {
-                        Id: val.id,
-                        Qtty: val.quantity
-                    };
-
-                    OrderList.push(model);
-                });
-
                 $.ajax({
-                    url: `/Order/CustomerProductOrder`,
+                    url: '/Order/CustomerProductOrder',
                     type: 'POST',
                     contentType: 'application/json',
-                    data: JSON.stringify(OrderList), // Serialize data to JSON
+                    data: JSON.stringify(products), // Serialize data to JSON directly
                     success: function (result) {
                         alert(result.msg);
                         window.location.reload();
@@ -70,11 +58,10 @@
                         console.error('AJAX error:', error);
                     }
                 });
+            } else {
+                toaster('error', 'Select at least one product');
             }
-            else {
-                toaster('error', 'Select atlist one product');
-            }
-
         });
     </script>
 }
+

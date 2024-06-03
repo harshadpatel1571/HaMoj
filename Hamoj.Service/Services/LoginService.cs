@@ -17,9 +17,9 @@ namespace Hamoj.Service.Services
             _context = context;
         }
 
-        public async Task<CustomerDto> CheakCustomerLogin(LoginDto dto)
+        public async Task<UserDto> CheakCustomerLogin(LoginDto dto)
         {
-            return await _context.Customer.Where(y => y.Email == dto.Email && y.Password == dto.Password).Select( y=> new CustomerDto
+            return await _context.Customer.Where(y => y.Email == dto.Email && y.Password == dto.Password).Select( y=> new UserDto
             {
                 Id = y.Id,
                 Email = y.Email,
