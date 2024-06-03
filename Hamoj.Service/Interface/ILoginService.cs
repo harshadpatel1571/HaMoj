@@ -8,5 +8,5 @@ public interface ILoginService
 {
     Task<UserDto> CheakVendorLogin(LoginDto dto);
 
-    Task<CustomerDto> CheakCustomerLogin(LoginDto dto);
+    Task<UserDto> CheakCustomerLogin(LoginDto dto);
 }

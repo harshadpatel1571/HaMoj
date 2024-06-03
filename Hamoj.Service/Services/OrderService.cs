@@ -11,26 +11,25 @@ namespace Hamoj.Service.Services
     public class OrderService : IOrderService
     {
         private readonly HamojDBContext _context;
-      
 
         public OrderService(HamojDBContext context)
         {
             _context = context;
-        } 
+        }
 
         public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
         {
             var order = new Order
             {
-                CustomerId = 1,  
-                VendorID = 5003,   
+                CustomerId = CustomerID,
+                VendorID = 5003,
                 Gst = 0,
-                GrandTotal = 0,  
+                GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Padding,
                 is_Active = true,
                 is_Delete = false,
                 Create_Date = DateTime.Now,
-                Create_by = 1,   
+                Create_by = 1,
                 orderDetailsList = new List<OrderDetails>()
             };
 
@@ -54,7 +53,7 @@ namespace Hamoj.Service.Services
                 };
 
                 order.orderDetailsList.Add(orderDetails);
-                order.GrandTotal += orderDetails.TotalAmounnt; 
+                order.GrandTotal += orderDetails.TotalAmounnt;
             }
 
             await _context.Order.AddAsync(order);

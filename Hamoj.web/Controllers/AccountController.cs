@@ -69,6 +69,16 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Account");
     }
 
+
+
+    public async Task<IActionResult> CustomerLogin()
+    {
+        return View();
+
+    }
+
+    [HttpPost]
+
     public async Task<IActionResult> CustomerLogin(LoginDto dto)
     {
         var user = await _loginService.CheakCustomerLogin(dto);
@@ -78,23 +88,25 @@ public class AccountController : Controller
             var claims = new[]
             {
             new Claim("Id", user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Name),
+            new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Role, UserEnum.Customer.ToString()),
         };
 
-            var claimsIdentity = new ClaimsIdentity(claims,
-                CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    new AuthenticationProperties
-                    {
-                        ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
-                        IsPersistent = false
-                    })
-                .ConfigureAwait(false);
+            var authProperties = new AuthenticationProperties
+            {
+                ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                IsPersistent = false
+            };
 
-            return RedirectToAction("Index", "Home");
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties
+            ).ConfigureAwait(false);
+
+            return RedirectToAction("CustomerDashboard", "Dashboard");
         }
         else
         {
@@ -102,5 +114,7 @@ public class AccountController : Controller
             return View("Index");
         }
     }
+
+
 
 }

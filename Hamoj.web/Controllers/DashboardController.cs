@@ -10,5 +10,10 @@ namespace Hamoj.web.Controllers
         {
             return View();
         }
+
+        public IActionResult CustomerDashboard()
+        {
+            return View();
+        }
     }
 }

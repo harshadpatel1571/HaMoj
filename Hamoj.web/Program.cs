@@ -33,7 +33,7 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Index"; // Set the login path
+        options.LoginPath = "/Account/CustomerLogin"; // Set the login path
         options.LogoutPath = "/Account/Logout"; 
         options.Cookie.Name = "HaaMoj";
     });
@@ -53,11 +53,20 @@ builder.Services.AddResponseCompression();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+ void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    else
+    {
+        app.UseExceptionHandler("/Home/Error");
+        app.UseHsts();
+    }
+    // Other configurations...
 }
+
 
 app.UseHttpsRedirection();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
@@ -76,6 +85,6 @@ app.UseResponseCompression();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
