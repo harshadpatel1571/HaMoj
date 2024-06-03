@@ -11,9 +11,7 @@ public class OrderDetailsDto:BaseDto
     public decimal Amount { get; set; }
     public decimal TotalAmounnt { get; set; }
     public int OrderStatus { get; set; }
-
     public OrderDto orderDto { get; set; }
     public ProductDto productDto { get; set; }
     public CustomerDto customerDto { get; set; }
-    public int Oty { get; internal set; }
 }
