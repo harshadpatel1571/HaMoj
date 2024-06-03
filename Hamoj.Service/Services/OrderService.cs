@@ -11,18 +11,19 @@ namespace Hamoj.Service.Services
     public class OrderService : IOrderService
     {
         private readonly HamojDBContext _context;
+      
 
         public OrderService(HamojDBContext context)
         {
             _context = context;
-        }
+        } 
 
-        public async Task<bool> AddOrder(List<CustomerProductOrder> dto)
+        public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
         {
             var order = new Order
             {
-                CustomerId = 1,  
-                VendorID = 13,   
+                CustomerId = CustomerID,  
+                VendorID = 5003,   
                 Gst = 0,
                 GrandTotal = 0,  
                 OrderStatus = (int)OrderEnum.Padding,

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Hamoj.web.Controllers;
 
+
 public class AccountController : Controller
 {
     private readonly ILoginService _loginService;
@@ -51,7 +52,7 @@ public class AccountController : Controller
                     })
                 .ConfigureAwait(false);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
         else
         {
