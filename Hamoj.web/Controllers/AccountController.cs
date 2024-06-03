@@ -10,7 +10,7 @@ using Hamoj.DB.Enum;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hamoj.web.Controllers;
-[Authorize]
+
 
 public class AccountController : Controller
 {
@@ -52,7 +52,7 @@ public class AccountController : Controller
                     })
                 .ConfigureAwait(false);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Dashboard");
         }
         else
         {
