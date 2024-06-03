@@ -10,7 +10,6 @@ using Hamoj.DB.Enum;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Hamoj.web.Controllers;
-[Authorize]
 
 public class AccountController : Controller
 {
@@ -29,7 +28,7 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginDto dto)
     {
-        var user = await _loginService.GetDataById(dto);
+        var user = await _loginService.CheakVendorLogin(dto);
 
         if (user != null)
         {
@@ -68,4 +67,39 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Account");
     }
+
+    public async Task<IActionResult> CustomerLogin(LoginDto dto)
+    {
+        var user = await _loginService.CheakCustomerLogin(dto);
+
+        if (user != null)
+        {
+            var claims = new[]
+            {
+            new Claim("Id", user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Name),
+            new Claim(ClaimTypes.Role, UserEnum.Customer.ToString()),
+        };
+
+            var claimsIdentity = new ClaimsIdentity(claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    new AuthenticationProperties
+                    {
+                        ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                        IsPersistent = false
+                    })
+                .ConfigureAwait(false);
+
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            ViewBag.ErrorMessage = "Invalid username or password";
+            return View("Index");
+        }
+    }
+
 }

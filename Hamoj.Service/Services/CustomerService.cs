@@ -40,6 +40,7 @@ public class CustomerService : ICustomerService
         dbmodel.City = dto.City;
         dbmodel.State = dto.State;
         dbmodel.Pincode = dto.Pincode;
+        dbmodel.Password = dto.Password;
         dbmodel.is_Active = dto.is_Active;
         dbmodel.is_Delete = dto.is_Delete;
         dbmodel.Create_Date = DateTime.Now;
@@ -114,6 +115,7 @@ public class CustomerService : ICustomerService
             City = x.City,
             State = x.State,
             Pincode = x.Pincode,
+            Password = x.Password,
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).FirstOrDefaultAsync();

@@ -54,6 +54,11 @@
                         <label class="form-label">Pincode</label>
                         <input type="text" class="form-control" placeholder="Pincode" asp-for="Pincode">
                     </div>
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="Password" asp-for="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
                     <div>
                         <button type="submit" id="btnsave" class="btn btn-primary">Save</button>
                     </div>

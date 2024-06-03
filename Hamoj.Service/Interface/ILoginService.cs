@@ -6,5 +6,7 @@ namespace Hamoj.Service.Interface;
 
 public interface ILoginService
 {
-    Task<UserDto> GetDataById(LoginDto dto);
+    Task<UserDto> CheakVendorLogin(LoginDto dto);
+
+    Task<CustomerDto> CheakCustomerLogin(LoginDto dto);
 }
