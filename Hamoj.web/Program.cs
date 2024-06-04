@@ -33,7 +33,7 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/CustomerLogin"; // Set the login path
+        options.LoginPath = "/Account/Login"; // Set the login path
         options.LogoutPath = "/Account/Logout"; 
         options.Cookie.Name = "HaaMoj";
     });
@@ -58,9 +58,7 @@ var app = builder.Build();
     if (env.IsDevelopment())
     {
         app.UseDeveloperExceptionPage();
-    }
-    else
-    {
+
         app.UseExceptionHandler("/Home/Error");
         app.UseHsts();
     }
@@ -85,6 +83,6 @@ app.UseResponseCompression();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Index}/{id?}");
 
 app.Run();
