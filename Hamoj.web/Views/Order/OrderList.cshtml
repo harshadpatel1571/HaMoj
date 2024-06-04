@@ -3,29 +3,32 @@
     Layout = "~/Views/Shared/_Vendor.cshtml";
 }
 
-<div class="container">
-    <div class="row justify-content-center">
-        @foreach (var order in Model)
-        {
-            <div class="col-16 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
-                <div class="card w-100">
-                    <div class="card-header text-center">
-                        <h5>Office No: @order.orderDto.customerDto.Office_No</h5>
+<div class="row">
+
+    @foreach (var order in Model)
+    {
+        <div class="col-4">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/ProductImage/@order.productDto.Image" class="img-thumbnail" alt="@order.productDto.Name" />
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">
-                            <img src="~/ProductImage/@order.productDto.Image" class="img-fluid" style="max-width: 100px; max-height: 100px;" />
-                        </h5>
-                        <div>
-                            <p class="card-text">Qty: @order.Qty</p>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-success btn-sm">Confirm</button>
-                            <button type="button" class="btn btn-danger btn-sm">Cancel</button>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <b class="card-title">Office No: @order.orderDto.customerDto.Office_No</b>
+                            <span class="card-text text-center">Qty: @order.Qty</span>
+                            <div class="row-2 ">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-rounded btn-success me-md-2">Confirm</button>
+                                    <button type="button" class="btn btn-rounded btn-danger me-md-2 ">Cancel</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
 </div>
+
+
