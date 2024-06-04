@@ -7,12 +7,11 @@
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
-<div class="basic-form">
     <form method="post">
         <div class="d-flex flex-wrap">
             @foreach (var product in Model)
             {
-                <div class="card m-2">
+                <div class="card m-2">    
                     <div class="card-header">
                         <p class="card-text">@product.Name (@product.Price /-)</p>
                     </div>
@@ -30,7 +29,6 @@
         </div>
         <button type="button" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
     </form>
-</div>
 
 @section Scripts {
     <script>
