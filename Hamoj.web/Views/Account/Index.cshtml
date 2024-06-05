@@ -4,23 +4,26 @@
     Layout = "";
 }
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/css/LineIcons.css" rel="stylesheet">
     <link href="~/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
+    <title>Login</title>
 </head>
 <body>
     <div class="authincation d-flex align-items-center justify-content-center vh-100">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-8 col-sm-10">
                     <div class="authincation-content">
                         <div class="row no-gutters">
-                            <div class="col-xl-12">
+                            <div class="col-12">
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
-                                        <a href="index.html"><img src="~/images/logo-full.png" alt=""></a>
+                                        <a href="index.html"><img src="~/images/logo-full.png" alt="Logo"></a>
                                     </div>
                                     <h4 class="text-center mb-4">Sign in to your account</h4>
                                     @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
