@@ -61,13 +61,14 @@ namespace Hamoj.Service.Services
             return true;
         }
 
-        public async Task<OrderDto> ConfirmOrder(int OrdersID)
+        public async Task<bool> ConfirmOrder(int OrdersID)
         {
-            return await _context.Order.Select(z => new OrderDto
-            {
-                ID = z.ID
-
-            }).FirstOrDefaultAsync();
+            var dbmodel = await _context.OrderDetails.Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
+            dbmodel.OrderStatus = (int)OrderEnum.Confirm;
+            _context.OrderDetails.Update(dbmodel);
+            _context.SaveChanges();
+            return true;
+            
         }
 
 
@@ -104,18 +105,5 @@ namespace Hamoj.Service.Services
             }).ToListAsync();
         }
 
-        public async Task<OrderDto> UpdateOrder(OrderDto order)
-        {
-            var dbmodel = await _context.Order.Where(x => x.ID == order.ID).FirstOrDefaultAsync();
-
-            var orderupdate = new order();
-            {
-                dbmodel.OrderStatus = order.OrderStatus;
-            }
-
-            
-            await _context.SaveChangesAsync();
-            return order;
-        }
     }
 }

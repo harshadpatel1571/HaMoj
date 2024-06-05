@@ -12,8 +12,5 @@ public interface IOrderService
 
     Task<List<OrderDetailsDto>> OrderList ();
 
-    Task<OrderDto> ConfirmOrder(int ID);
-
-    Task<OrderDto> UpdateOrder(OrderDto order);
-
+    Task<bool> ConfirmOrder(int ID);
 }
