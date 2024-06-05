@@ -32,34 +32,40 @@
 </form>
 
 @section Scripts {
-    <script>
-        $("#btnOrder").click(function () {
-            var products = [];
-            $('.card').each(function () {
-                var id = $(this).find('input[type="text"]').attr('id');
-                var qtty = $(this).find('input[type="text"]').val();
-                if (qtty) {
-                    products.push({ id: id, qtty: qtty });
-                }
-            });
+    
 
-            if (products.length > 0) {
-                $.ajax({
-                    url: '/Order/CustomerProductOrder',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(products), // Serialize data to JSON directly
-                    success: function (result) {
-                        alert(result.msg);
-                        window.location.reload();
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('AJAX error:', error);
+    <script>
+        $(document).ready(function () {
+            $("#btnOrder").click(function () {
+                var products = [];
+                $('.card').each(function () {
+                    var id = $(this).find('input[type="text"]').attr('id');
+                    var qty = $(this).find('input[type="text"]').val();
+                    if (qty) {
+                        products.push({ id: id, qty: qty });
                     }
                 });
-            } else {
-                toaster('error', 'Select at least one product');
-            }
+
+                if (products.length > 0) {
+                    $.ajax({
+                        url: '/Order/CustomerProductOrder',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(products),
+                        success: function (result) {
+                            toastr.success('Order Added');
+                            // Reload the entire page
+                            window.location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            toastr.error('Error adding order');
+                            console.error('AJAX error:', error);
+                        }
+                    });
+                } else {
+                    toastr.error('Select at least one product');
+                }
+            });
         });
     </script>
 }

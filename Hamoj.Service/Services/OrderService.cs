@@ -17,6 +17,8 @@ namespace Hamoj.Service.Services
             _context = context;
         }
 
+        public order OrderDto { get; private set; }
+
         public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
         {
             var order = new Order
@@ -25,7 +27,7 @@ namespace Hamoj.Service.Services
                 VendorID = 5003,
                 Gst = 0,
                 GrandTotal = 0,
-                OrderStatus = (int)OrderEnum.Padding,
+                OrderStatus = (int)OrderEnum.Pending,
                 is_Active = true,
                 is_Delete = false,
                 Create_Date = DateTime.Now,
@@ -45,7 +47,7 @@ namespace Hamoj.Service.Services
                     Amount = product.Price,
                     Qty = item.Qtty,
                     TotalAmounnt = product.Price * item.Qtty,
-                    OrderStatus = (int)OrderEnum.Padding,
+                    OrderStatus = (int)OrderEnum.Pending,
                     is_Active = product.is_Active,
                     is_Delete = product.is_Delete,
                     Create_Date = DateTime.Now,
@@ -61,17 +63,37 @@ namespace Hamoj.Service.Services
             return true;
         }
 
-        public async Task<bool> ConfirmOrder(int OrdersID)
+        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status)
         {
-            var dbmodel = await _context.OrderDetails.Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
-            dbmodel.OrderStatus = (int)OrderEnum.Confirm;
-            _context.OrderDetails.Update(dbmodel);
-            _context.SaveChanges();
-            return true;
-            
+            try
+            {
+                // this code for update order details :
+                var orderDetails = await _context.OrderDetails.Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
+                orderDetails.OrderStatus = (int)status;
+
+                _context.OrderDetails.Update(orderDetails);
+                _context.SaveChanges();
+
+
+                // this code for find morethen one order details if not then update order.
+                var order = await _context.Order.Where(x => x.ID == orderDetails.OrderId).FirstOrDefaultAsync();
+                var checkExtra = await _context.OrderDetails.Where(x => x.OrderId == order.ID && x.OrderStatus == (int)OrderEnum.Pending).ToListAsync();
+                if (checkExtra.Count == 0)
+                {
+                    // no order details found.
+                    order.OrderStatus = (int)status;
+                    _context.Order.Update(order);
+                    _context.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
-
-
 
         public async Task<List<ProductDto>> GetProductData()
         {
@@ -86,7 +108,7 @@ namespace Hamoj.Service.Services
 
         public async Task<List<OrderDetailsDto>> OrderList()
         {
-            return await _context.OrderDetails.Select(x => new OrderDetailsDto
+            return await _context.OrderDetails.Where(x=>x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDetailsDto
             {
                 Id = x.Id,
                 Qty = x.Qty,

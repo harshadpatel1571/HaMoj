@@ -6,7 +6,7 @@
 <div class="row" id="card">
     @foreach (var order in Model)
     {
-        <div class="col-4" id="card-@order.orderDto.ID">
+        <div class="col-4" id="card-@order.Id">
             <div class="card">
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -16,8 +16,8 @@
                         <b>Office No: @order.orderDto.customerDto.Office_No</b><br />
                         <span> Qty: @order.Qty</span>
                         <div class="row">
-                            <button type="button" class="btn btn-rounded btn-success btn-confirm col-md-10 mt-2" onclick="confirmOrder(@order.Id)">Confirm</button>
-                            <button type="button" class="btn btn-rounded btn-danger btn-cancel col-md-10 mt-2">Cancel</button>
+                            <button type="button" class="btn btn-rounded btn-success btn-confirm col-md-10 mt-2" onclick="confirmOrder(@order.Id, 1)">Confirm</button>
+                            <button type="button" class="btn btn-rounded btn-danger btn-cancel col-md-10 mt-2" onclick="confirmOrder(@order.Id, 2)">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -26,25 +26,60 @@
     }
 </div>
 
+
 @section scripts {
     <script>
-        function confirmOrder(orderDetailId) {
-            $.ajax({
-                url: '/Order/ConfirmOrder',
-                type: 'POST',
-                data: { id: orderDetailId },
-                success: function (result) {
-                    if (result.status) {
-                        alert(result.msg);
-                    } else {
-                        alert("Failed to confirm order.");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX error:', error);
-                    alert("An error occurred while confirming the order.");
+        function confirmOrder(orderDetailId, orderStatus) {
+            let actionText = orderStatus === 1 ? "Confirm" : "Cancel";
+            let successMessage = orderStatus === 1 ? "Order Confirmed" : "Order Canceled";
+            let confirmButtonText = orderStatus === 1 ? "Yes, confirm it!" : "Yes, cancel it!";
+            let confirmButtonColor = orderStatus === 1 ? "#3085d6" : "#d33";
+
+            Swal.fire({
+                title: `Are you sure?`,
+                text: `You won't be able to revert this!`,
+                icon: orderStatus === 1 ? "success" : "error",
+                showCancelButton: true,
+                confirmButtonColor: confirmButtonColor,
+                cancelButtonColor: '#d33',
+                confirmButtonText: confirmButtonText,
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/Order/ConfirmOrder',
+                        type: 'POST',
+                        data: { id: orderDetailId, status: orderStatus },
+                        success: function (result) {
+                            if (result.status) {
+                                Swal.fire({
+                                    title: successMessage,
+                                    text: `Your order has been Added.`,
+                                    icon: 'success'
+                                });
+                                $("#card-" + orderDetailId).remove();
+                            } else {
+                                Swal.fire({
+                                    title: 'Failed!',
+                                    text: 'Failed to update the order.',
+                                    icon: 'error'
+                                });
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('AJAX error:', error);
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred while processing your request.',
+                                icon: 'error'
+                            });
+                        }
+                    });
                 }
             });
         }
     </script>
 }
+
+

@@ -1,4 +1,5 @@
-﻿using Hamoj.DB.Migrations;
+﻿using Hamoj.DB.Enum;
+using Hamoj.DB.Migrations;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
@@ -27,11 +28,11 @@ public class OrderController : Controller
         return View(productList);
     }
 
-    [HttpPost]    
+    [HttpPost]
     public async Task<IActionResult> CustomerProductOrder([FromBody] List<CustomerProductOrder> dto)
     {
 
-        var order = await _orderService.AddOrder(dto,_currentUserService.GetCurrentUserId());
+        var order = await _orderService.AddOrder(dto, _currentUserService.GetCurrentUserId());
         return Json(new { msg = "Success", status = true });
     }
 
@@ -43,12 +44,11 @@ public class OrderController : Controller
 
 
     [HttpPost]
-    public async Task<ActionResult> ConfirmOrder(int id)
+    public async Task<ActionResult> ConfirmOrder(int id, int status)
     {
-        var confirmorder = await _orderService.ConfirmOrder(id);
+        var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
+        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus);
         return Json(new { msg = "Success", status = true });
     }
 
 }
-
-
