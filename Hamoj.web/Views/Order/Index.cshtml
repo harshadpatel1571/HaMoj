@@ -3,20 +3,20 @@
 @{
     Layout = "~/Views/Shared/_Customer.cshtml";
     ViewData["Title"] = "Order Add";
-
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
-    <form method="post">
-        <div class="d-flex flex-wrap">
-            @foreach (var product in Model)
-            {
-                <div class="card m-2">    
+<form method="post">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card m-2">
                     <div class="card-header">
                         <p class="card-text">@product.Name (@product.Price /-)</p>
                     </div>
-                    <div class="card-body" style="width:12rem">
-                        <img src="~/ProductImage/@product.Image" class="card-img-top" width="100px" height="100px">
+                    <div class="card-body">
+                        <img src="~/ProductImage/@product.Image" class="card-img-top" style="width:150px; height:100px;">
                     </div>
                     <div class="col-auto mb-2">
                         <div class="input-group p-2">
@@ -25,10 +25,11 @@
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-        <button type="button" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
-    </form>
+            </div>
+        }
+    </div>
+    <button type="button" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
+</form>
 
 @section Scripts {
     <script>
@@ -62,4 +63,3 @@
         });
     </script>
 }
-
