@@ -40,6 +40,15 @@ public class OrderController : Controller
         var data = await _orderService.OrderList();
         return View(data);
     }
+
+
+    [HttpPost]
+    public async Task<ActionResult> ConfirmOrder(int id)
+    {
+        var confirmorder = await _orderService.ConfirmOrder(id);
+        return Json(new { msg = "Success", status = true });
+    }
+
 }
 
 

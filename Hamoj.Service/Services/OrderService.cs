@@ -19,7 +19,7 @@ namespace Hamoj.Service.Services
 
         public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
         {
-             var order = new Order
+            var order = new Order
             {
                 CustomerId = CustomerID,
                 VendorID = 19,
@@ -61,6 +61,17 @@ namespace Hamoj.Service.Services
             return true;
         }
 
+        public async Task<OrderDto> ConfirmOrder(int OrdersID)
+        {
+            return await _context.Order.Select(z => new OrderDto
+            {
+                ID = z.ID
+
+            }).FirstOrDefaultAsync();
+        }
+
+
+
         public async Task<List<ProductDto>> GetProductData()
         {
             return await _context.Product.Select(x => new ProductDto
@@ -76,9 +87,10 @@ namespace Hamoj.Service.Services
         {
             return await _context.OrderDetails.Select(x => new OrderDetailsDto
             {
-                Id= x.Id,
+                Id = x.Id,
                 Qty = x.Qty,
-                productDto = new ProductDto { 
+                productDto = new ProductDto
+                {
                     Name = x.product.Name,
                     Image = x.product.Image,
                 },
@@ -89,8 +101,21 @@ namespace Hamoj.Service.Services
                         Office_No = x.order.Customer.Office_No
                     },
                 }
-
             }).ToListAsync();
+        }
+
+        public async Task<OrderDto> UpdateOrder(OrderDto order)
+        {
+            var dbmodel = await _context.Order.Where(x => x.ID == order.ID).FirstOrDefaultAsync();
+
+            var orderupdate = new order();
+            {
+                dbmodel.OrderStatus = order.OrderStatus;
+            }
+
+            
+            await _context.SaveChangesAsync();
+            return order;
         }
     }
 }

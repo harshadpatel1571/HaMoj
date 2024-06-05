@@ -3,26 +3,21 @@
     Layout = "~/Views/Shared/_Vendor.cshtml";
 }
 
-<div class="row">
-
+<div class="row" id="card">
     @foreach (var order in Model)
     {
-        <div class="col-4">
-            <div class="card mb-3">
+        <div class="col-4" id="card-@order.orderDto.ID">
+            <div class="card">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="~/ProductImage/@order.productDto.Image" class="img-thumbnail" alt="@order.productDto.Name" />
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <b class="card-title">Office No: @order.orderDto.customerDto.Office_No</b>
-                            <span class="card-text text-center">Qty: @order.Qty</span>
-                            <div class="row-2 ">
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-rounded btn-success me-md-2">Confirm</button>
-                                    <button type="button" class="btn btn-rounded btn-danger me-md-2 ">Cancel</button>
-                                </div>
-                            </div>
+                    <div class="col-md-8 p-3">
+                        <b>Office No: @order.orderDto.customerDto.Office_No</b><br />
+                        <span> Qty: @order.Qty</span>
+                        <div class="row">
+                            <button type="button" class="btn btn-rounded btn-success btn-confirm col-md-10 mt-2" onclick="confirmOrder(@order.Id)">Confirm</button>
+                            <button type="button" class="btn btn-rounded btn-danger btn-cancel col-md-10 mt-2">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -31,4 +26,25 @@
     }
 </div>
 
-
+@section scripts {
+    <script>
+        function confirmOrder(orderDetailId) {
+            $.ajax({
+                url: '/Order/ConfirmOrder',
+                type: 'POST',
+                data: { id: orderDetailId },
+                success: function (result) {
+                    if (result.status) {
+                        alert(result.msg);
+                    } else {
+                        alert("Failed to confirm order.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX error:', error);
+                    alert("An error occurred while confirming the order.");
+                }
+            });
+        }
+    </script>
+}
