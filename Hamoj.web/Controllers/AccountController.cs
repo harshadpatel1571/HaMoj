@@ -89,6 +89,7 @@ public class AccountController : Controller
             {
             new Claim("Id", user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.Role, UserEnum.Customer.ToString()),
         };
 

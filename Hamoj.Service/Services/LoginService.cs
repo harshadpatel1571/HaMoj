@@ -22,6 +22,7 @@ namespace Hamoj.Service.Services
             return await _context.Customer.Where(y => y.Email == dto.Email && y.Password == dto.Password).Select( y=> new UserDto
             {
                 Id = y.Id,
+                Name = y.Name,
                 Email = y.Email,
                 Password = y.Password,
                 is_Active = y.is_Active,
