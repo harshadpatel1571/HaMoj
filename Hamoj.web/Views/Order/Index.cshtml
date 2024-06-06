@@ -40,9 +40,9 @@
                 var products = [];
                 $('.card').each(function () {
                     var id = $(this).find('input[type="text"]').attr('id');
-                    var qty = $(this).find('input[type="text"]').val();
-                    if (qty) {
-                        products.push({ id: id, qty: qty });
+                    var Qtty = $(this).find('input[type="text"]').val();
+                    if (Qtty) {
+                        products.push({ id: id, Qtty: Qtty });
                     }
                 });
 

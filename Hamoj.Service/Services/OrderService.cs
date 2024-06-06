@@ -26,7 +26,7 @@ namespace Hamoj.Service.Services
                 CustomerId = CustomerID,
                 VendorID = 5003,
                 Gst = 0,
-                GrandTotal = 0,
+                GrandTotal = 0, 
                 OrderStatus = (int)OrderEnum.Pending,
                 is_Active = true,
                 is_Delete = false,
