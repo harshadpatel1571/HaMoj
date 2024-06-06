@@ -6,18 +6,21 @@
 <div class="row" id="card">
     @foreach (var order in Model)
     {
-        <div class="col-4" id="card-@order.Id">
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="~/ProductImage/@order.productDto.Image" class="img-thumbnail" alt="@order.productDto.Name" />
-                    </div>
-                    <div class="col-md-8 p-3">
-                        <b>Office No: @order.orderDto.customerDto.Office_No</b><br />
-                        <span> Qty: @order.Qty</span>
-                        <div class="row">
-                            <button type="button" class="btn btn-rounded btn-success btn-confirm col-md-10 mt-2" onclick="confirmOrder(@order.Id, 1)">Confirm</button>
-                            <button type="button" class="btn btn-rounded btn-danger btn-cancel col-md-10 mt-2" onclick="confirmOrder(@order.Id, 2)">Cancel</button>
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.Id">
+            <!-- Card-->
+            <div class="card shadow-sm border-0 rounded">
+                <div class="card-body p-0">
+                    <img src="~/ProductImage/@order.productDto.Image" class="img-thumbnail" alt="@order.productDto.Name" style="width: 100%; height: 200px; object-fit: fill;" />
+                    <div class="p-4">
+                        <h4>Office No: @order.orderDto.customerDto.Office_No</h4>
+                        <span>Qty: @order.Qty</span>
+                        <div class="row mt-2">
+                            <div class="col-6 p-1">
+                                <button type="button" class="btn btn-sm btn-rounded btn-success btn-confirm w-100" onclick="confirmOrder(@order.Id, 1)">Confirm</button>
+                            </div>
+                            <div class="col-6 p-1">
+                                <button type="button" class="btn btn-sm btn-rounded btn-danger btn-cancel w-100" onclick="confirmOrder(@order.Id, 2)">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -25,7 +28,6 @@
         </div>
     }
 </div>
-
 
 @section scripts {
     <script>
@@ -40,7 +42,7 @@
                 text: `You won't be able to revert this!`,
                 icon: orderStatus === 1 ? "success" : "error",
                 showCancelButton: true,
-                confirmButtonColor: confirmButtonColor,
+                confirmButtonColor: "#3085d6",
                 cancelButtonColor: '#d33',
                 confirmButtonText: confirmButtonText,
                 cancelButtonText: "No, cancel!",
