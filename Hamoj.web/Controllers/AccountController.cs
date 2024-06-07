@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using Hamoj.DB.Enum;
 using Microsoft.AspNetCore.Authorization;
+using Hamoj.DB.Datamodel;
 
 namespace Hamoj.web.Controllers;
 
@@ -112,10 +113,53 @@ public class AccountController : Controller
         else
         {
             ViewBag.ErrorMessage = "Invalid username or password";
-            return View("Index");
+            return RedirectToAction("CustomerLogin", "Account");
         }
     }
 
 
+    public async Task<IActionResult> SuperAdminLogin()
+    {
+        return View();
+
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SuperAdminLogin(LoginDto dto)
+    {
+        var admin = await _loginService.CheakSuperAdminLogin(dto);
+
+        if (admin != null)
+        {
+            var claims = new[]
+            {
+            new Claim("Id", admin.Id.ToString()),
+            new Claim(ClaimTypes.Email, admin.Email),
+            new Claim(ClaimTypes.Name, admin.Name),
+            new Claim(ClaimTypes.Role, UserEnum.Admin.ToString()),
+        };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                IsPersistent = false
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties
+            ).ConfigureAwait(false);
+
+            return RedirectToAction("Index", "Home");
+        }
+        else
+        {
+            ViewBag.ErrorMessage = "Invalid username or password";
+            return RedirectToAction("SuperAdminLogin", "Account");
+        }
+    }
 
 }
