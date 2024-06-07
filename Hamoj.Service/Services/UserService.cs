@@ -34,8 +34,8 @@ public class UserService : IUserService
         dbmodel.Email = dto.Email;
         dbmodel.Password = dto.Password;
         dbmodel.Role = (int)UserEnum.Admin;
-        dbmodel.is_Active = dto.is_Active;
-        dbmodel.is_Delete = dto.is_Delete;
+        dbmodel.is_Active = true;
+        dbmodel.is_Delete = false;
         dbmodel.Create_Date = DateTime.Now;
         dbmodel.Create_by = 1;
 

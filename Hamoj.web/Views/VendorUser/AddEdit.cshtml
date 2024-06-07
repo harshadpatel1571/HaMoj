@@ -1,0 +1,43 @@
+﻿@model Hamoj.Service.Dto.VendorUserDto;
+
+@{
+    Layout = "~/Views/Shared/_Vendor.cshtml";
+    ViewData["Title"] = "User AddEdit";
+}
+
+<partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Add User</h4>
+        <a type="submit" class="btn btn-primary" asp-controller="VendorUser" asp-action="Index">Back</a>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form method="post" asp-action="AddEdit">
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" placeholder="Name" asp-for="Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">Mobile No</label>
+                        <input type="text" class="form-control" placeholder="Mobile No" asp-for="MobileNumber">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">User Name</label>
+                        <input type="text" class="form-control" placeholder="User Name" asp-for="Username">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" asp-for="Password" value="@Model.Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

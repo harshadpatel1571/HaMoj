@@ -434,7 +434,6 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="dashboard_bar">
-                                Order List
                             </div>
                         </div>
 
@@ -631,11 +630,18 @@
                         </a>
                     </li> *@
                     <li>
+                        <a asp-controller="VendorUser" asp-action="Index" class="ai-icon" aria-expanded="false">
+                            <i class="flaticon-form-1"></i>
+                            <span class="nav-text">User</span>
+                        </a>
+                    </li>
+                    <li>
                         <a asp-controller="Order" asp-action="OrderList" class="ai-icon" aria-expanded="false">
                             <i class="flaticon-form-1"></i>
                             <span class="nav-text">Orders</span>
                         </a>
                     </li>
+                  
                     </ul>
                     <div class="copyright">
                         <p class="fs-14 font-w200"><strong class="font-w400">Haa Moj</strong> © 2024 All Rights Reserved</p>

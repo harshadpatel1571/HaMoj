@@ -48,8 +48,8 @@ namespace Hamoj.Service.Services
                     Qty = item.Qtty,
                     TotalAmounnt = product.Price * item.Qtty,
                     OrderStatus = (int)OrderEnum.Pending,
-                    is_Active = product.is_Active,
-                    is_Delete = product.is_Delete,
+                    is_Active = true,
+                    is_Delete = false,
                     Create_Date = DateTime.Now,
                     Create_by = 1
                 };

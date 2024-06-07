@@ -25,8 +25,8 @@ namespace Hamoj.Service.Services
                 Name = y.Name,
                 Email = y.Email,
                 Password = y.Password,
-                is_Active = y.is_Active,
-                is_Delete = y.is_Delete
+                is_Active = true,
+                is_Delete = false,
             }).FirstOrDefaultAsync();
             
         }

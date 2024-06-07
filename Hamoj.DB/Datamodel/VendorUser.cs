@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Hamoj.DB.Datamodel;
 
 public class VendorUser : basemodel
@@ -15,5 +17,8 @@ public class VendorUser : basemodel
 
     public string Username { get; set;}
     public string Password { get; set;}
+
+    [ForeignKey(nameof(VendorId))]
+    public Vendor vendor { get; set; }
 
 }

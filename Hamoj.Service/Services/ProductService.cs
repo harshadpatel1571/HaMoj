@@ -35,8 +35,8 @@ public class ProductService : IProductService
         dbmodel.Price = dto.Price;
         dbmodel.Image = dto.Image;
         dbmodel.Description = dto.Description;
-        dbmodel.is_Active = dto.is_Active;
-        dbmodel.is_Delete = dto.is_Delete;
+        dbmodel.is_Active = true;
+        dbmodel.is_Delete = false;
         dbmodel.Create_Date = DateTime.Now;
         dbmodel.Create_by = 1;
 
