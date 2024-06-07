@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_Vendor.cshtml";
+    ViewData["Title"] = "User List";
+}
+
+<partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">USer</h4>
+            <a type="submit" class="btn btn-primary" asp-controller="VendorUser" asp-action="AddEdit">Add User</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="dataGrid" class="display" style="min-width: 845px">
+                    <thead>
+                        <tr>
+                            <th>Vendor Name</th>
+                            <th>Name</th>
+                            <th>Mobile No</th>
+                            <th>User Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            columns = [
+                { data: "vendorDto.name" },
+                { data: "name" },
+                { data: "mobileNumber" },
+                { data: "username" },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        console.log(data);
+                        return `<div class="d-flex"><a href="/VendorUser/AddEdit/${row.id}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>`
+                            }
+                        }
+                    ];
+
+                    BindGrid('/VendorUser/BindData', columns);
+                });
+    </script>
+}

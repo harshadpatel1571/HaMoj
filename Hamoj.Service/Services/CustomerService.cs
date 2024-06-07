@@ -41,8 +41,8 @@ public class CustomerService : ICustomerService
         dbmodel.State = dto.State;
         dbmodel.Pincode = dto.Pincode;
         dbmodel.Password = dto.Password;
-        dbmodel.is_Active = dto.is_Active;
-        dbmodel.is_Delete = dto.is_Delete;
+        dbmodel.is_Active = true;
+        dbmodel.is_Delete = false;
         dbmodel.Create_Date = DateTime.Now;
         dbmodel.Create_by = 1;
 

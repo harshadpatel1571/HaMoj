@@ -20,6 +20,7 @@ public class Vendor : basemodel
 
     public List<Order> orderList { get; set; }
 
+    public List<VendorUser> vendorUsers { get; set; }
 
     [Required(ErrorMessage = "Please Enter Password")]
     public string Password { get; set; }

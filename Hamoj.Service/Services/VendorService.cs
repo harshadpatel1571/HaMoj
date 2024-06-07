@@ -38,6 +38,10 @@ public class VendorService : IVendorService
         dbmodel.Contact_Phone = dto.Contact_Phone;
         dbmodel.Address = dto.Address;
         dbmodel.Password = dto.Password;
+        dbmodel.Create_Date = DateTime.Now;
+        dbmodel.Create_by = 1;
+        dbmodel.is_Active = true;
+        dbmodel.is_Delete = false;
 
         if (dto.Id > 0)
         {
