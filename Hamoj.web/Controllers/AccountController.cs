@@ -38,7 +38,7 @@ public class AccountController : Controller
             {
             new Claim("Id", user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Role, UserEnum.Vendor.ToString()),
+            new Claim(ClaimTypes.Role, dto.IsVendor.HasValue ? UserEnum.Vendor.ToString() : UserEnum.vendorUser.ToString()),
         };
 
             var claimsIdentity = new ClaimsIdentity(claims,
@@ -125,7 +125,7 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> SuperAdminLogin(LoginDto dto)
+    public async Task<IActionResult> SuperAdminLogin(UserLoginDto dto)
     {
         var admin = await _loginService.CheakSuperAdminLogin(dto);
 

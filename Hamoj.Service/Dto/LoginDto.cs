@@ -8,7 +8,7 @@ public class LoginDto : BaseDto
 {
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "Please Enter Mobile Number Address")]
+    [Required(ErrorMessage = "Please Enter Mobile Number")]
     public string MobileNumber { get; set; }
   
     [Required(ErrorMessage = "Please Enter Password")]
@@ -17,14 +17,13 @@ public class LoginDto : BaseDto
     public bool? IsVendor { get; set; }
 }
 
-//public class CustomerLoginDto : BaseDto
-//{
-//    public int Id { get; set; }
+public class UserLoginDto : BaseDto
+{
+    public int Id { get; set; }
 
-//    [Required(ErrorMessage = "Please Enter Mobile Number Address")]
-//    public string MobileNumber { get; set; }
+    [Required(ErrorMessage = "Please Enter Email Address")]
+    public string Email { get; set; }
 
-//    [Required(ErrorMessage = "Please Enter Password")]
-//    public string Password { get; set; }
-
-//}
+    [Required(ErrorMessage = "Please Enter Password")]
+    public string Password { get; set; }
+}
