@@ -44,7 +44,7 @@ public class VendorController : Controller
     [HttpPost]
     public async Task<IActionResult> AddEdit(VendorDto dto)
     {
-        var Duplicate = await _vendorService.FindDuplicate(dto.Email,dto.Contact_Phone,dto.Id);
+        var Duplicate = await _vendorService.FindDuplicate(dto.Email,dto.MobileNumber, dto.Id);
         if(Duplicate != null)
         {
         

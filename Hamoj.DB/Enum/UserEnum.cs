@@ -7,5 +7,6 @@ public enum UserEnum : int
     Admin = 2,
     Customer=4,
     Vendor=8,
+    vendorUser = 16,
 
 }

@@ -18,4 +18,5 @@ public class UserDto : BaseDto
     public string Confirm_Password { get; set; }
 
     public int Role { get; set; }
+    public string MobileNumber { get; internal set; }
 }

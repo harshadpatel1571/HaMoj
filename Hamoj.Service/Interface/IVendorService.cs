@@ -13,6 +13,6 @@ public interface IVendorService
 
     Task<bool> Delete(int id);
 
-    Task<VendorDto> FindDuplicate(string Email, string Contact_Phone, int? id);
+    Task<VendorDto> FindDuplicate(string Email, string MobileNumber, int? id);
 
 }

@@ -34,8 +34,7 @@ public class VendorService : IVendorService
         //Assign Dto Value (Form Value) Or User Inserted Value To Table value object
         dbmodel.Name = dto.Name;
         dbmodel.Email = dto.Email;
-        dbmodel.Phone = dto.Phone;
-        dbmodel.Contact_Phone = dto.Contact_Phone;
+        dbmodel.MobileNumber = dto.MobileNumber;
         dbmodel.Address = dto.Address;
         dbmodel.Password = dto.Password;
         dbmodel.Create_Date = DateTime.Now;
@@ -87,14 +86,13 @@ public class VendorService : IVendorService
     }
 
 
-    public async Task<VendorDto> FindDuplicate(string Email, string Contact_Phone, int? id)
+    public async Task<VendorDto> FindDuplicate(string Email, string MobileNumber, int? id)
     {
-        return await _context.Vendor.Where(x => (x.Email == Email || x.Contact_Phone == Contact_Phone) && x.Id != id.Value).Select(x => new VendorDto
+        return await _context.Vendor.Where(x => (x.Email == Email || x.MobileNumber == MobileNumber) && x.Id != id.Value).Select(x => new VendorDto
         {
             Id = x.Id,
             Email = x.Email,
-            Contact_Phone = x.Contact_Phone,
-            Phone = x.Phone,
+            MobileNumber = x.MobileNumber,
             Address = x.Address,
             Password = x.Password,
 
@@ -110,8 +108,7 @@ public class VendorService : IVendorService
             Id = a.Id,
             Name = a.Name,
             Email = a.Email,
-            Phone = a.Phone,
-            Contact_Phone = a.Contact_Phone,
+            MobileNumber = a.MobileNumber,
             Address = a.Address,
             Password= a.Password,
 
@@ -128,8 +125,7 @@ public class VendorService : IVendorService
             Id = x.Id,
             Name = x.Name,
             Email = x.Email,
-            Phone = x.Phone,
-            Contact_Phone = x.Contact_Phone,
+            MobileNumber = x.MobileNumber,
             Address = x.Address,
             Password = x.Password,
             is_Active = x.is_Active,

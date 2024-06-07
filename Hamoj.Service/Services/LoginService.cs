@@ -19,11 +19,11 @@ namespace Hamoj.Service.Services
 
         public async Task<UserDto> CheakCustomerLogin(LoginDto dto)
         {
-            return await _context.Customer.Where(y => y.Email == dto.Email && y.Password == dto.Password).Select( y=> new UserDto
+            return await _context.Customer.Where(y => y.Mobile == dto.MobileNumber && y.Password == dto.Password).Select( y=> new UserDto
             {
                 Id = y.Id,
                 Name = y.Name,
-                Email = y.Email,
+                MobileNumber = y.Mobile,
                 Password = y.Password,
                 is_Active = true,
                 is_Delete = false,
@@ -33,15 +33,16 @@ namespace Hamoj.Service.Services
 
         public async Task<UserDto> CheakVendorLogin(LoginDto dto)
         {
-            return await _context.Vendor.Where(x => x.Email == dto.Email && x.Password == dto.Password).Select(x => new UserDto
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Email = x.Email,
-                Password = x.Password,
-                is_Active = x.is_Active,
-                is_Delete = x.is_Delete
-            }).FirstOrDefaultAsync();
+           
+                return await _context.Vendor.Where(x => x.MobileNumber == dto.MobileNumber && x.Password == dto.Password).Select(x => new UserDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    MobileNumber = x.MobileNumber,
+                    Password = x.Password,
+                    is_Active = x.is_Active,
+                    is_Delete = x.is_Delete
+                }).FirstOrDefaultAsync();
 
         }
     }
