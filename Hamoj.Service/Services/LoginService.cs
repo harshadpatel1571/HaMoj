@@ -47,7 +47,7 @@ namespace Hamoj.Service.Services
 
         public async Task<UserDto> CheakVendorLogin(LoginDto dto)
         {
-            if (dto.IsVendor.HasValue && dto.IsVendor.Value)
+            if (dto.IsVendor ?? true)
             {
                 return await _context.Vendor.Where(x => x.MobileNumber == dto.MobileNumber && x.Password == dto.Password).Select(x => new UserDto
                 {
