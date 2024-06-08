@@ -24,7 +24,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = CustomerID,
-                VendorID = 19,
+                VendorID = 31,
                 Gst = 0,
                 GrandTotal = 0, 
                 OrderStatus = (int)OrderEnum.Pending,

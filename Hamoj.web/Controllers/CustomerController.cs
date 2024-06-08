@@ -38,8 +38,9 @@ public class CustomerController : Controller
             var Edit = await _customerService.GetDataById(id);
             return View(Edit);
         }
-        return View();
+        return View(new CustomerDto());
     }
+
 
     [HttpPost]
 

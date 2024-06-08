@@ -40,6 +40,12 @@
                                             <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
                                         <button type="submit" class="btn btn-primary form-control">Login</button>
+                                        @if (!string.IsNullOrEmpty(ViewBag.InvalidCredentialsErrorMessage))
+                                        {
+                                            <div class="text-center mt-3">
+                                                <span class="text-danger">@ViewBag.InvalidCredentialsErrorMessage</span>
+                                            </div>
+                                        }
                                     </form>
                                 </div>
                             </div>
