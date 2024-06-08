@@ -1,4 +1,4 @@
-﻿@model Hamoj.Service.Dto.VendorDto;
+﻿@model Hamoj.Service.Dto.VendorDto
 
 @{
     ViewData["Title"] = "Vendor AddEdit";
@@ -18,19 +18,16 @@
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" placeholder="Name" name="Name" asp-for="Name">
                         <span asp-validation-for="Name" class="text-danger"></span>
-
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" placeholder="Email" name="Email" asp-for="Email">
                         <span asp-validation-for="Email" class="text-danger"></span>
-
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label class="form-label">Phone Number</label>
-                        <input type="number" class="form-control" placeholder="Phone Number" name="Phone" asp-for="MobileNumber">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="number" class="form-control" placeholder="Mobile Number" name="MobileNumber" asp-for="MobileNumber">
                         <span asp-validation-for="MobileNumber" class="text-danger"></span>
-
                     </div>
                     <div class="mb-3 col-md-6">
                         <label>Address</label>
@@ -48,3 +45,5 @@
         </div>
     </div>
 </div>
+
+

@@ -9,6 +9,7 @@ public class VendorDto : BaseDto
     public string Name { get; set; }
     [Required(ErrorMessage = "Please Enter Email Address")]
     public string Email { get; set; }
+
     [Required(ErrorMessage = "Please Enter Phone Number")]
     public string MobileNumber { get; set; }
 

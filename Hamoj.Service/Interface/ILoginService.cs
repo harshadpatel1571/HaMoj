@@ -11,4 +11,5 @@ public interface ILoginService
     Task<UserDto> CheakCustomerLogin(LoginDto dto);
 
     Task<UserDto> CheakSuperAdminLogin(UserLoginDto dto);
+
 }

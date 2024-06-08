@@ -44,12 +44,11 @@ public class VendorController : Controller
     [HttpPost]
     public async Task<IActionResult> AddEdit(VendorDto dto)
     {
-        var Duplicate = await _vendorService.FindDuplicate(dto.Email,dto.MobileNumber, dto.Id);
+        var Duplicate = await _vendorService.FindDuplicate(dto.MobileNumber, dto.Id);
         if(Duplicate != null)
         {
         
-            ModelState.AddModelError("Email", "Email already exists.");
-            ModelState.AddModelError("Contact_Phone", "Contact Phone already exists.");
+            ModelState.AddModelError("mobileNumber", "Contact Phone already exists.");
             
             return View(dto);
         }

@@ -26,4 +26,5 @@ public class UserLoginDto : BaseDto
 
     [Required(ErrorMessage = "Please Enter Password")]
     public string Password { get; set; }
+
 }

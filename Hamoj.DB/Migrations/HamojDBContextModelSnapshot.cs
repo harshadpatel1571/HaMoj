@@ -57,7 +57,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Customer", b =>
@@ -121,7 +121,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Order", b =>
@@ -171,7 +171,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("VendorID");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.OrderDetails", b =>
@@ -224,7 +224,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Product", b =>
@@ -274,7 +274,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.User", b =>
@@ -320,7 +320,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.UserRights", b =>
@@ -370,7 +370,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRights");
+                    b.ToTable("UserRights", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Vendor", b =>
@@ -421,7 +421,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendor");
+                    b.ToTable("Vendor", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.VendorProduct", b =>
@@ -455,7 +455,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("VendorID");
 
-                    b.ToTable("VendorProduct");
+                    b.ToTable("VendorProduct", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.VendorUser", b =>
@@ -506,7 +506,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("VendorUsers");
+                    b.ToTable("VendorUsers", (string)null);
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Order", b =>

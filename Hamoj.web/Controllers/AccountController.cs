@@ -9,6 +9,7 @@ using System.Text.Json;
 using Hamoj.DB.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Hamoj.DB.Datamodel;
+using Hamoj.Service.Services;
 
 namespace Hamoj.web.Controllers;
 
@@ -31,6 +32,8 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(LoginDto dto)
     {
         var user = await _loginService.CheakVendorLogin(dto);
+
+        
 
         if (user != null)
         {
@@ -57,7 +60,7 @@ public class AccountController : Controller
         }
         else
         {
-            ViewBag.ErrorMessage = "Invalid username or password";
+            ViewBag.ErrorMessage = "Invalid mobilenumber or password";
             return View("Index");
         }
     }

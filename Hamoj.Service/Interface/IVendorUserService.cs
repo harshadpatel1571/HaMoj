@@ -12,4 +12,7 @@ public interface IVendorUserService
     Task<VendorUserDto> AddEdit(VendorUserDto dto, int VendorId);
 
      Task<VendorUserDto> GetDataById(int id);
+
+    Task<VendorUserDto> FindDuplicate(string Mobilenumber);
+
 }

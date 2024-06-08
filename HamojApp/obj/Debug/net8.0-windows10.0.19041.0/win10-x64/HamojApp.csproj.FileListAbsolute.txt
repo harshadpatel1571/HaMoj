@@ -97,11 +97,6 @@ E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\maui
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauifont.stamp
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Regular.ttf
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\f\OpenSans-Semibold.ttf
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-400.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-200.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLargeTile.scale-150.png
@@ -148,6 +143,11 @@ E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resi
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-125.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconLogo.scale-100.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\appicon.ico
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-200.png
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-150.png
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-125.png
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.stamp
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\HamojApp.AssemblyInfoInputs.cache
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\HamojApp.AssemblyInfo.cs

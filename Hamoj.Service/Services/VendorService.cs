@@ -86,9 +86,9 @@ public class VendorService : IVendorService
     }
 
 
-    public async Task<VendorDto> FindDuplicate(string Email, string MobileNumber, int? id)
+    public async Task<VendorDto> FindDuplicate(string MobileNumber, int? id)
     {
-        return await _context.Vendor.Where(x => (x.Email == Email || x.MobileNumber == MobileNumber) && x.Id != id.Value).Select(x => new VendorDto
+        return await _context.Vendor.Where(x => (x.MobileNumber == MobileNumber) && x.Id != id.Value).Select(x => new VendorDto
         {
             Id = x.Id,
             Email = x.Email,

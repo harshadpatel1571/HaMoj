@@ -21,10 +21,10 @@
                         <span>Qty: @order.Qty</span>
                         <div class="row mt-2">
                             <div class="col-6 p-1">
-                                <button type="button" class="btn btn-sm btn-rounded btn-danger btn-cancel w-100" onclick="confirmOrder(@order.Id, 2)">Cancel</button>
+                                <button type="button" class="btn btn-sm btn-rounded btn-success btn-confirm w-100" onclick="confirmOrder(@order.Id, 1)">Confirm</button>
                             </div>
                             <div class="col-6 p-1">
-                                <button type="button" class="btn btn-sm btn-rounded btn-success btn-confirm w-100" onclick="confirmOrder(@order.Id, 1)">Confirm</button>
+                                <button type="button" class="btn btn-sm btn-rounded btn-danger btn-cancel w-100" onclick="confirmOrder(@order.Id, 2)">Cancel</button>
                             </div>
                         </div>
                     </div>

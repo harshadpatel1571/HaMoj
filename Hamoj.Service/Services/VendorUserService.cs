@@ -68,6 +68,17 @@ public class VendorUserService:IVendorUserService
         return dto;
     }
 
+    public async Task<VendorUserDto> FindDuplicate(string MobileNumber)
+    {
+        return await _context.Vendor.Where(x => (x.MobileNumber == MobileNumber)).Select(x => new VendorUserDto
+        {
+            id = x.Id,
+            MobileNumber = x.MobileNumber,
+
+        })
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<List<VendorUserDto>> GetAllAsync(int vendorId)
     {
         var data = await _context.VendorUsers.Where(x=>x.VendorId== vendorId).Select(x => new VendorUserDto
