@@ -34,15 +34,15 @@
                                         <div class="row mb-3">
                                             <label class="col-form-label col-sm-3 pt-0">Type</label>
                                             <div class="col-sm-9">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" asp-for="IsVendor" value="true" checked="checked">
-                                                    <label class="form-check-label" for="IsVendor">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" asp-for="IsVendor" value="true" id="Admin" checked="checked">
+                                                    <label class="form-check-label" for="Admin">
                                                         Admin
                                                     </label>
                                                 </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" asp-for="IsVendor" value="false">
-                                                    <label class="form-check-label" for="IsVendorUser">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" asp-for="IsVendor" value="false" id="User">
+                                                    <label class="form-check-label" for="User">
                                                         User
                                                     </label>
                                                 </div>
