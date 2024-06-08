@@ -31,7 +31,7 @@
                                     <form asp-action="CustomerLogin" method="post">
                                         <div class="form-group">
                                             <label asp-for="MobileNumber"></label>
-                                            <input asp-for="MobileNumber" class="form-control" placeholder="MobileNumber" />
+                                            <input asp-for="MobileNumber" class="form-control" placeholder="Mobile Number" />
                                             <span asp-validation-for="MobileNumber" class="text-danger"></span>
                                         </div>
                                         <div class="form-group">
@@ -40,6 +40,12 @@
                                             <span asp-validation-for="Password" class="text-danger"></span>
                                         </div>
                                         <button type="submit" class="btn btn-primary form-control">Login</button>
+                                        @if (!string.IsNullOrEmpty(ViewBag.InvalidCredentialsErrorMessage))
+                                        {
+                                            <div class="text-center mt-3">
+                                                <span class="text-danger">@ViewBag.InvalidCredentialsErrorMessage</span>
+                                            </div>
+                                        }
                                     </form>
                                 </div>
                             </div>

@@ -71,7 +71,6 @@ namespace Hamoj.Service.Services
                     is_Delete = x.is_Delete
                 }).FirstOrDefaultAsync();
 
-
             }
         }
 

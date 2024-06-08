@@ -91,7 +91,6 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-
     public async Task<IActionResult> CustomerLogin(LoginDto dto)
     {
         var user = await _loginService.CheakCustomerLogin(dto);
@@ -124,10 +123,14 @@ public class AccountController : Controller
         }
         else
         {
+            // Add a model error for invalid credentials
             ViewBag.ErrorMessage = "Invalid username or password";
-            return RedirectToAction("CustomerLogin", "Account");
+
+            // Return the view with errors
+            return View("CustomerLogin");
         }
     }
+
 
 
     public async Task<IActionResult> SuperAdminLogin()

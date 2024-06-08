@@ -40,22 +40,22 @@ namespace Hamoj.web.Controllers
 
 
         [HttpPost]
-        public async Task< IActionResult> AddEdit(VendorUserDto dto)
+        public async Task<IActionResult> AddEdit(VendorUserDto dto)
         {
-
-
-            var AddEdit = _VendorUserService.AddEdit(dto, _currentUserService.GetCurrentUserId());
-
-            var Duplicate = await _VendorUserService.FindDuplicate(dto.MobileNumber);
-            if (Duplicate != null)
+            // Check for duplicate mobile number
+            var duplicate = await _VendorUserService.FindDuplicate(dto.MobileNumber);
+            if (duplicate != null && duplicate.id != dto.id)
             {
-
-                ModelState.AddModelError("mobileNumber", "Mobile Number is already exists.");
-
+                ModelState.AddModelError("MobileNumber", "Mobile Number already exists.");
                 return View(dto);
             }
 
+            // If no duplicate, proceed with add/edit
+            var addEditResult = _VendorUserService.AddEdit(dto, _currentUserService.GetCurrentUserId());
+
             return RedirectToAction("Index");
         }
+
+
     }
 }
