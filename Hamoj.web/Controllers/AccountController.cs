@@ -31,6 +31,15 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(LoginDto dto)
     {
         var user = await _loginService.CheakVendorLogin(dto);
+        var userRole = "";
+        if(dto.IsVendor ?? true)
+        {
+            userRole = UserEnum.Vendor.ToString();
+        }
+        else
+        {
+            userRole = UserEnum.vendorUser.ToString();
+        }
 
         if (user != null)
         {
@@ -38,7 +47,7 @@ public class AccountController : Controller
             {
             new Claim("Id", user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Role, dto.IsVendor.HasValue ? UserEnum.Vendor.ToString() : UserEnum.vendorUser.ToString()),
+            new Claim(ClaimTypes.Role, userRole),
         };
 
             var claimsIdentity = new ClaimsIdentity(claims,
