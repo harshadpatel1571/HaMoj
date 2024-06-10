@@ -1,7 +1,6 @@
 ﻿using Hamoj.DB.Context;
 using Hamoj.DB.Datamodel;
 using Hamoj.DB.Enum;
-using Hamoj.DB.Migrations;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +16,12 @@ namespace Hamoj.Service.Services
             _context = context;
         }
 
-        public order OrderDto { get; private set; }
-
         public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
         {
             var order = new Order
             {
                 CustomerId = CustomerID,
-                VendorID = 5003,
+                VendorID = 1,
                 Gst = 0,
                 GrandTotal = 0, 
                 OrderStatus = (int)OrderEnum.Pending,
@@ -123,7 +120,8 @@ namespace Hamoj.Service.Services
                     {
                         Office_No = x.order.Customer.Office_No
                     },
-                }
+                },
+               
             }).ToListAsync();
         }
 

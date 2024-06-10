@@ -6,5 +6,7 @@ public interface IDropDownBindService
 {
     Task<List<DropDownDto>> BindCategoryDropDown();
 
+    Task<List<DropDownDto>> BindVendorUserDropDown(int VendorId);
+
 
 }

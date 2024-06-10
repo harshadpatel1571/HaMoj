@@ -24,4 +24,14 @@ public class DropDownBindService : IDropDownBindService
         return data;
     }
 
+    async Task<List<DropDownDto>> IDropDownBindService.BindVendorUserDropDown(int VendorId)
+    {
+        var data = await _context.VendorUsers.Where(x=>x.VendorId== VendorId).Select(x => new DropDownDto
+        {
+            Id = x.id,
+            Name = x.Name,
+        }).ToListAsync();
+        return data;
+
+    }
 }

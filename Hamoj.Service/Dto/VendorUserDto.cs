@@ -8,7 +8,6 @@ public class VendorUserDto : BaseDto
 {
     public int id { get; set; }
 
-
     public int VendorId { get; set; }
 
     [Required(ErrorMessage = "Name is reqired")]
@@ -23,4 +22,6 @@ public class VendorUserDto : BaseDto
     public string Password { get; set; }
 
     public VendorDto vendorDto { get; set; }
+
+    public OrderDetailsDto orderDetailsDto { get; set; }
 }

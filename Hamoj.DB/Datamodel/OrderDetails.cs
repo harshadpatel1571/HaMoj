@@ -9,6 +9,7 @@ public class OrderDetails : basemodel
     public int Id { get; set; }
     public int OrderId { get; set; }
     public int ProductId { get; set; }
+    public int? VendorUserId { get; set; }
     public int Qty { get; set; }
     public decimal Amount { get; set; }
     public decimal TotalAmounnt { get; set; }
@@ -19,6 +20,6 @@ public class OrderDetails : basemodel
     [ForeignKey(nameof(ProductId))]
     public Product product {  get; set; }
 
-    
-
+    [ForeignKey(nameof(VendorUserId))]
+    public VendorUser? vendorUser { get; set; }
 }

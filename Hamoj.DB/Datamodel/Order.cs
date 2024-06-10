@@ -1,7 +1,4 @@
-﻿
-
-using Hamoj.DB.Migrations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hamoj.DB.Datamodel;
 

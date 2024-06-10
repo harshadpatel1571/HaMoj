@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hamoj.DB.Migrations
 {
     [DbContext(typeof(HamojDBContext))]
-    [Migration("20240607102311_ChangeVendorUSer")]
-    partial class ChangeVendorUSer
+    [Migration("20240610115203_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,9 @@ namespace Hamoj.DB.Migrations
                     b.Property<decimal>("TotalAmounnt")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("VendorUserId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("is_Active")
                         .HasColumnType("bit");
 
@@ -226,6 +229,8 @@ namespace Hamoj.DB.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("VendorUserId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -388,10 +393,6 @@ namespace Hamoj.DB.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Contact_Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Create_Date")
                         .HasColumnType("datetime2");
 
@@ -399,6 +400,10 @@ namespace Hamoj.DB.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobileNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -413,10 +418,6 @@ namespace Hamoj.DB.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -549,9 +550,15 @@ namespace Hamoj.DB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Hamoj.DB.Datamodel.VendorUser", "vendorUser")
+                        .WithMany("OrderDetailList")
+                        .HasForeignKey("VendorUserId");
+
                     b.Navigation("order");
 
                     b.Navigation("product");
+
+                    b.Navigation("vendorUser");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Product", b =>
@@ -601,6 +608,11 @@ namespace Hamoj.DB.Migrations
                     b.Navigation("orderList");
 
                     b.Navigation("vendorUsers");
+                });
+
+            modelBuilder.Entity("Hamoj.DB.Datamodel.VendorUser", b =>
+                {
+                    b.Navigation("OrderDetailList");
                 });
 #pragma warning restore 612, 618
         }

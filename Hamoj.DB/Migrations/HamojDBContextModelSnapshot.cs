@@ -57,7 +57,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Customer", b =>
@@ -121,7 +121,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer", (string)null);
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Order", b =>
@@ -171,7 +171,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("VendorID");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.OrderDetails", b =>
@@ -212,6 +212,9 @@ namespace Hamoj.DB.Migrations
                     b.Property<decimal>("TotalAmounnt")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("VendorUserId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("is_Active")
                         .HasColumnType("bit");
 
@@ -224,7 +227,9 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.HasIndex("VendorUserId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Product", b =>
@@ -274,7 +279,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.User", b =>
@@ -320,7 +325,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.UserRights", b =>
@@ -370,7 +375,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRights", (string)null);
+                    b.ToTable("UserRights");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Vendor", b =>
@@ -421,7 +426,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendor", (string)null);
+                    b.ToTable("Vendor");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.VendorProduct", b =>
@@ -455,7 +460,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasKey("VendorID");
 
-                    b.ToTable("VendorProduct", (string)null);
+                    b.ToTable("VendorProduct");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.VendorUser", b =>
@@ -506,7 +511,7 @@ namespace Hamoj.DB.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("VendorUsers", (string)null);
+                    b.ToTable("VendorUsers");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Order", b =>
@@ -542,9 +547,15 @@ namespace Hamoj.DB.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Hamoj.DB.Datamodel.VendorUser", "vendorUser")
+                        .WithMany("OrderDetailList")
+                        .HasForeignKey("VendorUserId");
+
                     b.Navigation("order");
 
                     b.Navigation("product");
+
+                    b.Navigation("vendorUser");
                 });
 
             modelBuilder.Entity("Hamoj.DB.Datamodel.Product", b =>
@@ -594,6 +605,11 @@ namespace Hamoj.DB.Migrations
                     b.Navigation("orderList");
 
                     b.Navigation("vendorUsers");
+                });
+
+            modelBuilder.Entity("Hamoj.DB.Datamodel.VendorUser", b =>
+                {
+                    b.Navigation("OrderDetailList");
                 });
 #pragma warning restore 612, 618
         }

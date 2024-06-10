@@ -21,4 +21,6 @@ public class VendorUser : basemodel
     [ForeignKey(nameof(VendorId))]
     public Vendor vendor { get; set; }
 
+    public List<OrderDetails> OrderDetailList { get; set; }
+
 }

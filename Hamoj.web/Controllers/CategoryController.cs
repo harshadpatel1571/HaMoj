@@ -1,5 +1,4 @@
-﻿using Hamoj.DB.Migrations;
-using Hamoj.Service.Dto;
+﻿using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
