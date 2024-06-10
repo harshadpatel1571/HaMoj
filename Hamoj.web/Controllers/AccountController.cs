@@ -33,7 +33,7 @@ public class AccountController : Controller
     {
         var user = await _loginService.CheakVendorLogin(dto);
         var userRole = "";
-        if(dto.IsVendor ?? true)
+        if (dto.IsVendor ?? true)
         {
             userRole = UserEnum.Vendor.ToString();
         }
@@ -42,7 +42,7 @@ public class AccountController : Controller
             userRole = UserEnum.vendorUser.ToString();
         }
 
-        
+
 
         if (user != null)
         {
@@ -173,8 +173,9 @@ public class AccountController : Controller
         else
         {
             ViewBag.ErrorMessage = "Invalid username or password";
-            return RedirectToAction("SuperAdminLogin", "Account");
+            return View();
         }
     }
+
 
 }
