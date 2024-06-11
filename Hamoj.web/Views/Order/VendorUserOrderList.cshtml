@@ -30,7 +30,6 @@
                             <div class="dropdown-menu" style="">
                                 <a class="dropdown-item text-success" href="javascript:void(0)" onclick="confirmOrder(@order.Id, 1)">Accept Order</a>
                                 <a class="dropdown-item text-danger" href="javascript:void(0)" onclick="confirmOrder(@order.Id, 2)">Cancel Order</a>
-                                <a class="dropdown-item text-info" href="javascript:void(0)" onclick="Assign(@order.Id)">Assign to</a>
                             </div>
                         </div>
                     </div>
@@ -40,26 +39,6 @@
     }
 </div>
 
-
-
-
-<div class="modal fade" id="exampleModalCenter">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <select class="default-select form-control wide mb-3 col-md-6" id="VendorUserId" asp-items="@ViewBag.UserList">
-                    <option value="">Users</option>
-                </select>
-                <input type="hidden" name="name" value="" id="OrderDetailId" />
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data - bs - dismiss="modal" id="btnassign" onclick="UserAssign()">Assign</button>
-                <button type="button" class="btn btn-danger light" id="btnCancel">Cancel </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @section scripts {
     <script>
         function confirmOrder(orderDetailId, orderStatus) {
@@ -67,7 +46,7 @@
             let successMessage = orderStatus === 1 ? "Order Confirmed" : "Order Canceled";
             let confirmButtonText = orderStatus === 1 ? "Yes, confirm it!" : "Yes, cancel it!";
             let buttonColor = "#3085d6";
-            
+
             Swal.fire({
                 title: `Are you sure?`,
                 text: `You won't be able to revert this!`,
@@ -81,7 +60,6 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var OrderQty = $('#textQty_' + orderDetailId).val();
-
                     $.ajax({
                         url: '/Order/ConfirmOrder',
                         type: 'POST',
@@ -115,36 +93,5 @@
             });
         }
 
-        function Assign(OrderDetailId) {
-            $('#exampleModalCenter').modal('show');
-            $('#OrderDetailId').val(OrderDetailId);
-        };
-
-        $('#btnCancel').click(function () {
-            $('#exampleModalCenter').modal('hide');
-        });
-
-        function UserAssign() {
-            var data = $('#VendorUserId').val();
-            var OrderDetailId = $('#OrderDetailId').val();
-            $.ajax({
-                url: '/Order/AssignOrder',
-                type: 'POST',
-                data: { VendorUserId: data, OrderDetailId: OrderDetailId },
-                success: function (result) {
-                    $("#card-" + OrderDetailId).remove();
-                    $('#exampleModalCenter').modal('hide');
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX error:', error);
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'An error occurred while assigning the user.',
-                        icon: 'error'
-                    });
-                }
-            });
-        }
     </script>
 }
-

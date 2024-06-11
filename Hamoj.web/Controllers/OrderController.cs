@@ -46,17 +46,23 @@ public class OrderController : Controller
 
 
     [HttpPost]
-    public async Task<ActionResult> ConfirmOrder(int id, int status, int qtty)
+    public async Task<IActionResult> ConfirmOrder(int id, int status, int qtty)
     {
         var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
-        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus);
+        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus,qtty);
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<ActionResult> AssignOrder(int  VendorUserId,int OrderDetailId)
+    public async Task<IActionResult> AssignOrder(int  VendorUserId,int OrderDetailId)
     {
         var AssignOrder = await _orderService.AssignOrder(OrderDetailId, VendorUserId);
         return Json(new { msg = "Success", status = true });
     }
 
+
+    public async Task<IActionResult> VendorUserOrderList()
+    {
+        var VendorUSer = await _orderService.VendorUSerOrderList(_currentUserService.GetCurrentUserId());
+        return View(VendorUSer);
+    }
 }

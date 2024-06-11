@@ -79,14 +79,14 @@ namespace Hamoj.Service.Services
             }
         }
 
-        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status)
+        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, int qtty)
         {
             try
             {
                 // this code for update order details :
                 var orderDetails = await _context.OrderDetails.Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
                 orderDetails.OrderStatus = (int)status;
-
+                orderDetails.Qty = qtty;
                 _context.OrderDetails.Update(orderDetails);
                 _context.SaveChanges();
 
@@ -124,7 +124,7 @@ namespace Hamoj.Service.Services
 
         public async Task<List<OrderDetailsDto>> OrderList()
         {
-            return await _context.OrderDetails.Where(x=>x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDetailsDto
+            return await _context.OrderDetails.Where(x=>x.OrderStatus == (int)OrderEnum.Pending &x.VendorUserId == null).Select(x => new OrderDetailsDto
             {
                 Id = x.Id,
                 Qty = x.Qty,
@@ -144,5 +144,26 @@ namespace Hamoj.Service.Services
             }).ToListAsync();
         }
 
+        public async Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id) 
+        {
+            return await _context.OrderDetails.Where(x=>x.VendorUserId == Id&x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDetailsDto
+            {
+                Id = x.Id,
+                Qty = x.Qty,
+                VendorUserId = x.VendorUserId,
+                productDto = new ProductDto
+                {
+                    Name = x.product.Name,
+                    Image = x.product.Image,
+                },
+                orderDto = new OrderDto
+                {
+                    customerDto = new CustomerDto
+                    {
+                        Office_No = x.order.Customer.Office_No
+                    },
+                },
+            }).ToListAsync();
+        }
     }
 }
