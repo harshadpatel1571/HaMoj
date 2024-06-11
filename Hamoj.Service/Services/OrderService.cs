@@ -60,6 +60,25 @@ namespace Hamoj.Service.Services
             return true;
         }
 
+        public async Task<bool> AssignOrder(int OrderDetailId, int VendorUserId)
+        {
+            try
+            {
+                var data = await _context.OrderDetails.Where(x => x.Id == OrderDetailId).FirstOrDefaultAsync();
+                data.VendorUserId = VendorUserId;
+                _context.OrderDetails.Update(data);
+                _context.SaveChanges();
+
+                return true;
+            }
+
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status)
         {
             try

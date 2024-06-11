@@ -46,15 +46,16 @@ public class OrderController : Controller
 
 
     [HttpPost]
-    public async Task<ActionResult> ConfirmOrder(int id, int status)
+    public async Task<ActionResult> ConfirmOrder(int id, int status, int qtty)
     {
         var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
         var confirmorder = await _orderService.ConfirmOrder(id, orderStatus);
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<ActionResult> AssignOrder()
+    public async Task<ActionResult> AssignOrder(int  VendorUserId,int OrderDetailId)
     {
+        var AssignOrder = await _orderService.AssignOrder(OrderDetailId, VendorUserId);
         return Json(new { msg = "Success", status = true });
     }
 

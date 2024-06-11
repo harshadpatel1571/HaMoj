@@ -14,4 +14,6 @@ public interface IOrderService
     Task<List<OrderDetailsDto>> OrderList();
 
     Task<bool> ConfirmOrder(int ID, OrderEnum status);
+
+    Task<bool> AssignOrder(int OrderDetailId, int VendorUserId); 
 }
