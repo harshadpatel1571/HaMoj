@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hamoj.DB.Migrations
 {
     [DbContext(typeof(HamojDBContext))]
-    [Migration("20240610115203_Init")]
+    [Migration("20240611101913_Init")]
     partial class Init
     {
         /// <inheritdoc />
