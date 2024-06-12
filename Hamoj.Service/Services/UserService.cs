@@ -31,6 +31,7 @@ public class UserService : IUserService
         }
         // Assign Dto Value (Form Value) or User Inserted Value To Table Object Value
         dbmodel.Name = dto.Name;
+        dbmodel.MobileNumber = dto.MobileNumber;
         dbmodel.Email = dto.Email;
         dbmodel.Password = dto.Password;
         dbmodel.Role = (int)UserEnum.Admin;
@@ -114,6 +115,7 @@ public class UserService : IUserService
         return await _context.User.Where(x => x.Id == id).Select(x => new UserDto {
             Id = x.Id, 
             Name = x.Name,
+            MobileNumber = x.MobileNumber,
             Email = x.Email,
             Role = x.Role,
             Password =x.Password,

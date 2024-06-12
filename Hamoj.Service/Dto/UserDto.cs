@@ -9,6 +9,8 @@ public class UserDto : BaseDto
     [Required (ErrorMessage ="Please Enter Name")]
     public string Name { get; set; }
 
+    public string? MobileNumber { get; set; }
+
     [Required(ErrorMessage = "Please Enter Email Address")]
     public string Email { get; set; }
     [Required(ErrorMessage = "Please Enter Password")]
@@ -18,5 +20,5 @@ public class UserDto : BaseDto
     public string Confirm_Password { get; set; }
 
     public int Role { get; set; }
-    public string MobileNumber { get; set; }
+    
 }
