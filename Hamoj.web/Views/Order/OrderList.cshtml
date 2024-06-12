@@ -6,7 +6,7 @@
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
 
-<div class="row" id="card">
+<div class="row" id="card">  
     @foreach (var order in Model)
     {
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.Id">
@@ -16,14 +16,14 @@
                     <img src="~/ProductImage/@order.productDto.Image" class="img-thumbnail" alt="@order.productDto.Name" style="width: 100%; height: 200px; object-fit: fill;" />
                     <div class="p-4">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-lm-12">
                                 <h4 class="text-info">Office No: @order.orderDto.customerDto.Office_No</h4>
                             </div>
-                            <div class="col-sm-6 text-end">
+                            <div class="col-lm-12">
                                 <b class="text-primary">@order.productDto.Name</b>
                             </div>
                         </div>
-                        <div class="input-group">
+                        <div class="input-group mt-2">
                             <button class="btn-sm btn btn-primary" type="button">Qty</button>
                             <input type="text" class="form-control form-control-sm" id="textQty_@order.Id" value="@order.Qty">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
