@@ -20,10 +20,13 @@
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-md-6">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" placeholder="Mobile Number" name="MobileNumber" asp-for="MobileNumber">
+                    </div>
+                    <div class="mb-3 col-md-6">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" placeholder="Email" name="Email" asp-for="Email">
                         <span asp-validation-for="Email" class="text-danger"></span>
-
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Password</label>
