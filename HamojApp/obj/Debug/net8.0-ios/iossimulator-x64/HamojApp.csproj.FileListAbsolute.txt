@@ -259,7 +259,6 @@ E:\Project\Hamojnew\HamojApp\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-do
 E:\Project\Hamojnew\HamojApp\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-nativeaot.a
 E:\Project\Hamojnew\HamojApp\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet.a
 E:\Project\Hamojnew\HamojApp\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet.dylib
-E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-ios\iossimulator-x64\build-signature\signature
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-ios\iossimulator-x64\mauiimage.inputs
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-ios\iossimulator-x64\mauifont.inputs
 E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-ios\iossimulator-x64\mauisplash.inputs

@@ -84,9 +84,10 @@ namespace Hamoj.Service.Services
             try
             {
                 // this code for update order details :
-                var orderDetails = await _context.OrderDetails.Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
+                var orderDetails = await _context.OrderDetails.Include(x=> x.product).Where(x => x.Id == OrdersID).FirstOrDefaultAsync();
                 orderDetails.OrderStatus = (int)status;
                 orderDetails.Qty = qtty;
+                orderDetails.TotalAmounnt =  orderDetails.product.Price*qtty;
                 _context.OrderDetails.Update(orderDetails);
                 _context.SaveChanges();
 

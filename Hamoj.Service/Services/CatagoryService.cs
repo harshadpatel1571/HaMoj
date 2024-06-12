@@ -33,7 +33,10 @@ public class CatagoryService : ICatagoryService
         }
         // Assign Dto Value (Form Value) or User Inserted Value To Table Object Value
         dbmodel.Name = dto.Name;
-        dbmodel.Image = dto.Image;
+        if (dto.Image != null)
+        {
+            dbmodel.Image = dto.Image;
+        }
         dbmodel.is_Active = true;
         dbmodel.is_Delete = false;
         dbmodel.Create_Date = DateTime.Now;
