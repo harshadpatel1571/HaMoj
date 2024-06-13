@@ -125,24 +125,42 @@ namespace Hamoj.Service.Services
 
         public async Task<List<OrderDetailsDto>> OrderList()
         {
-            return await _context.OrderDetails.Where(x=>x.OrderStatus == (int)OrderEnum.Pending &x.VendorUserId == null).Select(x => new OrderDetailsDto
-            {
-                Id = x.Id,
-                Qty = x.Qty,
-                productDto = new ProductDto
-                {
-                    Name = x.product.Name,
-                    Image = x.product.Image,
-                },
-                orderDto = new OrderDto
+            //return await _context.OrderDetails.Where(x=>x.OrderStatus == (int)OrderEnum.Pending &x.VendorUserId == null).Select(x => new OrderDetailsDto
+            //{
+            //    Id = x.Id,
+            //    Qty = x.Qty,
+            //    productDto = new ProductDto
+            //    {
+            //        Name = x.product.Name,
+            //        Image = x.product.Image,
+            //    },
+            //    orderDto = new OrderDto
+            //    {
+            //        customerDto = new CustomerDto
+            //        {
+            //            Office_No = x.order.Customer.Office_No
+            //        },
+            //    },
+
+            //}).ToListAsync();
+
+            var data = await _context.OrderDetails
+                .Where(x => x.OrderStatus == (int)OrderEnum.Pending & x.VendorUserId == null)
+                .GroupBy(x => x.order.CustomerId).Select(x=> new OrderDetailsDto
                 {
                     customerDto = new CustomerDto
                     {
-                        Office_No = x.order.Customer.Office_No
+                        Id = x.Select(x=>x.order.CustomerId).FirstOrDefault(),
+                        Office_No = x.Select(x => x.order.Customer.Office_No).FirstOrDefault(),
                     },
-                },
-               
-            }).ToListAsync();
+                    productDto = new ProductDto
+                    {
+                        //Name = x.Select(x=>x.product.Name).FirstOrDefault()
+                    },
+                    Id= x.Key,
+                    Qty = x.Select(x=>x.Qty).FirstOrDefault()
+                }).ToListAsync();
+            return data;
         }
 
         public async Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id) 
