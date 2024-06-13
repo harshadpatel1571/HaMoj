@@ -16,7 +16,7 @@ namespace Hamoj.Service.Services
             _context = context;
         }
 
-        public async Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID)
+        public async Task<bool> AddOrder(List<ProductDto> dto, int CustomerID)
         {
             var order = new Order
             {
@@ -42,8 +42,8 @@ namespace Hamoj.Service.Services
                 {
                     ProductId = item.Id,
                     Amount = product.Price,
-                    Qty = item.Qtty,
-                    TotalAmounnt = product.Price * item.Qtty,
+                    Qty = item.Qty,
+                    TotalAmounnt = product.Price * item.Qty,
                     OrderStatus = (int)OrderEnum.Pending,
                     is_Active = true,
                     is_Delete = false,
