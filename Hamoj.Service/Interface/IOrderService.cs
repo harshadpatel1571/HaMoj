@@ -18,4 +18,7 @@ public interface IOrderService
     Task<bool> AssignOrder(int OrderDetailId, int VendorUserId);
 
     Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id);
+
+   
+
 }

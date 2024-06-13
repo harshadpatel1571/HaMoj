@@ -34334,5 +34334,11 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       color: #fff; }
 
 
+.product-image {
+    height: 85px;
+    width: 85px;
+    object-fit: cover;
+}
+
 
 /*# sourceMappingURL=style.css.map */

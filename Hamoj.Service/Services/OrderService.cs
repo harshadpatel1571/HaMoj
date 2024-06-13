@@ -154,7 +154,6 @@ namespace Hamoj.Service.Services
                 VendorUserId = x.VendorUserId,
                 productDto = new ProductDto
                 {
-                    Name = x.product.Name,
                     Image = x.product.Image,
                 },
                 orderDto = new OrderDto

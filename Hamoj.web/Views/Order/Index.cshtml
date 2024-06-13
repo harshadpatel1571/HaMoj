@@ -36,9 +36,9 @@
 
     <script>
         $(document).ready(function () {
-            $("#btnOrder").click(function () {
+            $("#btnOrder").click(function () { 
                 var products = [];
-                $('.card').each(function () {
+                $('.card').each(function () { 
                     var id = $(this).find('input[type="text"]').attr('id');
                     var Qtty = $(this).find('input[type="text"]').val();
                     if (Qtty) {
