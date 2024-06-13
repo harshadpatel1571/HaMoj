@@ -41,7 +41,7 @@ public class DropDownBindService : IDropDownBindService
         var data = await _context.Customer.Select(x => new DropDownDto
         {
             Id = x.Id,
-            Name = x.Name + "office No" + x.Office_No,
+            Name = x.Name + "( office No: " + x.Office_No + ")",
         }).ToListAsync();
         return data;
     }
