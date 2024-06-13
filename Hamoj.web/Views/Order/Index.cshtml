@@ -6,66 +6,113 @@
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
-<form method="post">
-    <div class="row">
-        @foreach (var product in Model)
-        {
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="card m-2">
-                    <div class="card-header">
-                        <p class="card-text">@product.Name (@product.Price /-)</p>
-                    </div>
-                    <div class="card-body">
-                        <img src="~/ProductImage/@product.Image" class="card-img-top" style="width:150px; height:100px;">
-                    </div>
-                    <div class="col-auto mb-2">
-                        <div class="input-group p-2">
-                            <div class="input-group-text btn btn-primary btn-sm">Qty.</div>
-                            <input type="text" class="form-control form-control-sm" placeholder="Qty" id="@product.Id">
-                        </div>
-                    </div>
+<form method="post" asp-controller="Order" asp-action="CustomerProductOrder">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive order-list">
+                    <table class="table items-table">
+                        <tbody>
+                            <tr>
+                                <th class="my-0 text-black font-w500 fs-20 text-center">Items</th>
+                                <th class="my-0 text-black font-w500 fs-20 text-center">Price</th>
+                                <th class="text-black font-w500 fs-20 text-center">Qty.</th>
+                            </tr>
+                            @foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <a href="ecom-product-detail.html">
+                                                <img class="me-3 img-fluid rounded product-image" src="~/ProductImage/@product.Image" alt="@product.Name">
+                                            </a>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-2 text-black mb-4">
+                                                    <a class="text-black" href="ecom-product-detail.html">@product.Name</a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4 class="my-0 text-secondary font-w600 text-center">@product.Price</h4>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)" id=""><i>-</i></a>
+                                            <input type="text" class="form-control quantity-input text-center mx-0" id="textqty" value="0" style="width: 50px;" disabled="disabled" asp-for="@product.orderDetailsListDto.Qty">
+                                            <input type="hidden" name="name" value="" asp-for="@product.Id" />
+                                            <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        }
+        </div>
     </div>
-    <button type="button" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
+    <button type="submit" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
 </form>
 
 @section Scripts {
-    
+
 
     <script>
-        $(document).ready(function () {
-            $("#btnOrder").click(function () { 
-                var products = [];
-                $('.card').each(function () { 
-                    var id = $(this).find('input[type="text"]').attr('id');
-                    var Qtty = $(this).find('input[type="text"]').val();
-                    if (Qtty) {
-                        products.push({ id: id, Qtty: Qtty });
-                    }
-                });
+        function incrementQty(element) {
+            var input = element.previousElementSibling;
+            var currentValue = parseInt(input.value);
+            input.value = currentValue + 1;
+        }
 
-                if (products.length > 0) {
-                    $.ajax({
-                        url: '/Order/CustomerProductOrder',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(products),
-                        success: function (result) {
-                            toastr.success('Order Added');
-                            // Reload the entire page
-                            window.location.reload();
-                        },
-                        error: function (xhr, status, error) {
-                            toastr.error('Error adding order');
-                            console.error('AJAX error:', error);
-                        }
-                    });
-                } else {
-                    toastr.error('Select at least one product');
-                }
-            });
-        });
+        function decrementQty(element) {
+            var input = element.nextElementSibling;
+            var currentValue = parseInt(input.value);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
+        // $(document).ready(function () {
+        //     $("#btnOrder").click(function () {
+        //         var products = [];
+        //         // $('.card').each(function () {
+        //         //     var id = $(this).find('input[type="text"]').attr('id');
+        //         //     var Qtty = $(this).find('input[type="text"]').val();
+        //         //     var qtys = $("#textqty").val();
+        //         //     alert(qtys);
+        //         //     if (Qtty) {
+        //         //         products.push({ id: id, Qtty: Qtty });
+        //         //     }
+        //         // });
+        //         var input = $(".quantity-input");
+        //         for (var i = 0; i < input.length; i++) {
+        //             if ($(input[i]).val() != 0) {
+        //                 alert($(input[i]).val());
+        //                 products.push({ input: input });
+        //             }
+        //         }
+
+        //         if (products.length > 0) {
+        //             $.ajax({
+        //                 url: '/Order/CustomerProductOrder',
+        //                 type: 'POST',
+        //                 contentType: 'application/json',
+        //                 data: JSON.stringify(products),
+        //                 success: function (result) {
+        //                     toastr.success('Order Added');
+        //                     console.log(result);
+        //                     // Reload the entire page
+        //                     window.location.reload();
+        //                 },
+        //                 error: function (xhr, status, error) {
+        //                     toastr.error('Error adding order');
+        //                     console.error('AJAX error:', error);
+        //                 }
+        //             });
+        //         } else {
+        //             toastr.error('Select at least one product');
+        //         }
+        //     });
+        // });
     </script>
 }
