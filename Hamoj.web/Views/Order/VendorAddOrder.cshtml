@@ -79,44 +79,6 @@
                 input.value = currentValue - 1;
             }
         }
-
-        $(document).ready(function () {
-            $("#btnOrder").click(function () {
-                var officeNo = $('#selectOfficeNo').val();
-                var products = [];
-                $('input.quantity-input').each(function () {
-                    var productId = $(this).attr('id').split('_')[1];
-                    var quantity = $(this).val();
-                    if (quantity > 0) {
-                        products.push({ id: productId, quantity: quantity });
-                    }
-                });
-
-                if (products.length > 0) {
-                    var orderData = {
-                        officeNo: officeNo,
-                        products: products
-                    };
-
-                    $.ajax({
-                        url: '/Order/CustomerProductOrder',
-                        type: 'POST',
-                        contentType: 'application/json',
-                        data: JSON.stringify(orderData),
-                        success: function (result) {
-                            toastr.success('Order Added');
-                            // Reload the entire page
-                            window.location.reload();
-                        },
-                        error: function (xhr, status, error) {
-                            toastr.error('Error adding order');
-                            console.error('AJAX error:', error);
-                        }
-                    });
-                } else {
-                    toastr.error('Select at least one product');
-                }
-            });
-        });
+        
     </script>
 }
