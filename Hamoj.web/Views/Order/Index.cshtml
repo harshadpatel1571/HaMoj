@@ -1,4 +1,4 @@
-﻿@model List<Hamoj.Service.Dto.ProductDto>;
+﻿@model List<Hamoj.Service.Dto.ProductDto>
 
 @{
     Layout = "~/Views/Shared/_Customer.cshtml";
@@ -6,43 +6,46 @@
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
-<form method="post" asp-controller="Order" asp-action="CustomerProductOrder">
+
+<form method="post" asp-controller="Order" asp-action="CustomerProductOrder" onsubmit="enableQuantityInputs()">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive order-list">
                     <table class="table items-table">
-                        <tbody>
+                        <thead>
                             <tr>
-                                <th class="my-0 text-black font-w500 fs-20 text-center">Items</th>
-                                <th class="my-0 text-black font-w500 fs-20 text-center">Price</th>
-                                <th class="text-black font-w500 fs-20 text-center">Qty.</th>
+                                <th class="my-0 text-black font-w500 fs-20">Items</th>
+                                <th class="my-0 text-black font-w500 fs-20">Price</th>
+                                <th class="text-black font-w500 fs-20">Qty.</th>
                             </tr>
-                            @foreach (var product in Model)
+                        </thead>
+                        <tbody>
+                            @for (var i = 0; i < Model.Count; i++)
                             {
                                 <tr>
                                     <td>
                                         <div class="media">
                                             <a href="ecom-product-detail.html">
-                                                <img class="me-3 img-fluid rounded product-image" src="~/ProductImage/@product.Image" alt="@product.Name">
+                                                <img class="me-3 img-fluid rounded product-image" src="~/ProductImage/@Model[i].Image" alt="@Model[i].Name">
                                             </a>
                                             <div class="media-body">
                                                 <h5 class="mt-0 mb-2 text-black mb-4">
-                                                    <a class="text-black" href="ecom-product-detail.html">@product.Name</a>
+                                                    <a class="text-black" href="ecom-product-detail.html">@Model[i].Name</a>
                                                 </h5>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <h4 class="my-0 text-secondary font-w600 text-center">@product.Price</h4>
+                                        <h4 class="my-0 text-secondary font-w600">@Model[i].Price</h4>
                                     </td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)" id=""><i>-</i></a>
-                                            <input type="text" class="form-control quantity-input text-center mx-0" id="textqty" value="0" style="width: 50px;" disabled="disabled" asp-for="@product.orderDetailsListDto.Qty">
-                                            <input type="hidden" name="name" value="" asp-for="@product.Id" />
+                                            <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
+                                            <input type="text" class="form-control quantity-input text-center mx-0" value="0" style="width: 50px;"  asp-for="@Model[i].Qty">
                                             <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
                                         </div>
+                                        <input type="hidden" asp-for="@Model[i].Id" />
                                     </td>
                                 </tr>
                             }
@@ -52,12 +55,10 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mt-2" id="btnOrder">Order Now</button>
+    <button type="submit" class="btn btn-primary mt-2">Order Now</button>
 </form>
 
 @section Scripts {
-
-
     <script>
         function incrementQty(element) {
             var input = element.previousElementSibling;
@@ -72,47 +73,12 @@
                 input.value = currentValue - 1;
             }
         }
-        // $(document).ready(function () {
-        //     $("#btnOrder").click(function () {
-        //         var products = [];
-        //         // $('.card').each(function () {
-        //         //     var id = $(this).find('input[type="text"]').attr('id');
-        //         //     var Qtty = $(this).find('input[type="text"]').val();
-        //         //     var qtys = $("#textqty").val();
-        //         //     alert(qtys);
-        //         //     if (Qtty) {
-        //         //         products.push({ id: id, Qtty: Qtty });
-        //         //     }
-        //         // });
-        //         var input = $(".quantity-input");
-        //         for (var i = 0; i < input.length; i++) {
-        //             if ($(input[i]).val() != 0) {
-        //                 alert($(input[i]).val());
-        //                 products.push({ input: input });
-        //             }
-        //         }
 
-        //         if (products.length > 0) {
-        //             $.ajax({
-        //                 url: '/Order/CustomerProductOrder',
-        //                 type: 'POST',
-        //                 contentType: 'application/json',
-        //                 data: JSON.stringify(products),
-        //                 success: function (result) {
-        //                     toastr.success('Order Added');
-        //                     console.log(result);
-        //                     // Reload the entire page
-        //                     window.location.reload();
-        //                 },
-        //                 error: function (xhr, status, error) {
-        //                     toastr.error('Error adding order');
-        //                     console.error('AJAX error:', error);
-        //                 }
-        //             });
-        //         } else {
-        //             toastr.error('Select at least one product');
-        //         }
+        // function enableQuantityInputs() {
+        //     var inputs = document.querySelectorAll('.quantity-input');
+        //     inputs.forEach(function (input) {
+        //         input.removeAttribute('disabled');
         //     });
-        // });
+        // }
     </script>
 }

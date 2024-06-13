@@ -9,7 +9,7 @@ public interface IOrderService
 {
     Task<List<ProductDto>> GetProductData();
 
-    Task<bool> AddOrder(List<CustomerProductOrder> dto, int CustomerID);
+    Task<bool> AddOrder(List<ProductDto> dto, int CustomerID);
 
     Task<List<OrderDetailsDto>> OrderList();
 

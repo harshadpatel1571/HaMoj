@@ -28,27 +28,11 @@ public class OrderController : Controller
         return View(productList);
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> CustomerProductOrder([FromBody] List<CustomerProductOrder> dto)
-    //{
-
-    //    var order = await _orderService.AddOrder(dto, _currentUserService.GetCurrentUserId());
-    //    return Json(new { msg = "Success", status = true });
-    //}
-
-    //public async Task<IActionResult> CustomerProductOrder([FromBody] List<CustomerProductOrder> dto)
-    //{
-
-    //    var order = await _orderService.AddOrder(dto, _currentUserService.GetCurrentUserId());
-    //    return Json(new { msg = "Success", status = true });
-    //}
-
     [HttpPost]
     public async Task<IActionResult> CustomerProductOrder(List<ProductDto> dto)
     {
 
-        //var order = await _orderService.AddOrder(dto, _currentUserService.GetCurrentUserId());
-        //return Json(new { msg = "Success", status = true });
+        var order = await _orderService.AddOrder(dto.Where(dto => dto.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
         return RedirectToAction("Index");
     }
     public async Task<IActionResult> OrderList()
@@ -58,7 +42,6 @@ public class OrderController : Controller
         ViewBag.UserList = new SelectList(UserList, "Id", "Name");
         return View(data);
     }
-
 
     [HttpPost]
     public async Task<IActionResult> ConfirmOrder(int id, int status, int qtty)

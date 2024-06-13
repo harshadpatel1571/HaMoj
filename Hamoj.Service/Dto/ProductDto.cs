@@ -23,4 +23,5 @@ public class ProductDto :BaseDto
     public CategoryDto CategoryDto { get; set; }
 
     public OrderDetailsDto orderDetailsListDto { get; set; }
+    public int Qty { get; set; }
 }
