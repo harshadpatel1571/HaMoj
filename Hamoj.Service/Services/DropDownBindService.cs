@@ -34,4 +34,15 @@ public class DropDownBindService : IDropDownBindService
         return data;
 
     }
+
+    public async Task<List<DropDownDto>> BindCustomerDropDown() 
+    {
+
+        var data = await _context.Customer.Select(x => new DropDownDto
+        {
+            Id = x.Id,
+            Name = x.Name + "office No" + x.Office_No,
+        }).ToListAsync();
+        return data;
+    }
 }

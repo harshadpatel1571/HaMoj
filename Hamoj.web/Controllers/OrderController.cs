@@ -47,11 +47,11 @@ public class OrderController : Controller
     public async Task<IActionResult> ConfirmOrder(int id, int status, int qtty)
     {
         var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
-        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus,qtty);
+        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus, qtty);
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<IActionResult> AssignOrder(int  VendorUserId,int OrderDetailId)
+    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderDetailId)
     {
         var AssignOrder = await _orderService.AssignOrder(OrderDetailId, VendorUserId);
         return Json(new { msg = "Success", status = true });
@@ -62,5 +62,14 @@ public class OrderController : Controller
     {
         var VendorUSer = await _orderService.VendorUSerOrderList(_currentUserService.GetCurrentUserId());
         return View(VendorUSer);
+    }
+
+
+    public async Task<IActionResult> VendorAddOrder()
+    {
+        var CustomerList = await _dropDownBindService.BindCustomerDropDown();
+        ViewBag.CustomerList = new SelectList(CustomerList, "Id", "Name");
+        var productList = await _orderService.GetProductData();
+        return View(productList);
     }
 }

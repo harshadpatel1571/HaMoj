@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\Hamojnew\\HamojApp\\HamojApp.csproj": {}
+    "E:\\Projects\\Hamoj\\HamojApp\\HamojApp.csproj": {}
   },
   "projects": {
-    "E:\\Project\\Hamojnew\\HamojApp\\HamojApp.csproj": {
+    "E:\\Projects\\Hamoj\\HamojApp\\HamojApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\Hamojnew\\HamojApp\\HamojApp.csproj",
+        "projectUniqueName": "E:\\Projects\\Hamoj\\HamojApp\\HamojApp.csproj",
         "projectName": "HamojApp",
-        "projectPath": "E:\\Project\\Hamojnew\\HamojApp\\HamojApp.csproj",
-        "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\Hamojnew\\HamojApp\\obj\\",
+        "projectPath": "E:\\Projects\\Hamoj\\HamojApp\\HamojApp.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\Hamoj\\HamojApp\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
