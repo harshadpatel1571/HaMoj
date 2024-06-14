@@ -1,35 +1,51 @@
-﻿@model List<Hamoj.Service.Dto.OrderDetailsDto>
+﻿@using Hamoj.Service.Dto
+@model List<Hamoj.Service.Dto.OrderDto>
 @{
     Layout = "~/Views/Shared/_Vendor.cshtml";
     ViewData["Title"] = "Order List";
+    var productList = ViewBag.ProductList as List<ProductDto>;
 }
-
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
-
-<div class="row" id="card">  
+<div class="row" id="card">
     @foreach (var order in Model)
     {
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.Id">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.ID">
             <!-- Card-->
             <div class="card shadow-sm border-0 rounded">
                 <div class="card-body p-0">
                     <div class="p-4">
                         <div class="row">
                             <div class="col-lm-12">
-                                <h4 class="text-info">Office No: @order.orderDto.customerDto.Office_No</h4>
+                                <h4 class="text-info">Office No: @(order.customerDto.Office_No)</h4>
                             </div>
                             <div class="col-lm-12">
-                                <b class="text-primary">@order.productDto.Name</b>
+                                <b class="text-primary"></b>
                             </div>
                         </div>
+                        <table class="table items-table">
+                            <tbody>
+                                @foreach (var product in productList)
+                                {
+                                    var qty = order.orderDetailsListDto.Where(x => x.ProductId == product.Id).Select(x=>x.Qty).FirstOrDefault();
+                                    <tr>
+                                        <td>@product.Name</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
+                                                <input type="text" class="form-control quantity-input text-center mx-0" value="@qty" id="textQty_@order.ID" style="width: 60px;">
+                                                <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                         <div class="input-group mt-2">
-                            <button class="btn-sm btn btn-primary" type="button">Qty</button>
-                            <input type="text" class="form-control form-control-sm" id="textQty_@order.Id" value="@order.Qty">
-                            <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                            <button class="btn btn-primary dropdown-toggle col-sm-12" type="button" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
                             <div class="dropdown-menu" style="">
-                                <a class="dropdown-item text-success" href="javascript:void(0)" onclick="confirmOrder(@order.Id, 1)">Accept Order</a>
-                                <a class="dropdown-item text-danger" href="javascript:void(0)" onclick="confirmOrder(@order.Id, 2)">Cancel Order</a>
-                                <a class="dropdown-item text-info" href="javascript:void(0)" onclick="Assign(@order.Id)">Assign to</a>
+                                <a class="dropdown-item text-success" href="javascript:void(0)" onclick="confirmOrder(@order.ID, 1)">Accept Order</a>
+                                <a class="dropdown-item text-danger" href="javascript:void(0)" onclick="confirmOrder(@order.ID, 2)">Cancel Order</a>
+                                <a class="dropdown-item text-info" href="javascript:void(0)" onclick="Assign(@order.ID)">Assign to</a>
                             </div>
                         </div>
                     </div>
@@ -39,20 +55,17 @@
     }
 </div>
 
-
-
-
 <div class="modal fade" id="exampleModalCenter">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 <select class="default-select form-control wide mb-3 col-md-6" id="VendorUserId" asp-items="@ViewBag.UserList">
                 </select>
-                <input type="hidden" name="name" value="" id="OrderDetailId" />
+                <input type="hidden" name="name" value="" id="OrderId" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data - bs - dismiss="modal" id="btnassign" onclick="UserAssign()">Assign</button>
-                <button type="button" class="btn btn-danger light" id="btnCancel">Cancel </button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btnassign" onclick="UserAssign()">Assign</button>
+                <button type="button" class="btn btn-danger light" id="btnCancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -60,12 +73,25 @@
 
 @section scripts {
     <script>
-        function confirmOrder(orderDetailId, orderStatus) {
+        function incrementQty(element) {
+            var input = element.previousElementSibling;
+            var currentValue = parseInt(input.value);
+            input.value = currentValue + 1;
+        }
+
+        function decrementQty(element) {
+            var input = element.nextElementSibling;
+            var currentValue = parseInt(input.value);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
+        function confirmOrder(OrderId, orderStatus) {
             let actionText = orderStatus === 1 ? "Confirm" : "Cancel";
             let successMessage = orderStatus === 1 ? "Order Confirmed" : "Order Canceled";
             let confirmButtonText = orderStatus === 1 ? "Yes, confirm it!" : "Yes, cancel it!";
             let buttonColor = "#3085d6";
-            
+
             Swal.fire({
                 title: `Are you sure?`,
                 text: `You won't be able to revert this!`,
@@ -78,12 +104,11 @@
                 reverseButtons: false
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var OrderQty = $('#textQty_' + orderDetailId).val();
-
+                    var OrderQty = $('#textQty_' + OrderId).val();
                     $.ajax({
                         url: '/Order/ConfirmOrder',
                         type: 'POST',
-                        data: { id: orderDetailId, status: orderStatus, qtty: OrderQty },
+                        data: { id: OrderId, status: orderStatus, qtty: OrderQty },
                         success: function (result) {
                             if (result.status) {
                                 Swal.fire({
@@ -91,7 +116,7 @@
                                     text: `Your order has been Added.`,
                                     icon: 'success'
                                 });
-                                $("#card-" + orderDetailId).remove();
+                                $("#card-" + OrderId).remove();
                             } else {
                                 Swal.fire({
                                     title: 'Failed!',
@@ -113,9 +138,9 @@
             });
         }
 
-        function Assign(OrderDetailId) {
+        function Assign(OrderId) {
             $('#exampleModalCenter').modal('show');
-            $('#OrderDetailId').val(OrderDetailId);
+            $('#OrderId').val(OrderId);
         };
 
         $('#btnCancel').click(function () {
@@ -124,13 +149,13 @@
 
         function UserAssign() {
             var data = $('#VendorUserId').val();
-            var OrderDetailId = $('#OrderDetailId').val();
+            var OrderId = $('#OrderId').val();
             $.ajax({
                 url: '/Order/AssignOrder',
                 type: 'POST',
-                data: { VendorUserId: data, OrderDetailId: OrderDetailId },
+                data: { VendorUserId: data, OrderId: OrderId },
                 success: function (result) {
-                    $("#card-" + OrderDetailId).remove();
+                    $("#card-" + OrderId).remove();
                     $('#exampleModalCenter').modal('hide');
                 },
                 error: function (xhr, status, error) {
@@ -145,4 +170,3 @@
         }
     </script>
 }
-

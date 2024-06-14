@@ -11,7 +11,7 @@ public interface IOrderService
 
     Task<bool> AddOrder(List<ProductDto> dto, int CustomerID);
 
-    Task<List<OrderDetailsDto>> OrderList();
+    Task<List<OrderDto>> OrderList();
 
     Task<bool> ConfirmOrder(int ID, OrderEnum status, int qtty);
 
