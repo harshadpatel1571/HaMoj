@@ -49070,5 +49070,22 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     object-fit: cover;
 }
 
+.card-body {
+    padding-left: 1rem; /* Adjust the left padding as needed */
+}
+
+.items-table td {
+    padding-left: 0.5rem; /* Adjust the left padding of table cells as needed */
+    padding-right: 0.5rem; /* Adjust the right padding of table cells as needed */
+}
+
+.quantity-input {
+    max-width: 50px;
+}
+
+.btn-md {
+    padding: 0.5rem 1rem; /* Adjust padding for larger buttons */
+    font-size: 1rem; /* Increase font size for larger buttons */
+}
 
 /*# sourceMappingURL=style.css.map */
