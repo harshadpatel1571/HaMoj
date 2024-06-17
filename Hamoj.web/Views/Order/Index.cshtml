@@ -42,7 +42,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
-                                            <input type="text" class="form-control quantity-input text-center mx-0" value="0" style="width: 50px;"  asp-for="@Model[i].Qty">
+                                            <input type="text" class="form-control quantity-input text-center mx-0 p-0" value="0" style="width: 50px;"  asp-for="@Model[i].Qty">
                                             <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
                                         </div>
                                         <input type="hidden" asp-for="@Model[i].Id" />

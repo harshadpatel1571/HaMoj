@@ -18,4 +18,5 @@ public class OrderDetailsDto:BaseDto
     public ProductDto productDto { get; set; }
     public CustomerDto customerDto { get; set; }
     public VendorUserDto? vendorUserDto { get; set; }
+    public List<ProductDto> productDtoList { get; set; }
 }

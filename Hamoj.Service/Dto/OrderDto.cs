@@ -13,7 +13,7 @@ public class OrderDto:BaseDto
     public VendorDto vendorDto { get; set; }
     public CustomerDto customerDto { get; set; }
 
-    public OrderDetailsDto orderDetailsListDto { get; set; }
+    public List<OrderDetailsDto> orderDetailsListDto { get; set; }
 
    
 }
