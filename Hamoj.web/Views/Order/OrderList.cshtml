@@ -9,7 +9,7 @@
 <div class="row" id="card">
     @foreach (var order in Model)
     {
-        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" mailto:id="card-@order.ID">
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.ID">
             <div class="card shadow-sm border-0 rounded">
                 <div class="card-body p-0">
                     <div class="p-4">
@@ -27,9 +27,9 @@
                                         <td>@product.Name</td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
-                                                <input type="text" class="form-control quantity-input_@order.ID text-center mx-0" value="@qty" id="@product.Id" style="width: 60px;">
-                                                <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
+                                                <a class="btn btn-primary btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
+                                                <input type="text" class="form-control quantity-input_@order.ID text-center mx-0" value="@qty" id="@product.Id" style="width: 50px; padding: 5px;">
+                                                <a class="btn btn-primary btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -188,5 +188,3 @@
         }
     </script>
 }
-
-

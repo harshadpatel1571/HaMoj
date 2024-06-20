@@ -167,7 +167,6 @@ namespace Hamoj.Service.Services
             }
         }
 
-
         public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
         {
             try
@@ -263,10 +262,23 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public Task<bool> VendorAddOrder(int qty)
+        public async Task<OrderDto> VendorAddOrder(int officeno)
         {
-            throw new NotImplementedException();
+            var orders = await _context.Order.Where(x => x.VendorUserId == officeno && x.OrderStatus == (int)OrderEnum.Deliver).Select(x => new OrderDto
+            {
+                customerDto = new CustomerDto
+                {
+                    Id = x.Customer.Id,
+                    Name = x.Customer.Name,
+                    Office_No = x.Customer.Office_No
+                },
+                GrandTotal = x.GrandTotal,
+                Gst = x.Gst
+            }).ToListAsync();
+
+            return orders;
         }
+
 
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {
@@ -293,6 +305,6 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-
+        
     }
 }
