@@ -4,6 +4,7 @@ using Hamoj.DB.Enum;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Security.AccessControl;
 
 namespace Hamoj.Service.Services
 {
@@ -262,23 +263,24 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<OrderDto> VendorAddOrder(int officeno)
+        public async Task<bool> VendorAddOrder(List<ProductDto> dto)
         {
-            var orders = await _context.Order.Where(x => x.VendorUserId == officeno && x.OrderStatus == (int)OrderEnum.Deliver).Select(x => new OrderDto
+           var customers = await _context.Customer.Where(x=>x.Office_No == 1).ToListAsync();
+
+            var order = new Order
             {
-                customerDto = new CustomerDto
-                {
-                    Id = x.Customer.Id,
-                    Name = x.Customer.Name,
-                    Office_No = x.Customer.Office_No
-                },
-                GrandTotal = x.GrandTotal,
-                Gst = x.Gst
-            }).ToListAsync();
-
-            return orders;
+                CustomerId = customers.Select(x=>x.Id).FirstOrDefault(),
+                VendorID = 1,
+                Gst = 0,
+                GrandTotal = 0,
+                OrderStatus = (int)OrderEnum.Pending,
+                is_Active = true,
+                is_Delete = false,
+                Create_Date = DateTime.Now,
+                Create_by = 1,
+                orderDetailsList = new List<OrderDetails>()
+            };
         }
-
 
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {

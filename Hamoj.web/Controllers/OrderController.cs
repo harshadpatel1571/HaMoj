@@ -29,9 +29,10 @@ public class OrderController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto)
+    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto, List<CustomerDto> customers)
     {
         var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
+        var Addorder = await _orderService.VendorAddOrder(customers);
         return RedirectToAction("Index");
     }
 
