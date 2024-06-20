@@ -49088,4 +49088,62 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     font-size: 1rem; /* Increase font size for larger buttons */
 }
 
-/*# sourceMappingURL=style.css.map */
+/* Style for the autocomplete input */
+.autocomplete-input {
+    background-color: #ffffff; /* Background color */
+    color: #495057; /* Text color */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 0.25rem; /* Border radius */
+    padding: 0.75rem; /* Padding */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width to prevent it from stretching too wide */
+    margin-bottom: 10px; /* Margin for bottom spacing */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Transition for smooth effect */
+}
+
+/* Placeholder text color */
+.autocomplete-input::placeholder {
+    color: #6c757d;
+}
+
+/* Styles for the autocomplete dropdown */
+.ui-autocomplete {
+    background-color: #ffffff; /* Background color */
+    border: 1px solid rgba(0, 0, 0, 0.15); /* Border color */
+    border-top: none; /* Remove top border to match input */
+    border-radius: 0 0 0.25rem 0.25rem; /* Border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow */
+    max-height: 200px; /* Maximum height for overflow */
+    overflow-y: auto; /* Enable vertical scroll */
+    z-index: 1000; /* Ensure dropdown is on top of other elements */
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width to prevent it from stretching too wide */
+}
+
+/* Style for each suggestion item */
+.ui-autocomplete .ui-menu-item {
+    padding: 0.5rem 1rem; /* Padding */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.15s ease-in-out; /* Transition for smooth effect */
+}
+
+/* Hover effect for suggestion items */
+.ui-autocomplete .ui-menu-item:hover {
+    background-color: #DD2F6E; /* Background color on hover */
+}
+
+/* Active/focused state for suggestion items */
+.ui-autocomplete .ui-menu-item.ui-state-focus {
+    background-color: #DD2F6E; /* Background color for active/focused item */
+    color: #ffffff; /* Text color for active/focused item */
+}
+
+@media (max-width: 767px) {
+    /* Media query for smaller screens (mobile) */
+    .autocomplete-input {
+        max-width: none; /* Remove max-width to allow full width on smaller screens */
+    }
+}
+
+
+

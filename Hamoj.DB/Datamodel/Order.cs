@@ -6,7 +6,7 @@ public class Order : basemodel
 {
     public int ID { get; set; }
     public int VendorID { get; set; }
-    public int CustomerId { get; set; }
+    public int? CustomerId { get; set; }
     public decimal Gst { get; set; }
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }

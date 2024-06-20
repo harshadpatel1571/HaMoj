@@ -21,8 +21,9 @@
                         <input type="text" class="form-control" placeholder="Company Name" asp-for="CompanyName">
                     </div>
                     <div class="mb-3 col-md-6">
-                        <label class="form-label">Office Number</label>
-                        <input type="text" class="form-control" placeholder="Office Number" asp-for="Office_No">
+                        <label asp-for="Office_No" class="form-label">Office Number</label>
+                        <input asp-for="Office_No" class="form-control" placeholder="Office Number">
+                        <span asp-validation-for="Office_No" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Name</label>

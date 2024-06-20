@@ -13,4 +13,6 @@ public interface ICustomerService
     Task<CustomerDto> GetDataById(int id);
 
     Task<bool> Delete(int id);
+
+    Task<CustomerDto> FindDuplicate(int? officeNo);
 }

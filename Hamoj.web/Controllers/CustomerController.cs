@@ -38,6 +38,9 @@ public class CustomerController : Controller
             var Edit = await _customerService.GetDataById(id);
             return View(Edit);
         }
+
+
+
         return View(new CustomerDto());
     }
 
@@ -46,8 +49,17 @@ public class CustomerController : Controller
 
     public async Task<IActionResult> AddEdit(CustomerDto dto)
     {
+        var duplicate = await _customerService.FindDuplicate(dto.Office_No);
+
+        if (duplicate != null)
+        {
+            ModelState.AddModelError("Office_No", "Office Number already exists.");
+            return View(dto); // Return the view with errors if duplicate found
+        }
 
         var AddEdit = _customerService.AddEditCustomer(dto);
+
+        
 
         return RedirectToAction("Index");
     }

@@ -95,7 +95,7 @@ namespace Hamoj.Service.Services
 
 
 
-                // this code for find morethen one order details if not then update order.
+                // this code for find more then one order details if not then update order.
                 var order = await _context.Order.Where(x => x.ID == OrdersID).FirstOrDefaultAsync();
                     order.OrderStatus = (int)status;
                     _context.Order.Update(order);
@@ -109,6 +109,13 @@ namespace Hamoj.Service.Services
 
                 return false;
             }
+        }
+
+        public async Task<List<int?>> GetOfficeNumber(string term)
+        {
+            List<int?> officeNumbers = await _context.Customer.Select(x => x.Office_No).ToListAsync();
+
+            return officeNumbers;
         }
 
         public async Task<List<ProductDto>> GetProductData()
@@ -146,6 +153,11 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
+        public Task<bool> VendorAddOrder(int qty)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id)
         {
             return await _context.OrderDetails.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDetailsDto
@@ -166,5 +178,7 @@ namespace Hamoj.Service.Services
                 },
             }).ToListAsync();
         }
+
+
     }
 }
