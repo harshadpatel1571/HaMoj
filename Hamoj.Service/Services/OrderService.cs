@@ -64,9 +64,9 @@ namespace Hamoj.Service.Services
         {
             try
             {
-                var data = await _context.OrderDetails.Where(x => x.OrderId == OrderId).FirstOrDefaultAsync();
+                var data = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
                 data.VendorUserId = VendorUserId;
-                _context.OrderDetails.Update(data);
+                _context.Order.Update(data);
                 _context.SaveChanges();
 
                 return true;
@@ -79,29 +79,49 @@ namespace Hamoj.Service.Services
             }
         }
 
-        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, int qtty)
+        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
         {
             try
             {
-                // this code for update order details :
-                var orderDetails = await _context.OrderDetails.Where(x => x.OrderId == OrdersID).ToListAsync();
-                foreach (var detail in orderDetails)
-                {
-                    detail.OrderStatus = (int)status;
-                }
-
-                _context.OrderDetails.UpdateRange(orderDetails);
-                await _context.SaveChangesAsync();
-
 
 
                 // this code for find morethen one order details if not then update order.
+                var orderDetailsToDelete = await _context.OrderDetails.Where(x => x.OrderId == OrdersID).ToListAsync();
+                _context.OrderDetails.RemoveRange(orderDetailsToDelete);
+                await _context.SaveChangesAsync();
+
+                var OrderDetailsList =new  List<OrderDetails>() ;
+               
+                foreach (var item in qty)
+                {
+                    var product = await _context.Product
+                        .Where(x => x.Id == item.Id)
+                        .FirstOrDefaultAsync();
+
+                    var orderDetails = new OrderDetails
+                    {
+                        OrderId = OrdersID,
+                        ProductId = item.Id,
+                        Amount = product.Price,
+                        Qty = item.Qty,
+                        TotalAmounnt = product.Price * item.Qty,
+                        OrderStatus = (int)status,
+                        is_Active = true,
+                        is_Delete = false,
+                        Create_Date = DateTime.Now,
+                        Create_by = 1
+                    };
+                    OrderDetailsList.Add(orderDetails);
+
+                }
+
+                _context.OrderDetails.AddRange(OrderDetailsList);
+                _context.SaveChanges();
                 var order = await _context.Order.Where(x => x.ID == OrdersID).FirstOrDefaultAsync();
-                    order.OrderStatus = (int)status;
-                    _context.Order.Update(order);
-                    _context.SaveChanges();
-
-
+                order.OrderStatus = (int)status;
+                order.GrandTotal = OrderDetailsList.Select(x=>x.TotalAmounnt).Sum();
+                _context.Order.Update(order);
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -124,7 +144,7 @@ namespace Hamoj.Service.Services
 
         public async Task<List<OrderDto>> OrderList()
         {
-            var orders = await _context.Order.Where(x=>x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
+            var orders = await _context.Order.Where(x =>x.VendorUserId == null &x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
                 orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
@@ -146,25 +166,29 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id)
+        public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {
-            return await _context.OrderDetails.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDetailsDto
+
+            var orders = await _context.Order.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
-                Id = x.Id,
-                Qty = x.Qty,
-                VendorUserId = x.VendorUserId,
-                productDto = new ProductDto
+                ID = x.ID,
+                orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
                 {
-                    Image = x.product.Image,
-                },
-                orderDto = new OrderDto
+                    Id = o.Id,
+                    Qty = o.Qty,
+                    ProductId = o.ProductId,
+                }).ToList(),
+                customerDto = new CustomerDto
                 {
-                    customerDto = new CustomerDto
-                    {
-                        Office_No = x.order.Customer.Office_No
-                    },
+                    Id = x.Customer.Id,
+                    Name = x.Customer.Name,
+                    Office_No = x.Customer.Office_No
                 },
+                GrandTotal = x.GrandTotal,
+                Gst = x.Gst
             }).ToListAsync();
+
+            return orders;
         }
     }
 }
