@@ -13,11 +13,11 @@ public interface IOrderService
 
     Task<List<OrderDto>> OrderList();
 
-    Task<bool> ConfirmOrder(int ID, OrderEnum status, int qtty);
+    Task<bool> ConfirmOrder(int ID, OrderEnum status, List<OrderDataDto> qty);
 
     Task<bool> AssignOrder(int OrderDetailId, int VendorUserId);
 
-    Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id);
+    Task<List<OrderDto>> VendorUSerOrderList(int Id);
 
     Task<List<int?>> GetOfficeNumber(string term);
 

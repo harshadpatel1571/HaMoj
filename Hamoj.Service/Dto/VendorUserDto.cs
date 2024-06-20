@@ -23,5 +23,5 @@ public class VendorUserDto : BaseDto
 
     public VendorDto vendorDto { get; set; }
 
-    public OrderDetailsDto orderDetailsDto { get; set; }
+    public OrderDto orderDtoList { get; set; }
 }

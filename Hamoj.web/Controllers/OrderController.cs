@@ -47,12 +47,12 @@ public class OrderController : Controller
         ViewBag.UserList = new SelectList(UserList, "Id", "Name");
         return View(order);
     }
-
+            
     [HttpPost]
-    public async Task<IActionResult> ConfirmOrder(int id, int status, int qtty)
+    public async Task<IActionResult> ConfirmOrder(int id, int status, List<OrderDataDto>qty)
     {
         var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
-        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus, qtty);
+        var confirmorder = await _orderService.ConfirmOrder(id, orderStatus, qty);
         return Json(new { msg = "Success", status = true });
     }
 
@@ -65,6 +65,7 @@ public class OrderController : Controller
 
     public async Task<IActionResult> VendorUserOrderList()
     {
+        ViewBag.ProductList = await _orderService.GetProductData();
         var VendorUSer = await _orderService.VendorUSerOrderList(_currentUserService.GetCurrentUserId());
         return View(VendorUSer);
     }

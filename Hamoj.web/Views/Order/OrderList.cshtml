@@ -28,7 +28,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></a>
-                                                <input type="text" class="form-control quantity-input text-center mx-0" value="@qty" id="textQty_@order.ID" style="width: 60px;">
+                                                <input type="text" class="form-control quantity-input_@order.ID text-center mx-0" value="@qty" id="@product.Id" style="width: 60px;">
                                                 <a class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></a>
                                             </div>
                                         </td>
@@ -73,7 +73,6 @@
     </div>
 </div>
 
-
 @section scripts {
     <script>
         function incrementQty(element) {
@@ -89,6 +88,7 @@
                 input.value = currentValue - 1;
             }
         }
+
         function confirmOrder(OrderId, orderStatus) {
             let actionText = orderStatus === 1 ? "Confirm" : "Cancel";
             let successMessage = orderStatus === 1 ? "Order Confirmed" : "Order Canceled";
@@ -107,11 +107,19 @@
                 reverseButtons: false
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var OrderQty = $('#textQty_' + OrderId).val();
+                    var Order = [];
+                    $(".quantity-input_" + OrderId).each(function () {
+                        let productId = $(this).attr('id');
+                        let qty = $(this).val();
+                        alert(qty);
+                        if (qty > 0) {
+                            Order.push({ id: productId, qty: qty });
+                        }
+                    });
                     $.ajax({
                         url: '/Order/ConfirmOrder',
                         type: 'POST',
-                        data: { id: OrderId, status: orderStatus, qtty: OrderQty },
+                        data: { id: OrderId, status: orderStatus, qty: Order },
                         success: function (result) {
                             if (result.status) {
                                 Swal.fire({
@@ -165,11 +173,11 @@
                     console.error('AJAX error:', error);
                     Swal.fire({
                         title: 'Error!',
-                        text: 'An error occurred while assigning the user.',
-                        icon: 'error'
                     });
                 }
             });
         }
     </script>
 }
+
+
