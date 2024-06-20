@@ -60,7 +60,7 @@ namespace Hamoj.Service.Services
             return true;
         }
 
-        public async Task<bool> AssignOrder(int OrderId, int VendorUserId)
+        public async Task<bool> AssignOrder(int OrderId, int VendorUserId, List<OrderDataDto> qty)
         {
             try
             {
