@@ -174,7 +174,7 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<List<OrderDetailsDto>> VendorUSerOrderList(int Id)
+        public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {
 
             var orders = await _context.Order.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
