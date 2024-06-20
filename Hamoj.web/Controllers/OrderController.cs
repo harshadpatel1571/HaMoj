@@ -39,6 +39,7 @@ public class OrderController : Controller
     public async Task<IActionResult> OrderList()
     {
         var data = await _orderService.OrderList();
+        ViewBag.ProductList = await _orderService.GetProductData();
         var UserList = await _dropDownBindService.BindVendorUserDropDown(_currentUserService.GetCurrentUserId());
         ViewBag.UserList = new SelectList(UserList, "Id", "Name");
         return View(data);
@@ -53,9 +54,9 @@ public class OrderController : Controller
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId)
+    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId, List<OrderDataDto> qty)
     {
-        var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId);
+        var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId,qty);
         return Json(new { msg = "Success", status = true });
     }
 
