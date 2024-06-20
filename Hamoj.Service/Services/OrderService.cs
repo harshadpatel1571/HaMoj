@@ -65,7 +65,7 @@ namespace Hamoj.Service.Services
             try
             {
                 var data = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
-                data.VendorUserId= VendorUserId;
+                data.VendorUserId = VendorUserId;
                 _context.Order.Update(data);
                 _context.SaveChanges();
 
@@ -79,6 +79,11 @@ namespace Hamoj.Service.Services
             }
         }
 
+        public Task<bool> AssignOrder(int OrderDetailId, int VendorUserId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
         {
             try
@@ -90,8 +95,8 @@ namespace Hamoj.Service.Services
                 _context.OrderDetails.RemoveRange(orderDetailsToDelete);
                 await _context.SaveChangesAsync();
 
-                var OrderDetailsList =new  List<OrderDetails>() ;
-               
+                var OrderDetailsList = new List<OrderDetails>();
+
                 foreach (var item in qty)
                 {
                     var product = await _context.Product
@@ -120,7 +125,7 @@ namespace Hamoj.Service.Services
                 // this code for find more then one order details if not then update order.
                 var order = await _context.Order.Where(x => x.ID == OrdersID).FirstOrDefaultAsync();
                 order.OrderStatus = (int)status;
-                order.GrandTotal = OrderDetailsList.Select(x=>x.TotalAmounnt).Sum();
+                order.GrandTotal = OrderDetailsList.Select(x => x.TotalAmounnt).Sum();
                 _context.Order.Update(order);
                 _context.SaveChanges();
                 return true;
@@ -174,10 +179,23 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public Task<bool> VendorAddOrder(int qty)
+        public async Task<OrderDto> VendorAddOrder(int officeno)
         {
-            throw new NotImplementedException();
+            var orders = await _context.Order.Where(x => x.VendorUserId == officeno && x.OrderStatus == (int)OrderEnum.Deliver).Select(x => new OrderDto
+            {
+                customerDto = new CustomerDto
+                {
+                    Id = x.Customer.Id,
+                    Name = x.Customer.Name,
+                    Office_No = x.Customer.Office_No
+                },
+                GrandTotal = x.GrandTotal,
+                Gst = x.Gst
+            }).ToListAsync();
+
+            return orders;
         }
+
 
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {
@@ -204,6 +222,6 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-
+        
     }
 }

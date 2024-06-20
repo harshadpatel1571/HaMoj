@@ -21,6 +21,6 @@ public interface IOrderService
 
     Task<List<int?>> GetOfficeNumber(string term);
 
-    Task<bool> VendorAddOrder(int qty);
+    Task<OrderDto> VendorAddOrder();
 
 }

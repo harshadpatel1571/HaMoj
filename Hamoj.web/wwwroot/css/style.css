@@ -49145,5 +49145,16 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     }
 }
 
+.btn-xs {
+    padding: 0.25rem 0.7rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
 
-
+.quantity-input {
+    text-align: center;
+    width: 60px;
+    padding: 5px;
+    font-size: 1rem;
+}
