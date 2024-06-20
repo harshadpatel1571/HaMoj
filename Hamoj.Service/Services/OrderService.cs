@@ -65,7 +65,7 @@ namespace Hamoj.Service.Services
             try
             {
                 var data = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
-                data.VendorUserId = VendorUserId;
+                data.VendorUserId= VendorUserId;
                 _context.Order.Update(data);
                 _context.SaveChanges();
 
@@ -79,24 +79,19 @@ namespace Hamoj.Service.Services
             }
         }
 
-        public Task<bool> AssignOrder(int OrderDetailId, int VendorUserId)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
         {
             try
             {
 
-
                 // this code for find morethen one order details if not then update order.
                 var orderDetailsToDelete = await _context.OrderDetails.Where(x => x.OrderId == OrdersID).ToListAsync();
                 _context.OrderDetails.RemoveRange(orderDetailsToDelete);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();  
 
-                var OrderDetailsList = new List<OrderDetails>();
-
+                var OrderDetailsList =new  List<OrderDetails>() ;
+               
                 foreach (var item in qty)
                 {
                     var product = await _context.Product
@@ -125,7 +120,7 @@ namespace Hamoj.Service.Services
                 // this code for find more then one order details if not then update order.
                 var order = await _context.Order.Where(x => x.ID == OrdersID).FirstOrDefaultAsync();
                 order.OrderStatus = (int)status;
-                order.GrandTotal = OrderDetailsList.Select(x => x.TotalAmounnt).Sum();
+                order.GrandTotal = OrderDetailsList.Select(x=>x.TotalAmounnt).Sum();
                 _context.Order.Update(order);
                 _context.SaveChanges();
                 return true;
@@ -137,12 +132,6 @@ namespace Hamoj.Service.Services
             }
         }
 
-        public async Task<List<int?>> GetOfficeNumber(string term)
-        {
-            List<int?> officeNumbers = await _context.Customer.Select(x => x.Office_No).ToListAsync();
-
-            return officeNumbers;
-        }
 
         public async Task<List<ProductDto>> GetProductData()
         {
@@ -179,21 +168,50 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<OrderDto> VendorAddOrder(int officeno)
+        public async Task<bool> VendorAddOrder(List<ProductDto> dto)
         {
-            var orders = await _context.Order.Where(x => x.VendorUserId == officeno && x.OrderStatus == (int)OrderEnum.Deliver).Select(x => new OrderDto
-            {
-                customerDto = new CustomerDto
-                {
-                    Id = x.Customer.Id,
-                    Name = x.Customer.Name,
-                    Office_No = x.Customer.Office_No
-                },
-                GrandTotal = x.GrandTotal,
-                Gst = x.Gst
-            }).ToListAsync();
+            var customerid = await _context.Customer.Where(x=> x.Office_No == 1).Select( x=> x.Id ).FirstOrDefaultAsync();
 
-            return orders;
+            var order = new Order
+            {
+                CustomerId = customerid,
+                VendorID = 1,
+                Gst = 0,
+                GrandTotal = 0,
+                OrderStatus = (int)OrderEnum.Deliver,
+                is_Active = true,
+                is_Delete = false,
+                Create_Date = DateTime.Now,
+                Create_by = 1,
+                orderDetailsList = new List<OrderDetails>()
+            };
+
+            foreach (var item in dto)
+            {
+                var product = await _context.Product
+                    .Where(x => x.Id == item.Id)
+                    .FirstOrDefaultAsync();
+
+                var orderDetails = new OrderDetails
+                {
+                    ProductId = item.Id,
+                    Amount = product.Price,
+                    Qty = item.Qty,
+                    TotalAmounnt = product.Price * item.Qty,
+                    OrderStatus = (int)OrderEnum.Deliver,
+                    is_Active = true,
+                    is_Delete = false,
+                    Create_Date = DateTime.Now,
+                    Create_by = 1
+                };
+
+                order.orderDetailsList.Add(orderDetails);
+                order.GrandTotal += orderDetails.TotalAmounnt;
+            }
+
+            await _context.Order.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
 
@@ -222,6 +240,5 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        
     }
 }
