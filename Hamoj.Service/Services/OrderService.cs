@@ -65,7 +65,7 @@ namespace Hamoj.Service.Services
             try
             {
                 var data = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
-                data.VendorUserId = VendorUserId;
+                data.VendorUserId= VendorUserId;
                 _context.Order.Update(data);
                 _context.SaveChanges();
 
@@ -152,7 +152,7 @@ namespace Hamoj.Service.Services
 
         public async Task<List<OrderDto>> OrderList()
         {
-            var orders = await _context.Order.Where(x =>x.VendorUserId == null &x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
+            var orders = await _context.Order.Where(x => x.VendorUserId == null & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
                 orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
@@ -172,6 +172,11 @@ namespace Hamoj.Service.Services
             }).ToListAsync();
 
             return orders;
+        }
+
+        public Task<bool> VendorAddOrder(int qty)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)

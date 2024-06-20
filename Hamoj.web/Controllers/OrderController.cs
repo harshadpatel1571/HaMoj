@@ -29,25 +29,22 @@ public class OrderController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto, int Office_No)
+    public async Task<IActionResult> CustomerProductOrder(List<ProductDto> dto)
     {
-        var userId = _currentUserService.GetCurrentUserId();
-        var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), userId);
 
-        return Json(new { success = true });
+        var order = await _orderService.AddOrder(dto.Where(dto => dto.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
+        return RedirectToAction("Index");
     }
-
-
 
     public async Task<IActionResult> OrderList()
     {
-        var order = await _orderService.OrderList();
-        ViewBag.ProductList = await _orderService.GetProductData();
+        var data = await _orderService.OrderList();
         var UserList = await _dropDownBindService.BindVendorUserDropDown(_currentUserService.GetCurrentUserId());
         ViewBag.UserList = new SelectList(UserList, "Id", "Name");
-        return View(order);
+        return View(data);
     }
-            
+
+         
     [HttpPost]
     public async Task<IActionResult> ConfirmOrder(int id, int status, List<OrderDataDto>qty)
     {
