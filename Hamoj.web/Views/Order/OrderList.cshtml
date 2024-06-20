@@ -161,10 +161,19 @@
         function UserAssign() {
             var data = $('#VendorUserId').val();
             var OrderId = $('#OrderId').val();
+            var Order = [];
+            $(".quantity-input_" + OrderId).each(function () {
+                let productId = $(this).attr('id');
+                let qty = $(this).val();
+                alert(qty);
+                if (qty > 0) {
+                    Order.push({ id: productId, qty: qty });
+                }
+            });
             $.ajax({
                 url: '/Order/AssignOrder',
                 type: 'POST',
-                data: { VendorUserId: data, OrderId: OrderId },
+                data: { VendorUserId: data, OrderId: OrderId,qty: Order },
                 success: function (result) {
                     $("#card-" + OrderId).remove();
                     $('#exampleModalCenter').modal('hide');

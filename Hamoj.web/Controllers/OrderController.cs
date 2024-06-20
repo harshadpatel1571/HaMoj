@@ -54,9 +54,9 @@ public class OrderController : Controller
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId, List<OrderDataDto> qty)
+    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId,List<OrderDataDto> qty)
     {
-        var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId,qty);
+        var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId, qty);
         return Json(new { msg = "Success", status = true });
     }
 
