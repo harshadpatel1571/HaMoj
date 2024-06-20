@@ -82,7 +82,4 @@ public class OrderController : Controller
         var officeNoList = await _orderService.GetOfficeNumber(term); // Assuming GetOfficeNumbersAsync method in your service
         return Json(officeNoList);
     }
-
-
-
 }

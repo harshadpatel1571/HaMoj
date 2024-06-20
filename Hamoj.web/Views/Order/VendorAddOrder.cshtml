@@ -128,10 +128,10 @@
             $("#btnOrder").click(function () {
                 var products = [];
 
-                 var officeNo = $('#autocomplete').val();
+                var officeNo = $('#autocomplete').val();
                 $('.quantity-input').each(function () {
                     var productId = $(this).attr('id').split('_')[1];
-                    var quantity = $(this).val();                   
+                    var quantity = $(this).val();
 
                     if (quantity > 0) {
                         products.push({ Id: productId, Qty: quantity });
@@ -143,11 +143,13 @@
                         Products: products
                     };
 
+                    console.log('Order data:', JSON.stringify(orderData)); // Debugging information
+
                     $.ajax({
                         url: '/Order/CustomerProductOrder',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify(products), 
+                        data: JSON.stringify(orderData), // Ensure the data is properly formatted as JSON
                         success: function (result) {
                             toastr.success('Order Added');
                             window.location.reload();
@@ -162,6 +164,7 @@
                 }
             });
         });
+
 
     </script>
 }
