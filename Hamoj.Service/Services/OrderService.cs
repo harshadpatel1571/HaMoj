@@ -119,45 +119,9 @@ namespace Hamoj.Service.Services
         {
             try
             {
-
-
-                // this code for find morethen one order details if not then update order.
-                var orderDetailsToDelete = await _context.OrderDetails.Where(x => x.OrderId == OrderId).ToListAsync();
-                _context.OrderDetails.RemoveRange(orderDetailsToDelete);
-                await _context.SaveChangesAsync();
-
-                var OrderDetailsList = new List<OrderDetails>();
-
-                foreach (var item in qty)
-                {
-                    var product = await _context.Product
-                        .Where(x => x.Id == item.Id)
-                        .FirstOrDefaultAsync();
-
-                    var orderDetails = new OrderDetails
-                    {
-                        OrderId = OrderId,
-                        ProductId = item.Id,
-                        Amount = product.Price,
-                        Qty = item.Qty,
-                        TotalAmounnt = product.Price * item.Qty,
-                        OrderStatus = (int)OrderEnum.Pending,
-                        is_Active = true,
-                        is_Delete = false,
-                        Create_Date = DateTime.Now,
-                        Create_by = 1
-                    };
-                    OrderDetailsList.Add(orderDetails);
-
-                }
-
-                _context.OrderDetails.AddRange(OrderDetailsList);
-                _context.SaveChanges();
-                // this code for find more then one order details if not then update order.
-                var order = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
-                order.GrandTotal = OrderDetailsList.Select(x => x.TotalAmounnt).Sum();
-                order.VendorUserId = VendorUserId;
-                _context.Order.Update(order);
+                var data = await _context.Order.Where(x => x.ID == OrderId).FirstOrDefaultAsync();
+                data.VendorUserId= VendorUserId;
+                _context.Order.Update(data);
                 _context.SaveChanges();
                 return true;
             }
@@ -168,19 +132,19 @@ namespace Hamoj.Service.Services
             }
         }
 
+
         public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
         {
             try
             {
 
-
                 // this code for find morethen one order details if not then update order.
                 var orderDetailsToDelete = await _context.OrderDetails.Where(x => x.OrderId == OrdersID).ToListAsync();
                 _context.OrderDetails.RemoveRange(orderDetailsToDelete);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();  
 
-                var OrderDetailsList = new List<OrderDetails>();
-
+                var OrderDetailsList =new  List<OrderDetails>() ;
+               
                 foreach (var item in qty)
                 {
                     var product = await _context.Product
@@ -209,7 +173,7 @@ namespace Hamoj.Service.Services
                 // this code for find more then one order details if not then update order.
                 var order = await _context.Order.Where(x => x.ID == OrdersID).FirstOrDefaultAsync();
                 order.OrderStatus = (int)status;
-                order.GrandTotal = OrderDetailsList.Select(x => x.TotalAmounnt).Sum();
+                order.GrandTotal = OrderDetailsList.Select(x=>x.TotalAmounnt).Sum();
                 _context.Order.Update(order);
                 _context.SaveChanges();
                 return true;
@@ -221,12 +185,6 @@ namespace Hamoj.Service.Services
             }
         }
 
-        public async Task<List<int?>> GetOfficeNumber(string term)
-        {
-            List<int?> officeNumbers = await _context.Customer.Select(x => x.Office_No).ToListAsync();
-
-            return officeNumbers;
-        }
 
         public async Task<List<ProductDto>> GetProductData()
         {
@@ -265,21 +223,48 @@ namespace Hamoj.Service.Services
 
         public async Task<bool> VendorAddOrder(List<ProductDto> dto)
         {
-           var customers = await _context.Customer.Where(x=>x.Office_No == 1).ToListAsync();
+            var customerid = await _context.Customer.Where(x=> x.Office_No == 1).Select( x=> x.Id ).FirstOrDefaultAsync();
 
             var order = new Order
             {
-                CustomerId = customers.Select(x=>x.Id).FirstOrDefault(),
+                CustomerId = customerid,
                 VendorID = 1,
                 Gst = 0,
                 GrandTotal = 0,
-                OrderStatus = (int)OrderEnum.Pending,
+                OrderStatus = (int)OrderEnum.Deliver,
                 is_Active = true,
                 is_Delete = false,
                 Create_Date = DateTime.Now,
                 Create_by = 1,
                 orderDetailsList = new List<OrderDetails>()
             };
+
+            foreach (var item in dto)
+            {
+                var product = await _context.Product
+                    .Where(x => x.Id == item.Id)
+                    .FirstOrDefaultAsync();
+
+                var orderDetails = new OrderDetails
+                {
+                    ProductId = item.Id,
+                    Amount = product.Price,
+                    Qty = item.Qty,
+                    TotalAmounnt = product.Price * item.Qty,
+                    OrderStatus = (int)OrderEnum.Deliver,
+                    is_Active = true,
+                    is_Delete = false,
+                    Create_Date = DateTime.Now,
+                    Create_by = 1
+                };
+
+                order.orderDetailsList.Add(orderDetails);
+                order.GrandTotal += orderDetails.TotalAmounnt;
+            }
+
+            await _context.Order.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
@@ -307,6 +292,5 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        
     }
 }

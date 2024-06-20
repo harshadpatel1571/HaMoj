@@ -32,7 +32,7 @@ public class OrderController : Controller
     public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto, List<CustomerDto> customers)
     {
         var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
-        var Addorder = await _orderService.VendorAddOrder(customers);
+        var vendororder = await _orderService.VendorAddOrder(dto);
         return RedirectToAction("Index");
     }
 
@@ -77,10 +77,13 @@ public class OrderController : Controller
         return View(productList);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetOfficeNumber(string term)
+    
+
+
+    [HttpPost]
+    public async Task<IActionResult> VendorAddOrder([FromBody] List<ProductDto> dto)
     {
-        var officeNoList = await _orderService.GetOfficeNumber(term); // Assuming GetOfficeNumbersAsync method in your service
-        return Json(officeNoList);
+        var vendororder = await _orderService.VendorAddOrder(dto);
+        return RedirectToAction("Index");
     }
 }

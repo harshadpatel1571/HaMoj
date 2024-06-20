@@ -55,7 +55,7 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <a class="btn btn-primary shadow btn-xs me-2" onclick="decrementQty(this)"><i>-</i></a>
-                                                <input type="text" class="form-control quantity-input text-center mx-2" id="textqty_@product.Id" value="0" style="width: 50px;">
+                                                <input type="text" class="form-control quantity-input text-center mx-2" id="@product.Id" value="0" style="width: 50px;">
                                                 <a class="btn btn-primary shadow btn-xs ms-2" onclick="incrementQty(this)"><i>+</i></a>
                                             </div>
 
@@ -127,28 +127,23 @@
         $(document).ready(function () {
             $("#btnOrder").click(function () {
                 var products = [];
+                var office_no = ("#autocomplete");
 
                 $('.quantity-input').each(function () {
-                    var productId = $(this).data('product-id');
-                    var quantity = $(this).val();
+                    var productId = $(this).attr('id');
+                    var quantity = parseInt($(this).val());
 
                     if (quantity > 0) {
-                        products.push({ Id: productId, Qty: quantity });
+                        products.push({ Id: productId, Qty: quantity, office_no: office_no });
                     }
                 });
 
                 if (products.length > 0) {
-                    var orderData = {
-                        dto: products 
-                    };
-
-                    console.log('Order data:', orderData); 
-
                     $.ajax({
-                        url: '/Order/CustomerProductOrder',
+                        url: '/Order/VendorAddOrder',
                         type: 'POST',
                         contentType: 'application/json',
-                        data: JSON.stringify(orderData), 
+                        data: JSON.stringify(products),
                         success: function (result) {
                             toastr.success('Order Added');
                             window.location.reload();
@@ -163,6 +158,10 @@
                 }
             });
         });
+
+
+
+
 
 
 
