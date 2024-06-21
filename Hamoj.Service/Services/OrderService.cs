@@ -213,6 +213,13 @@ namespace Hamoj.Service.Services
             return true;
         }
 
+        public async Task<List<int?>> GetOfficeNumber(string term)
+        {
+            List<int?> officeNumbers = await _context.Customer.Select(x => x.Office_No).ToListAsync();
+
+            return officeNumbers;
+        }
+
         public async Task<List<OrderDto>> VendorUSerOrderList(int Id)
         {
 
@@ -238,5 +245,9 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
+        public Task<bool> GetReport()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

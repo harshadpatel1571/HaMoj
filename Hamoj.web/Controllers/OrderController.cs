@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Hamoj.web.Controllers;
 
@@ -68,7 +69,12 @@ public class OrderController : Controller
         return View(VendorUSer);
     }
 
-
+    [HttpGet]
+    public async Task<IActionResult> GetOfficeNumber(string term)
+    {
+        var officeNoList = await _orderService.GetOfficeNumber(term);
+        return Json(officeNoList);
+    }
     public async Task<IActionResult> VendorAddOrder()
     {
         var CustomerList = await _dropDownBindService.BindCustomerDropDown();
@@ -77,13 +83,18 @@ public class OrderController : Controller
         return View(productList);
     }
 
-    
-
 
     [HttpPost]
     public async Task<IActionResult> VendorAddOrder([FromBody] List<ProductDto> dto)
     {
         var vendororder = await _orderService.VendorAddOrder(dto);
+
         return RedirectToAction("Index");
     }
+
+    public async Task<IActionResult> GetReport()
+    {
+        return View();
+    }
+
 }

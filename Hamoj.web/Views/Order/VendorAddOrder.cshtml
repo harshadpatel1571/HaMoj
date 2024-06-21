@@ -89,25 +89,29 @@
 
         // });
 
-        // $(document).ready(function () {
-        //     $('#autocomplete').autocomplete({
-        //         source: function (request, response) {
-        //             $.ajax({
-        //                 url: '/Order/GetOfficeNumber',
-        //                 type: 'GET',
-        //                 dataType: 'json',
-        //                 success: function (data) {
-        //                     console.log(data);
-        //                     response(data);
-        //                 },
-        //                 error: function () {
-        //                     response([]);
-        //                 }
-        //             });
-        //         },
-        //         minLength: 1
-        //     });
-        // });
+        $(document).ready(function () {
+            $('#autocomplete').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Order/GetOfficeNumber',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            console.log("Data received: ", data); // Debug log
+                            response(data);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error fetching data: ", status, error); // Debug log
+                            response([]);
+                        }
+                    });
+                },
+                minLength: 1
+            });
+        });
 
 
         function incrementQty(element) {
@@ -127,13 +131,13 @@
         $(document).ready(function () {
             $("#btnOrder").click(function () {
                 var products = [];
-                var office_no = ("#autocomplete");
+                var office_no = $("#autocomplete").val(); // Fetching the office_no value
 
                 $('.quantity-input').each(function () {
                     var productId = $(this).attr('id');
                     var quantity = parseInt($(this).val());
 
-                    if (quantity > 0) {
+                    if (!isNaN(quantity) && quantity > 0) {
                         products.push({ Id: productId, Qty: quantity, office_no: office_no });
                     }
                 });
@@ -147,6 +151,7 @@
                         success: function (result) {
                             toastr.success('Order Added');
                             window.location.reload();
+                            console.log(result);
                         },
                         error: function (xhr, status, error) {
                             toastr.error('Error adding order');
@@ -158,12 +163,6 @@
                 }
             });
         });
-
-
-
-
-
-
 
     </script>
 }
