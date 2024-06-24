@@ -89,67 +89,30 @@
 
         // });
 
-        // $(document).ready(function () {
-        //     $('#autocomplete').autocomplete({
-        //         source: function (request, response) {
-        //             $.ajax({
-        //                 url: '/Order/GetOfficeNumber',
-        //                 type: 'GET',
-        //                 dataType: 'json',
-        //                 data: {
-        //                     term: request.term
-        //                 },
-        //                 success: function (data) {
-        //                     console.log("Data received: ", data); // Debug log
-        //                     response(data);
-        //                 },
-        //                 error: function (xhr, status, error) {
-        //                     console.error("Error fetching data: ", status, error); // Debug log
-        //                     response([]);
-        //                 }
-        //             });
-        //         },
-        //         minLength: 1
-        //     });
-        // });
-
-        function GetOfficeNumber() {
-            $.ajax({
-                type: "GET",
-                url: "/Order/GetOfficeNumber/",
-                data: { office_no: office_no },
-                success: function (response) {
-                    console.log(response);
-                    autoCompleteSender = new autoComplete({
-                        selector: "#autocomplete",
-                        placeHolder: "",
+        $(document).ready(function () {
+            $('#autocomplete').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/Order/GetOfficeNumber',
+                        type: 'GET',
+                        dataType: 'json',
                         data: {
-                            src: response,
-                            cache: !0
+                            office_no: request.term
                         },
-                        resultsList: {
-                            element: function (e, t) {
-                                var l;
-                                t.results.length || ((l = document.createElement("div")).setAttribute("class", "no_result"), (l.innerHTML = '<span>Found No Results for "' + t.query + '"</span>'), e.prepend(l));
-                            },
-                            noResults: !0,
+                        success: function (data) {
+                            console.log("Data received: ", data); // Debug log
+                            response(data);
                         },
-                        resultItem: { highlight: !0 },
-                        events: {
-                            input: {
-                                selection: function (e) {
-                                    e = e.detail.selection.value;
-                                    autoCompleteSender.input.value = e;
-                                },
-                            },
-                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error fetching data: ", status, error); // Debug log
+                            response([]);
+                        }
                     });
                 },
-                error: function (error) {
-                    console.log(error)
-                }
+                minLength: 1
             });
-        }
+        });
+
 
         function incrementQty(element) {
             var input = $(element).siblings('.quantity-input');
@@ -168,14 +131,13 @@
         $(document).ready(function () {
             $("#btnOrder").click(function () {
                 var products = [];
-                var office_no = $("#autocomplete").val(); // Fetching the office_no value
-
+                var office_no = $("#autocomplete").val();
                 $('.quantity-input').each(function () {
                     var productId = $(this).attr('id');
                     var quantity = parseInt($(this).val());
 
-                    if (!isNaN(quantity) && quantity > 0) {
-                        products.push({ Id: productId, Qty: quantity, office_no: office_no });
+                    if (quantity > 0) {
+                        products.push({ Id: productId, Qty: quantity, Office_no: office_no });
                     }
                 });
 

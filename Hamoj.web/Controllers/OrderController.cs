@@ -30,10 +30,9 @@ public class OrderController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto, List<CustomerDto> customers)
+    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto)
     {
-        var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
-        var vendororder = await _orderService.VendorAddOrder(dto);
+        var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(),_currentUserService.GetCurrentUserId());
         return RedirectToAction("Index");
     }
 
@@ -70,9 +69,9 @@ public class OrderController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetOfficeNumber(string term)
+    public async Task<IActionResult> GetOfficeNumber(string office_no)
     {
-        var officeNoList = await _orderService.GetOfficeNumber(term);
+        var officeNoList = await _orderService.GetOfficeNumber(office_no);
         return Json(officeNoList);
     }
     public async Task<IActionResult> VendorAddOrder()
@@ -87,8 +86,7 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> VendorAddOrder([FromBody] List<ProductDto> dto)
     {
-        var vendororder = await _orderService.VendorAddOrder(dto);
-
+        var vendororder = await _orderService.VendorAddOrder(dto, _currentUserService.GetCurrentUserId());
         return RedirectToAction("Index");
     }
 

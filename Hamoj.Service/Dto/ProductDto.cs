@@ -26,4 +26,6 @@ public class ProductDto :BaseDto
 
     public GetOrderDetailsDto getOrderDetailsDto {  get; set; }
     public int Qty { get; set; }
+
+    public int Office_no { get; set; }
 }
