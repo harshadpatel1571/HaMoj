@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-body p-0">
                 <div class="card-header">
-                    <input type="text" name="name" value="" class="form-control autocomplete-input" id="autocomplete" placeholder="Search..." autocomplete="off">
+                    <input type="text" name="name" value="" class="form-control autocomplete-input" id="autocomplete"  placeholder="Search..." autocomplete="off">
                 </div>
 
                 <div>
@@ -89,30 +89,67 @@
 
         // });
 
-        $(document).ready(function () {
-            $('#autocomplete').autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '/Order/GetOfficeNumber',
-                        type: 'GET',
-                        dataType: 'json',
+        // $(document).ready(function () {
+        //     $('#autocomplete').autocomplete({
+        //         source: function (request, response) {
+        //             $.ajax({
+        //                 url: '/Order/GetOfficeNumber',
+        //                 type: 'GET',
+        //                 dataType: 'json',
+        //                 data: {
+        //                     term: request.term
+        //                 },
+        //                 success: function (data) {
+        //                     console.log("Data received: ", data); // Debug log
+        //                     response(data);
+        //                 },
+        //                 error: function (xhr, status, error) {
+        //                     console.error("Error fetching data: ", status, error); // Debug log
+        //                     response([]);
+        //                 }
+        //             });
+        //         },
+        //         minLength: 1
+        //     });
+        // });
+
+        function GetOfficeNumber() {
+            $.ajax({
+                type: "GET",
+                url: "/Order/GetOfficeNumber/",
+                data: { office_no: office_no },
+                success: function (response) {
+                    console.log(response);
+                    autoCompleteSender = new autoComplete({
+                        selector: "#autocomplete",
+                        placeHolder: "",
                         data: {
-                            term: request.term
+                            src: response,
+                            cache: !0
                         },
-                        success: function (data) {
-                            console.log("Data received: ", data); // Debug log
-                            response(data);
+                        resultsList: {
+                            element: function (e, t) {
+                                var l;
+                                t.results.length || ((l = document.createElement("div")).setAttribute("class", "no_result"), (l.innerHTML = '<span>Found No Results for "' + t.query + '"</span>'), e.prepend(l));
+                            },
+                            noResults: !0,
                         },
-                        error: function (xhr, status, error) {
-                            console.error("Error fetching data: ", status, error); // Debug log
-                            response([]);
-                        }
+                        resultItem: { highlight: !0 },
+                        events: {
+                            input: {
+                                selection: function (e) {
+                                    e = e.detail.selection.value;
+                                    autoCompleteSender.input.value = e;
+                                },
+                            },
+                        },
                     });
                 },
-                minLength: 1
+                error: function (error) {
+                    console.log(error)
+                }
             });
-        });
-
+        }
 
         function incrementQty(element) {
             var input = $(element).siblings('.quantity-input');
