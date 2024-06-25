@@ -12,8 +12,8 @@ namespace Hamoj.Service.Services;
 public class CustomerService : ICustomerService
 {
     private readonly HamojDBContext _context;
-   
-    public CustomerService (HamojDBContext context)
+
+    public CustomerService(HamojDBContext context)
     {
         _context = context;
     }
@@ -34,7 +34,7 @@ public class CustomerService : ICustomerService
         dbmodel.CompanyName = dto.CompanyName;
         dbmodel.Office_No = dto.Office_No;
         dbmodel.Name = dto.Name;
-        dbmodel.Email= dto.Email;
+        dbmodel.Email = dto.Email;
         dbmodel.Mobile = dto.Mobile;
         dbmodel.Address = dto.Address;
         dbmodel.City = dto.City;
@@ -86,16 +86,15 @@ public class CustomerService : ICustomerService
 
     }
 
-    public async Task<CustomerDto> FindDuplicate(int? officeNo)
+    public async Task<CustomerDto> FindDuplicate(int? officeNo, int? Id)
     {
-        
-            return await _context.Customer
-                .Where(x => x.Office_No == officeNo)
-                .Select(x => new CustomerDto
-                {
-                    Office_No = x.Office_No,
-                })
-               .FirstOrDefaultAsync();
+
+        return await _context.Customer.Where(x => (x.Office_No == officeNo) && x.Id != Id.Value).Select(x => new CustomerDto
+        {
+            Id = x.Id,
+            Office_No = x.Office_No,
+        }).FirstOrDefaultAsync();
+
     }
 
     public async Task<List<CustomerDto>> GetAllAsync()
@@ -115,7 +114,7 @@ public class CustomerService : ICustomerService
 
     public async Task<CustomerDto> GetDataById(int id)
     {
-        return  await _context.Customer.Where(x => x.Id == id).Select(x => new CustomerDto
+        return await _context.Customer.Where(x => x.Id == id).Select(x => new CustomerDto
         {
             Id = x.Id,
             CompanyName = x.CompanyName,

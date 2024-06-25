@@ -23,5 +23,7 @@ public interface IOrderService
 
     Task<bool> VendorAddOrder(List<ProductDto> dto);
 
-    Task<bool> GetReport();
+    
+
+
 }

@@ -30,12 +30,12 @@ public class OrderController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CustomerProductOrder([FromBody] List<ProductDto> dto, List<CustomerDto> customers)
+    public async Task<IActionResult> CustomerProductOrder(List<ProductDto> dto)
     {
         var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
-        var vendororder = await _orderService.VendorAddOrder(dto);
         return RedirectToAction("Index");
     }
+
 
     public async Task<IActionResult> OrderList()
     {
@@ -92,9 +92,6 @@ public class OrderController : Controller
         return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> GetReport()
-    {
-        return View();
-    }
+    
 
 }
