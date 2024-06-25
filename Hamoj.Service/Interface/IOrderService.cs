@@ -21,7 +21,7 @@ public interface IOrderService
 
     Task<List<string?>> GetOfficeNumber(string officeNumber);
 
-    Task<bool> VendorAddOrder(List<ProductDto> dto,int VendorUSerId);
+    Task<bool> VendorAddOrder(List<ProductDto> dto,int? VendorUSerId);
 
     Task<bool> GetReport();
 }

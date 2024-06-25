@@ -168,7 +168,7 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<bool> VendorAddOrder(List<ProductDto> dto, int VendorUSerId)
+        public async Task<bool> VendorAddOrder(List<ProductDto> dto, int? VendorUSerId)
         {
             var customerid = await _context.Customer.Where(x => x.Office_No == dto.Select(x => x.Office_no).FirstOrDefault()).Select(x => x.Id).FirstOrDefaultAsync();
 
@@ -176,7 +176,7 @@ namespace Hamoj.Service.Services
             {
                 CustomerId = customerid,
                 VendorID = 1,
-                VendorUserId = 
+                VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Deliver,
