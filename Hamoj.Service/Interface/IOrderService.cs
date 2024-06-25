@@ -19,9 +19,9 @@ public interface IOrderService
 
     Task<List<OrderDto>> VendorUSerOrderList(int Id);
 
-    Task<List<int?>> GetOfficeNumber(string term);
+    Task<List<string?>> GetOfficeNumber(string officeNumber);
 
-    Task<bool> VendorAddOrder(List<ProductDto> dto);
+    Task<bool> VendorAddOrder(List<ProductDto> dto,int? VendorUSerId);
 
     
 

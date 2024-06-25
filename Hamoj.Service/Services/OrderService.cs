@@ -61,6 +61,7 @@ namespace Hamoj.Service.Services
             return true;
         }
 
+
         public async Task<bool> AssignOrder(int OrderId, int VendorUserId, List<OrderDataDto> qty)
         {
             try
@@ -167,14 +168,15 @@ namespace Hamoj.Service.Services
             return orders;
         }
 
-        public async Task<bool> VendorAddOrder(List<ProductDto> dto)
+        public async Task<bool> VendorAddOrder(List<ProductDto> dto, int? VendorUSerId)
         {
-            var customerid = await _context.Customer.Where(x => x.Office_No == 1).Select(x => x.Id).FirstOrDefaultAsync();
+            var customerid = await _context.Customer.Where(x => x.Office_No == dto.Select(x => x.Office_no).FirstOrDefault()).Select(x => x.Id).FirstOrDefaultAsync();
 
             var order = new Order
             {
                 CustomerId = customerid,
                 VendorID = 1,
+                VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Deliver,
@@ -183,7 +185,7 @@ namespace Hamoj.Service.Services
                 Create_Date = DateTime.Now,
                 Create_by = 1,
                 orderDetailsList = new List<OrderDetails>()
-            };
+        };          
 
             foreach (var item in dto)
             {
@@ -213,9 +215,9 @@ namespace Hamoj.Service.Services
             return true;
         }
 
-        public async Task<List<int?>> GetOfficeNumber(string term)
+        public async Task<List<string?>> GetOfficeNumber(string officeNumber)
         {
-            List<int?> officeNumbers = await _context.Customer.Select(x => x.Office_No).ToListAsync();
+            List<string?> officeNumbers = await _context.Customer.Where(x=> x.Office_No.ToString().Contains(officeNumber)).Select(x => x.Office_No.ToString()).ToListAsync();
 
             return officeNumbers;
         }

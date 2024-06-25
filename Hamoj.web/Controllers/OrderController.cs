@@ -1,4 +1,5 @@
-﻿using Hamoj.DB.Enum;
+﻿using Hamoj.DB.Datamodel;
+using Hamoj.DB.Enum;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
@@ -46,16 +47,16 @@ public class OrderController : Controller
         return View(data);
     }
 
-         
+
     [HttpPost]
-    public async Task<IActionResult> ConfirmOrder(int id, int status, List<OrderDataDto>qty)
+    public async Task<IActionResult> ConfirmOrder(int id, int status, List<OrderDataDto> qty)
     {
         var orderStatus = status == 1 ? OrderEnum.Deliver : OrderEnum.Cancel;
         var confirmorder = await _orderService.ConfirmOrder(id, orderStatus, qty);
         return Json(new { msg = "Success", status = true });
     }
 
-    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId,List<OrderDataDto> qty)
+    public async Task<IActionResult> AssignOrder(int VendorUserId, int OrderId, List<OrderDataDto> qty)
     {
         var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId, qty);
         return Json(new { msg = "Success", status = true });
@@ -87,9 +88,17 @@ public class OrderController : Controller
     [HttpPost]
     public async Task<IActionResult> VendorAddOrder([FromBody] List<ProductDto> dto)
     {
-        var vendororder = await _orderService.VendorAddOrder(dto);
+  
+            if (_currentUserService.GetCurrentUserRole() == UserEnum.vendorUser.ToString())
+            {
+                await _orderService.VendorAddOrder(dto, _currentUserService.GetCurrentUserId());
+            }
+            else
+            {
+                await _orderService.VendorAddOrder(dto, null);
+            }
 
-        return RedirectToAction("Index");
+            return RedirectToAction("Index");
     }
 
     
