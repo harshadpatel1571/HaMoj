@@ -20,11 +20,11 @@
                     <input type="date" id="toDate" class="form-control">
                 </div>
                 <div class="col-md-3 align-self-end">
-                    <button id="searchButton" class="btn btn-primary">Search</button>
+                    <button id="btnSearch" class="btn btn-primary">Search</button>
                 </div>
             </div>
 
-            <table id="dataGrid" class="display" style="min-width: 845px">
+            <table id="grid" class="display" style="min-width: 845px">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -45,23 +45,25 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h5 class="modal-title">Order Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left:auto;"></button>
+            </div>
+            <div class="modal-body">
                 <table class="table" id="viewdetails">
                     <thead>
                         <tr>
-                    <td>Product Name</td>
-                    <td>Qty</td>
-                    <td>Price</td>
-                    <td>Total Amount</td>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
                     </thead>
+                    <tbody id="tbodydetails">
+                    </tbody>
                 </table>
-                <tbody id="tbodydetails">
-                </tbody>
+                <b id="grandtotal" class="text-primary"> </b>
             </div>
-            
-            <input type="hidden"  id="Id"/>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-            </div>
+            <input type="hidden" id="Id" />
         </div>
     </div>
 </div>
@@ -69,53 +71,56 @@
 
 @section Scripts {
     <script>
-        function formatDate(dateString) {
-            var date = new Date(dateString);
-            var day = date.getDate().toString().padStart(2, '0');
-            var month = (date.getMonth() + 1).toString().padStart(2, '0');
-            var year = date.getFullYear();
-            return `${year}-${month}-${day}`;
+
+        var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var monthDate = new Date();
+        var mm = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0).getDate();
+        $('#fromDate').val(monthDate.getFullYear() + '-' + months[monthDate.getMonth()] + '-' + '01');
+        $('#toDate').val(monthDate.getFullYear() + '-' + months[monthDate.getMonth()] + '-' + mm);
+
+        const columns = [
+            { data: 'id' },
+            {
+                data: 'create_Date',
+                render: function (data, type, row) {
+                    var date = new Date(data);
+                    var day = date.getDate().toString().padStart(2, '0');
+                    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+                    var year = date.getFullYear();
+                    return `${day}/${month}/${year}`;
+                }
+            },
+            { data: 'grandTotal' },
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return `<div class="d-flex">
+                                <a class="btn btn-primary shadow btn-xs sharp me-1" data-id="${row.id}"  onclick="getOrderDetails(${row.id})">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                            </div>`;
+                }
+            }
+        ];
+
+        function search(d) {
+            d.fromDate = $('#fromDate').val();
+            d.toDate = $('#toDate').val();
         }
 
         $(document).ready(function () {
-            var table = $('#dataGrid').DataTable({
-                ajax: {
-                    url: '/GetReport/GetReport',
-                    type: 'POST',
-                    data: function (d) {
-                        d.fromDate = formatDate($('#fromDate').val());
-                        d.toDate = formatDate($('#toDate').val());
-                    }
-                },
-                columns: [
-                    { data: 'id' },
-                    {
-                        data: 'create_Date',
-                        render: function (data, type, row) {
-                            var date = new Date(data);
-                            var day = date.getDate().toString().padStart(2, '0');
-                            var month = (date.getMonth() + 1).toString().padStart(2, '0');
-                            var year = date.getFullYear();
-                            return `${day}/${month}/${year}`;
-                        }
-                    },
-                    { data: 'grandTotal' },
-                    {
-                        data: null,
-                        render: function (data, type, row) {
-                            return `<div class="d-flex">
-                                    <a class="btn btn-primary shadow btn-xs sharp me-1" data-id="${row.id}"  onclick="getOrderDetails(${row.id})">
-                                    <i class="fa-solid fa-eye"></i>
-                             </a>
-                             </div>`;
-                        }
-                    }
-                ]
-            });
+            BindGridWithFilter("/GetReport/GetReport", columns,false,false,search);
+        });
 
-            $('#searchButton').click(function () {
-                table.ajax.reload();
-            });
+        $("#btnSearch").click(function () {
+
+            if ($('#fromDate').val() == '' && $('#toDate').val() == '') {
+                //toaster("error", "Required !!", "Select From city and To city first.");
+                return;
+            }
+
+            const table = $("#grid").DataTable();
+            table.ajax.reload(null, false);
         });
 
         function getOrderDetails(orderId) {
@@ -125,29 +130,31 @@
                 url: '/GetReport/GetOrderDetails',
                 type: 'POST',
                 data: { id: id },
-                success: function (data) {
+                success: function (response) {
                     $('#tbodydetails').empty();
-                    $(data).each(function (key, value) {
+                    $('#grandtotal').empty();  
+                    var grandTotal = 0; 
+
+                    $.each(response.data, function (key, value) {
                         console.log(value);
                         var row = '<tr>';
-                        row += '<td>' + value.data.productDto.name + '</td>';
-                        row += '<td>' + value.data.qty + '</td>';
-                        row += '<td>' + value.data.amount + '</td>';
-                        row += '<td>' + value.data.totalAmounnt + '</td>';
+                        row += '<td>' + value.productDto.name + '</td>';
+                        row += '<td>' + value.qty + '</td>';
+                        row += '<td>' + value.amount + '</td>';
+                        row += '<td>' + value.totalAmounnt + '</td>';
                         row += '</tr>';
-
                         $('#tbodydetails').append(row);
 
+                        grandTotal += value.totalAmounnt;  
                     });
+
+                    $('#grandtotal').text('Grand Total : ' + grandTotal);
                 },
                 error: function (xhr, status, error) {
                     console.error("AJAX request failed:", status, error);
                 }
             });
         }
-
-
-
 
     </script>
 }

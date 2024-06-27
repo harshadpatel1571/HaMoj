@@ -5,9 +5,9 @@ namespace Hamoj.Service.Interface;
 
 public interface IGetReportService
 {
-    Task<List<OrderDto>> GetReportAsync(int customerId);
+    Task<List<OrderDto>> GetReportAsync(int customerId, DateTime fromDate, DateTime toDate);
 
-    Task<OrderDetailsDto> GetOrderDetails(int orderId);
+    Task<List<OrderDetailsDto>> GetOrderDetails(int orderId);
 
 
 }

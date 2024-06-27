@@ -23,16 +23,17 @@ namespace Hamoj.web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> GetReport()
+        public async Task<IActionResult> GetReport(DateTime fromDate, DateTime toDate)
         {
-            var getReport = await _getReportService.GetReportAsync(_currentUserService.GetCurrentUserId());
+            var getReport = await _getReportService.GetReportAsync(_currentUserService.GetCurrentUserId(), fromDate, toDate);
             return Json(new { data = getReport, status = true });
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> GetOrderDetails(int id)
+        public async Task<IActionResult> GetOrderDetails(int id )
         {
-            var orderDetails = await _getReportService.GetOrderDetails(id);
+            var orderDetails = await _getReportService.GetOrderDetails(id );
             return Json(new { data = orderDetails, status = true });
 
         }

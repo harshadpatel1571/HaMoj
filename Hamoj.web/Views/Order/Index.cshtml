@@ -7,7 +7,7 @@
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
 
-<form method="post" asp-controller="Order" asp-action="CustomerProductOrder"> 
+<form method="post" asp-controller="Order" asp-action="CustomerProductOrder">
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body p-0">
@@ -42,7 +42,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <button type="button" class="btn btn-primary shadow btn-xs me-1" onclick="decrementQty(this)"><i>-</i></button>
-                                            <input type="number" class="form-control quantity-input text-center mx-0 p-1" value="0" min="0" max="100" step="1" name="[@i].Qty" />
+                                            <input type="text" class="form-control quantity-input text-center mx-0 p-1" value="0" min="0" max="100" step="1" name="[@i].Qty" />
                                             <button type="button" class="btn btn-primary shadow btn-xs ms-1" onclick="incrementQty(this)"><i>+</i></button>
                                         </div>
                                         <input type="hidden" name="[@i].Id" value="@Model[i].Id" />

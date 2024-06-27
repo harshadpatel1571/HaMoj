@@ -73,3 +73,34 @@ function toaster(type, message) {
 //toaster('warning', 'This is a warning message');
 //toaster('error', 'This is an error message');
 
+function BindGridWithFilter(pURL, pColumns, isPaging = true, isSearching = true, pSearch = null, pfooterCallback = null, pName = 'grid') {
+    $(`#${pName}`).DataTable().destroy();
+    $(`#${pName}`).DataTable({
+        paging: isPaging,
+        lengthChange: true,
+        searching: isSearching,
+        ordering: true,
+        lengthMenu: [[10, 25, 50, 75, 100, 250], [10, 25, 50, 75, 100, 250]],
+        info: false,
+        autoWidth: false,
+        responsive: false,
+        processing: true,
+        serverSide: true,
+        filter: true,
+        ajax: {
+            url: pURL,
+            type: "POST",
+            datatype: "json",
+            data: pSearch
+        },
+        columnDefs: [{
+            targets: [0],
+            visible: false,
+            searchable: false
+        }],
+        footerCallback: pfooterCallback,
+        columns: pColumns,
+    });
+
+    restrictSearchFilter();
+}
