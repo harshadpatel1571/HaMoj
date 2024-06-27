@@ -131,7 +131,13 @@
         $(document).ready(function () {
             $("#btnOrder").click(function () {
                 var products = [];
-                var office_no = $("#autocomplete").val();
+                var office_no = $("#autocomplete").val().trim();
+
+                if (office_no === "") {
+                    toastr.error('Please select an office number');
+                    return; 
+                }
+
                 $('.quantity-input').each(function () {
                     var productId = $(this).attr('id');
                     var quantity = parseInt($(this).val());
@@ -162,6 +168,7 @@
                 }
             });
         });
+
 
     </script>
 }
