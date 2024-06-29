@@ -1,10 +1,12 @@
 ﻿using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hamoj.web.Controllers
 {
+    [Authorize]
     public class VendorUserController : Controller
     {
         private readonly IVendorUserService _VendorUserService;

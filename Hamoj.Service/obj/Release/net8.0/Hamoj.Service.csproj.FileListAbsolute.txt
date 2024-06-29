@@ -1,0 +1,16 @@
+E:\Project\Hamojnew\Hamoj.Service\bin\Release\net8.0\Hamoj.Service.deps.json
+E:\Project\Hamojnew\Hamoj.Service\bin\Release\net8.0\Hamoj.Service.dll
+E:\Project\Hamojnew\Hamoj.Service\bin\Release\net8.0\Hamoj.Service.pdb
+E:\Project\Hamojnew\Hamoj.Service\bin\Release\net8.0\Hamoj.DB.dll
+E:\Project\Hamojnew\Hamoj.Service\bin\Release\net8.0\Hamoj.DB.pdb
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.csproj.AssemblyReference.cache
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.GeneratedMSBuildEditorConfig.editorconfig
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.AssemblyInfoInputs.cache
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.AssemblyInfo.cs
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.csproj.CoreCompileInputs.cache
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.sourcelink.json
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Se.F9B2FC68.Up2Date
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.dll
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\refint\Hamoj.Service.dll
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\Hamoj.Service.pdb
+E:\Project\Hamojnew\Hamoj.Service\obj\Release\net8.0\ref\Hamoj.Service.dll

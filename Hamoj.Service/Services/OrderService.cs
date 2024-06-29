@@ -22,7 +22,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = CustomerID,
-                VendorID = 1,
+                VendorID = 2,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Pending,
@@ -175,7 +175,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = customerid,
-                VendorID = 1,
+                VendorID = 2,
                 VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,

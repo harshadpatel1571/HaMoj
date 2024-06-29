@@ -81,6 +81,13 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Account");
     }
 
+    public async Task<IActionResult> CustomerLogout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme)
+            .ConfigureAwait(false);
+
+        return RedirectToAction("CustomerLogin", "Account");
+    }
 
 
     public async Task<IActionResult> CustomerLogin()
