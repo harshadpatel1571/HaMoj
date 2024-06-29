@@ -37,7 +37,7 @@ public class UserService : IUserService
         dbmodel.Role = (int)UserEnum.Admin;
         dbmodel.is_Active = true;
         dbmodel.is_Delete = false;
-        dbmodel.Create_Date = DateTime.Now;
+        dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
         dbmodel.Create_by = 1;
 
 
@@ -46,7 +46,7 @@ public class UserService : IUserService
             // Update The data 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
-            dbmodel.Modified_Date = DateTime.Now;
+            dbmodel.Modified_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
 
             _context.User.Update(dbmodel);
         }
@@ -54,7 +54,7 @@ public class UserService : IUserService
         {
 
             // Add Data 
-            dbmodel.Create_Date = DateTime.Now;
+            dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
             dbmodel.Create_by = 1;
 
             _context.User.Add(dbmodel);

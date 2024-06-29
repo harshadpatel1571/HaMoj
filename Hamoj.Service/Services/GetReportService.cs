@@ -18,17 +18,18 @@ public class GetReportService : IGetReportService
 
     public async Task<List<OrderDto>> GetReportAsync(int customerId, DateTime fromDate, DateTime toDate)
     {
-        
-
         var orderDetails = await _context.Order
-            .Where(x => x.CustomerId == customerId && x.OrderStatus == (int)OrderEnum.Deliver &&
-                    fromDate.Date <= x.Create_Date.Date && toDate.Date >= x.Create_Date.Date)
+            .Where(x => x.CustomerId == customerId &&
+                        x.OrderStatus == (int)OrderEnum.Deliver &&
+                        fromDate.Date <= x.Create_Date.Date &&
+                        toDate.Date >= x.Create_Date.Date)
             .Select(x => new OrderDto
             {
                 ID = x.ID,
                 Create_Date = x.Create_Date,
                 GrandTotal = x.GrandTotal,
-            }).ToListAsync();
+            })
+            .ToListAsync();
 
         return orderDetails;
     }

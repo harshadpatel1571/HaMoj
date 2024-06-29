@@ -37,7 +37,7 @@ public class VendorService : IVendorService
         dbmodel.MobileNumber = dto.MobileNumber;
         dbmodel.Address = dto.Address;
         dbmodel.Password = dto.Password;
-        dbmodel.Create_Date = DateTime.Now;
+        dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
         dbmodel.Create_by = 1;
         dbmodel.is_Active = true;
         dbmodel.is_Delete = false;
@@ -47,7 +47,7 @@ public class VendorService : IVendorService
             //Update Data
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
-            dbmodel.Modified_Date = DateTime.Now;
+            dbmodel.Modified_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
             _context.Vendor.Update(dbmodel);
 
         }
@@ -55,7 +55,7 @@ public class VendorService : IVendorService
         {
             //Add Data
             dbmodel.Create_by = 1;
-            dbmodel.Create_Date = DateTime.Now;
+            dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
             _context.Vendor.Add(dbmodel);
 
         }

@@ -40,7 +40,7 @@ public class ProductService : IProductService
         dbmodel.Description = dto.Description;
         dbmodel.is_Active = true;
         dbmodel.is_Delete = false;
-        dbmodel.Create_Date = DateTime.Now;
+        dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
         dbmodel.Create_by = 1;
 
 
@@ -49,14 +49,14 @@ public class ProductService : IProductService
 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
-            dbmodel.Modified_Date = DateTime.Now;
+            dbmodel.Modified_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
 
             _context.Product.Update(dbmodel);
         }
         else
         {
 
-            dbmodel.Create_Date = DateTime.Now;
+            dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
             dbmodel.Create_by = 1;
 
             _context.Product.Add(dbmodel);

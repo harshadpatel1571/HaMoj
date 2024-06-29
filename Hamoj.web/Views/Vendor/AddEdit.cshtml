@@ -26,8 +26,8 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Mobile Number</label>
-                        <input type="number" class="form-control" placeholder="Mobile Number" name="MobileNumber" asp-for="MobileNumber">
-                        <span asp-validation-for="MobileNumber" class="text-danger"></span>
+                        <input type="text" class="form-control restrict-input" placeholder="Mobile Number" id="mobileNumber" maxlength="10" asp-for="MobileNumber">
+                        <span id="mobileNumberError" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label>Address</label>
@@ -49,5 +49,16 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('mobileNumber').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, ''); // Allow only digits
+            if (this.value.length > 10) {
+                this.value = this.value.slice(0, 10); // Limit to max 10 digits
+            }
+        });
+    </script>
+}
 
 
