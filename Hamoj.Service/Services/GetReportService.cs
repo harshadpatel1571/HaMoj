@@ -28,14 +28,6 @@ public class GetReportService : IGetReportService
                 ID = x.ID,
                 Create_Date = x.Create_Date,
                 GrandTotal = x.GrandTotal,
-                vendorDto = new VendorDto
-                {
-                    Name = x.vendor.Name
-                },
-                vendorUserDto = x.VendorUserId != null ? new VendorUserDto
-                {
-                    Name = x.vendorUser.Name
-                }: null,
             })
             .ToListAsync();
 

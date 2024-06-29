@@ -39,7 +39,7 @@ public class CatagoryService : ICatagoryService
         }
         dbmodel.is_Active = true;
         dbmodel.is_Delete = false;
-        dbmodel.Create_Date = DateTime.Now;
+        dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
         dbmodel.Create_by = 1;
 
 
@@ -49,7 +49,7 @@ public class CatagoryService : ICatagoryService
             // Update The data 
             dbmodel.Id = dto.Id;
             dbmodel.Modified_by = 1;
-            dbmodel.Modified_Date = DateTime.Now;
+            dbmodel.Modified_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
 
             _context.Category.Update(dbmodel);
         }
@@ -57,7 +57,7 @@ public class CatagoryService : ICatagoryService
         {
 
             // Add Data 
-            dbmodel.Create_Date = DateTime.Now;
+            dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
             dbmodel.Create_by = 1;
 
             _context.Category.Add(dbmodel);

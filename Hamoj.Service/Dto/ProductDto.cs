@@ -18,6 +18,7 @@ public class ProductDto :BaseDto
     public int Price { get; set; }
     public string Description { get; set; }
     public string? Image { get; set; }
+    [RegularExpression(@"([a-zA-Z0-9\s_\\.\-():])+(.jpg|.jpeg|.png|.webp)$", ErrorMessage = "Only JPG, JPEG, PNG, and WEBP images are allowed.")]
     public IFormFile? Imagefile { get; set; }
 
     public CategoryDto CategoryDto { get; set; }

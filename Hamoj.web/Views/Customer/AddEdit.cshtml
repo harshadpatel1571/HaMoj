@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label asp-for="Office_No" class="form-label">Office Number</label>
-                        <input asp-for="Office_No" class="form-control" placeholder="Office Number">
+                        <input type="text" class="form-control" placeholder="Office Number" asp-for="Office_No" maxlength="10">
                         <span asp-validation-for="Office_No" class="text-danger"></span>
                     </div>
                     <div class="mb-3 col-md-6">
@@ -34,11 +34,15 @@
                         <label class="form-label">Email</label>
                         <input type="text" class="form-control" placeholder="Email" asp-for="Email">
                     </div>
+
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Mobile Number</label>
-                        <input type="text" class="form-control" placeholder="Mobile Number" asp-for="Mobile">
-                        <span asp-validation-for="Mobile" class="text-danger"></span>
+                        <input type="text" class="form-control restrict-input" placeholder="Mobile Number" id="mobileNumber" maxlength="10" asp-for="Mobile">
+                        <span id="mobileNumberError" class="text-danger"></span>
                     </div>
+
+
+
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Address</label>
                         <input type="text" class="form-control" placeholder="Address" asp-for="Address">
@@ -72,3 +76,14 @@
     </div>
 </div>
 
+
+@section Scripts {
+    <script>
+        document.getElementById('mobileNumber').addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, ''); // Allow only digits
+            if (this.value.length > 10) {
+                this.value = this.value.slice(0, 10); // Limit to max 10 digits
+            }
+        });
+    </script>
+}

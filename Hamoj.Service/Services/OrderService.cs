@@ -28,7 +28,7 @@ namespace Hamoj.Service.Services
                 OrderStatus = (int)OrderEnum.Pending,
                 is_Active = true,
                 is_Delete = false,
-                Create_Date = DateTime.Now,
+                Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
                 Create_by = 1,
                 orderDetailsList = new List<OrderDetails>()
             };
@@ -48,7 +48,7 @@ namespace Hamoj.Service.Services
                     OrderStatus = (int)OrderEnum.Pending,
                     is_Active = true,
                     is_Delete = false,
-                    Create_Date = DateTime.Now,
+                    Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
                     Create_by = 1
                 };
 
@@ -108,7 +108,7 @@ namespace Hamoj.Service.Services
                         OrderStatus = (int)status,
                         is_Active = true,
                         is_Delete = false,
-                        Create_Date = DateTime.Now,
+                        Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
                         Create_by = 1
                     };
                     OrderDetailsList.Add(orderDetails);
@@ -182,7 +182,7 @@ namespace Hamoj.Service.Services
                 OrderStatus = (int)OrderEnum.Deliver,
                 is_Active = true,
                 is_Delete = false,
-                Create_Date = DateTime.Now,
+                Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
                 Create_by = 1,
                 orderDetailsList = new List<OrderDetails>()
         };          
@@ -202,7 +202,7 @@ namespace Hamoj.Service.Services
                     OrderStatus = (int)OrderEnum.Deliver,
                     is_Active = true,
                     is_Delete = false,
-                    Create_Date = DateTime.Now,
+                    Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
                     Create_by = 1
                 };
 

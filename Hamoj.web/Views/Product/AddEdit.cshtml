@@ -35,6 +35,7 @@
                     <div class="mb-3 col-md-6">
                         <label>Product Image</label>
                         <input type="file" class="form-control" placeholder="Product Image"  asp-for="Imagefile">
+                        <span asp-validation-for="Imagefile" class="text-danger"></span>
                         @if (Model != null)
                         {
                         <img src="~/ProductImage/@Model.Image" class="pt-3" height="80px" width="80px" />
