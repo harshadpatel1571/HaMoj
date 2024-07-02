@@ -1,0 +1,8 @@
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\HamojApp.csproj.AssemblyReference.cache
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\Platforms\Windows\App.g.i.cs
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\Platforms\Windows\App.g.cs
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\XamlTypeInfo.g.cs
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\Platforms\Windows\App.xaml
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\Platforms\Windows\App.xbf
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\XamlSaveStateFile.xml
+E:\Project\Hamojnew\HamojApp\obj\Debug\net8.0-windows10.0.19041.0\HamojApp.GeneratedMSBuildEditorConfig.editorconfig

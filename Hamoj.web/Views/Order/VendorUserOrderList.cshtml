@@ -6,6 +6,9 @@
     var productList = ViewBag.ProductList as List<ProductDto>;
 }
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+<div>
+    <button class="btn btn-primary" id="btnrefresh">Refresh</button>
+</div>
 <div class="row" id="card">
     @foreach (var order in Model)
     {
@@ -81,6 +84,10 @@
                 input.value = currentValue - 1;
             }
         }
+             $("#btnrefresh").click(function(){
+         window.location.reload();
+     })
+
 
         function confirmOrder(OrderId, orderStatus) {
             let actionText = orderStatus === 1 ? "Confirm" : "Cancel";
@@ -104,7 +111,6 @@
                     $(".quantity-input_" + OrderId).each(function () {
                         let productId = $(this).attr('id');
                         let qty = $(this).val();
-                        alert(qty);
                         if (qty > 0) {
                             Order.push({ id: productId, qty: qty });
                         }

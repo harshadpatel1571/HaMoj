@@ -59,7 +59,7 @@ public class AccountController : Controller
                     new ClaimsPrincipal(claimsIdentity),
                     new AuthenticationProperties
                     {
-                        ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                        ExpiresUtc = DateTimeOffset.Now.AddMinutes(500),
                         IsPersistent = false
                     })
                 .ConfigureAwait(false);
@@ -115,7 +115,7 @@ public class AccountController : Controller
 
             var authProperties = new AuthenticationProperties
             {
-                ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                ExpiresUtc = DateTimeOffset.Now.AddMinutes(500),
                 IsPersistent = false
             };
 
@@ -164,7 +164,7 @@ public class AccountController : Controller
 
             var authProperties = new AuthenticationProperties
             {
-                ExpiresUtc = DateTimeOffset.Now.AddMinutes(100),
+                ExpiresUtc = DateTimeOffset.Now.AddMinutes(500),
                 IsPersistent = false
             };
 

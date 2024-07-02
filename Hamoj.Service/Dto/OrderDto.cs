@@ -10,6 +10,7 @@ public class OrderDto:BaseDto
     public decimal Gst { get; set; }
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }
+    public string UserName { get; set; }
 
     public VendorDto vendorDto { get; set; }
     public CustomerDto customerDto { get; set; }

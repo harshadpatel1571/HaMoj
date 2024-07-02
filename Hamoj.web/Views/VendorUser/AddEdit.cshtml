@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" asp-for="Password">
+                        <input type="password" class="form-control" placeholder="Password" value="@Model.Password" asp-for="Password">
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-check form-switch">

@@ -12,14 +12,14 @@ builder.Services.AddControllersWithViews();
 
 // Configure DbContext
 builder.Services.AddDbContext<HamojDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("qa")));
 
 // Register IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 
 // Service Registration
 builder.Services.AddScoped<ICatagoryService, CatagoryService>();
-builder.Services.AddScoped<IVendorService, VendorService>();
+builder.Services.AddScoped<IVendorService, VendorService>(); 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IProductService, ProductService>();
@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".HaaMoj.Session";
-    options.IdleTimeout = TimeSpan.FromMinutes(30);    
+    options.IdleTimeout = TimeSpan.FromMinutes(500);    
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });

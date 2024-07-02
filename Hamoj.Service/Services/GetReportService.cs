@@ -28,6 +28,7 @@ public class GetReportService : IGetReportService
                 ID = x.ID,
                 Create_Date = x.Create_Date,
                 GrandTotal = x.GrandTotal,
+                UserName = x.VendorUserId != null ? x.vendorUser.Name : x.vendor.Name 
             })
             .ToListAsync();
 
