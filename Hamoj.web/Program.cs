@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 
 // Configure DbContext
 builder.Services.AddDbContext<HamojDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("qa")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
 
 // Register IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();

@@ -70,6 +70,8 @@ public class CustomerService : ICustomerService
         return dto;
     }
 
+   
+
     public async Task<bool> Delete(int id)
     {
         try
@@ -130,5 +132,68 @@ public class CustomerService : ICustomerService
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).FirstOrDefaultAsync();
+    }
+
+     public async Task<CustomerDto> CustomerRegister(CustomerDto dto)
+    {
+        var dbmodel = new Customer();
+        if (dto.Id > 0)
+        {
+            dbmodel = _context.Customer.Where(x => x.Id == dto.Id).FirstOrDefault();
+            if (dbmodel == null)
+            {
+                dbmodel = new Customer();
+            }
+        }
+
+        dbmodel.Id = dto.Id;
+        dbmodel.CompanyName = dto.CompanyName;
+        dbmodel.Office_No = dto.Office_No;
+        dbmodel.Name = dto.Name;
+        dbmodel.Email = dto.Email;
+        dbmodel.Mobile = dto.Mobile;
+        dbmodel.Address = dto.Address;
+        dbmodel.City = dto.City;
+        dbmodel.State = dto.State;
+        dbmodel.Pincode = dto.Pincode;
+        dbmodel.Password = dto.Password;
+        dbmodel.is_Active = true;
+        dbmodel.is_Delete = false;
+        dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
+        dbmodel.Create_by = 1;
+
+
+        if (dto.Id > 0)
+        {
+
+            dbmodel.Id = dto.Id;
+            dbmodel.Modified_by = 1;
+            dbmodel.Modified_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
+
+            _context.Customer.Update(dbmodel);
+        }
+        else
+        {
+
+            dbmodel.Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30);
+            dbmodel.Create_by = 1;
+
+            _context.Customer.Add(dbmodel);
+
+        }
+        _context.SaveChanges();
+
+        return dto;
+    }
+
+    public async Task<CustomerDto> FindDuplicates(int? officeNo, int? Id)
+    {
+
+        return await _context.Customer.Where(x => (x.Office_No == officeNo) && x.Id != Id.Value).Select(x => new CustomerDto
+        {
+            Id = x.Id,
+            Office_No = x.Office_No,
+        }).FirstOrDefaultAsync();
+
     }
 }

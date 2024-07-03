@@ -14,7 +14,7 @@ public class CustomerDto : BaseDto
 
     public string Name { get; set; }
     [Required(ErrorMessage = "Email is required !")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
     [Required(ErrorMessage = "Mobile Number Is required !")]
     public string Mobile { get; set; }
     public string? Address { get; set; }

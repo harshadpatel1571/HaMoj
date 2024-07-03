@@ -31,11 +31,16 @@ namespace Hamoj.web.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> GetOrderDetails(int id )
+        public async Task<IActionResult> GetOrderDetails(int id)
         {
-            var orderDetails = await _getReportService.GetOrderDetails(id );
+            var orderDetails = await _getReportService.GetOrderDetails(id);
             return Json(new { data = orderDetails, status = true });
 
+        }
+
+        public IActionResult Payment()
+        {
+            return View();
         }
     }
 }

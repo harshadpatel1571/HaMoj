@@ -16,10 +16,12 @@ namespace Hamoj.web.Controllers;
 public class AccountController : Controller
 {
     private readonly ILoginService _loginService;
+    private readonly ICustomerService _customerService;
 
-    public AccountController(ILoginService loginService)
+    public AccountController(ILoginService loginService, ICustomerService customerService)
     {
         _loginService = loginService;
+        _customerService = customerService;
     }
 
     public IActionResult Index()
@@ -49,6 +51,7 @@ public class AccountController : Controller
             {
             new Claim("Id", user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.Name),
+            new Claim(ClaimTypes.MobilePhone, user.MobileNumber),
             new Claim(ClaimTypes.Role, userRole),
         };
 
@@ -106,7 +109,7 @@ public class AccountController : Controller
             var claims = new[]
             {
             new Claim("Id", user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.MobilePhone, user.MobileNumber),
             new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.Role, UserEnum.Customer.ToString()),
         };
@@ -183,5 +186,22 @@ public class AccountController : Controller
         }
     }
 
+    public async Task<IActionResult> CustomerRegister()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult>CustomerAdded(CustomerDto dto)
+    {
+        var duplicate = await _customerService.FindDuplicates(dto.Office_No, dto.Id);
+        if (duplicate != null)
+        {
+            ModelState.AddModelError("Office_No", "Office Number already exists.");
+            return View(dto); // Return the view with errors if duplicate found
+        }
+        var CustomerRegister = _customerService.CustomerRegister(dto);
+        return RedirectToAction("CustomerLogin");
+    }
 
 }
