@@ -45,7 +45,7 @@
                                                 <button type="submit" class="btn btn-primary form-control">Login</button>
                                             </div>
                                             <div class="col-sm-6">
-                                                <button type="submit"  class="btn btn-primary form-control" asp-controller="Account" asp-action="CustomerRegister">Signup</button>
+                                                <a class="btn btn-primary form-control" asp-controller="Account" asp-action="CustomerRegister">Signup</a>
                                             </div>
                                             @if (!string.IsNullOrEmpty(ViewBag.InvalidCredentialsErrorMessage))
                                             {

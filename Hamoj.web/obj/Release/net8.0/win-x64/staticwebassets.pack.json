@@ -361,6 +361,10 @@
       "PackagePath": "staticwebassets\\images\\1.jpg"
     },
     {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\images\\QrCode.jpeg",
+      "PackagePath": "staticwebassets\\images\\QrCode.jpeg"
+    },
+    {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\images\\avatar\\1.jpg",
       "PackagePath": "staticwebassets\\images\\avatar\\1.jpg"
     },

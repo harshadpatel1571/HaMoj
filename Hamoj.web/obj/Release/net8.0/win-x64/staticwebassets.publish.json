@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KXChrjE0TvCqXe1vRcw3hQZn29FxOGkokJfqxuy2vjM=",
+  "Hash": "6ZtpI2NY79FgxDSw0rnHaSxMJVYUmYlEIjZA4/VuQAw=",
   "Source": "Hamoj.web",
   "BasePath": "_content/Hamoj.web",
   "Mode": "Default",
@@ -2979,6 +2979,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\profile\\small\\pic9.jpg"
+    },
+    {
+      "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\images\\QrCode.jpeg",
+      "SourceId": "Hamoj.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\",
+      "BasePath": "_content/Hamoj.web",
+      "RelativePath": "images/QrCode.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\QrCode.jpeg"
     },
     {
       "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\images\\svg\\map.svg",
