@@ -61,5 +61,10 @@ public class VendorController : Controller
     {
         var Delete = await _vendorService.Delete(id);
         return Json(new {data= Delete,status = true,});
-    }      
+    }
+
+    public IActionResult Payment()
+    {
+        return View();
+    }
 }

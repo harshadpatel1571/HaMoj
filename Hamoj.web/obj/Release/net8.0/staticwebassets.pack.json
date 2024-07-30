@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\CategoryImage\\0_mntiRd6-0-svRvfa.jpg"
     },
     {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\AdobeStock_279692163_Editorial_Use_Only-Beverage-FTR-new.jpg",
+      "PackagePath": "staticwebassets\\CategoryImage\\AdobeStock_279692163_Editorial_Use_Only-Beverage-FTR-new.jpg"
+    },
+    {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\New Parcel Book Logo Favicon.png",
       "PackagePath": "staticwebassets\\CategoryImage\\New Parcel Book Logo Favicon.png"
     },
@@ -45,8 +49,16 @@
       "PackagePath": "staticwebassets\\ProductImage\\coffee-cup-logo-coffee-shop-icon-design-free-vector.jpg"
     },
     {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\download.jpeg",
+      "PackagePath": "staticwebassets\\ProductImage\\download.jpeg"
+    },
+    {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\images.jpg",
       "PackagePath": "staticwebassets\\ProductImage\\images.jpg"
+    },
+    {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\peppermint-tea-on-teacup-1417945.jpg",
+      "PackagePath": "staticwebassets\\ProductImage\\peppermint-tea-on-teacup-1417945.jpg"
     },
     {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\pexels-chevanon-312418.jpg",

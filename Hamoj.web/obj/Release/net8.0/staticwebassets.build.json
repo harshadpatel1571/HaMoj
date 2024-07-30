@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3O0gpOn1NLpsc4QYpVR5V5vcMRm9cgp7fzWDIRTg9WA=",
+  "Hash": "CAsQSWfDyK0crBmrd9UwbrBZAh4QWMvg9RB6D5R7SZM=",
   "Source": "Hamoj.web",
   "BasePath": "_content/Hamoj.web",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\CategoryImage\\0_mntiRd6-0-svRvfa.jpg"
+    },
+    {
+      "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\AdobeStock_279692163_Editorial_Use_Only-Beverage-FTR-new.jpg",
+      "SourceId": "Hamoj.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\",
+      "BasePath": "_content/Hamoj.web",
+      "RelativePath": "CategoryImage/AdobeStock_279692163_Editorial_Use_Only-Beverage-FTR-new.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CategoryImage\\AdobeStock_279692163_Editorial_Use_Only-Beverage-FTR-new.jpg"
     },
     {
       "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\New Parcel Book Logo Favicon.png",
@@ -4976,6 +4995,25 @@
       "OriginalItemSpec": "wwwroot\\ProductImage\\coffee-cup-logo-coffee-shop-icon-design-free-vector.jpg"
     },
     {
+      "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\download.jpeg",
+      "SourceId": "Hamoj.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\",
+      "BasePath": "_content/Hamoj.web",
+      "RelativePath": "ProductImage/download.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\download.jpeg"
+    },
+    {
       "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\Holiday-1.jpg",
       "SourceId": "Hamoj.web",
       "SourceType": "Discovered",
@@ -5012,6 +5050,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ProductImage\\images.jpg"
+    },
+    {
+      "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\peppermint-tea-on-teacup-1417945.jpg",
+      "SourceId": "Hamoj.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\",
+      "BasePath": "_content/Hamoj.web",
+      "RelativePath": "ProductImage/peppermint-tea-on-teacup-1417945.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ProductImage\\peppermint-tea-on-teacup-1417945.jpg"
     },
     {
       "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\pexels-chevanon-312418.jpg",
