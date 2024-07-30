@@ -59,4 +59,10 @@ public class CustomerController : Controller
         var delete = await _customerService.Delete(id);
         return Json(new { data = delete, status = true, });
     }
+
+    public async Task<IActionResult> Dashboard()
+    {
+        return View();
+
+    }
 }

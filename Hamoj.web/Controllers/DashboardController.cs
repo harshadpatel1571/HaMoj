@@ -1,18 +1,33 @@
 ﻿using Hamoj.Service.Interface;
 using Hamoj.Service.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Hamoj.web.Controllers
 {
     public class DashboardController : Controller
     {
-        public IActionResult Index()
+        private readonly IDashboardService _dashboardService;
+        private readonly ICurrentUserService _currentUserService;
+
+
+        public DashboardController(IDashboardService dashboardService , ICurrentUserService currentUserService)
         {
-            return View();
+            _dashboardService = dashboardService;
+            _currentUserService = currentUserService;
         }
 
-        public IActionResult CustomerDashboard()
+        public async Task<IActionResult> Index()
         {
+			var totalAmount = await _dashboardService.TotalAmount();
+			ViewBag.total = totalAmount;
+			return View();
+		}
+
+        public  async Task<IActionResult> CustomerDashboard()
+        {
+            var totalAmount = await _dashboardService.UserTotalAmount(_currentUserService.GetCurrentUserId());
+            ViewBag.total = totalAmount;
             return View();
         }
     }
