@@ -1,7 +1,7 @@
 ﻿@using Hamoj.DB.Enum
 @using Hamoj.Service.Interface
 
-@inject ICurrentUserService CurrentUser;    
+@inject ICurrentUserService CurrentUser;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -624,15 +624,15 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
-                    @* <li>
-                    <a href="widget-basic.html" class="ai-icon" aria-expanded="false">
-                    <i class="flaticon-network"></i>
-                    <span class="nav-text">Dashboard</span>
-                    </a>
-                    </li> *@
                     @{
                         if (CurrentUser.GetCurrentUserRole() == UserEnum.Vendor.ToString())
                         {
+                            <li>
+                                <a asp-controller="Dashboard" asp-action="Index" class="ai-icon" aria-expanded="false">
+                                    <i class="flaticon-network"></i>
+                                    <span class="nav-text">Dashboard</span>
+                                </a>
+                            </li>
                             <li>
                                 <a asp-controller="VendorUser" asp-action="Index" class="ai-icon" aria-expanded="false">
                                     <i class="flaticon-user"></i>
@@ -657,7 +657,7 @@
                                     <span class="nav-text">Payment Details</span>
                                 </a>
                             </li>
-                            
+
                         }
                         else
                         {
@@ -667,7 +667,7 @@
                                     <span class="nav-text">Orders</span>
                                 </a>
                             </li>
-                             <li>
+                            <li>
                                 <a asp-controller="Order" asp-action="VendorUserOrderList" class="ai-icon" aria-expanded="false">
                                     <i class="flaticon-form-1"></i>
                                     <span class="nav-text">Order Details</span>
@@ -734,7 +734,7 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-@*     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    @*     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> *@
 
     @await RenderSectionAsync("Scripts", required: false)

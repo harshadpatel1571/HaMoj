@@ -175,7 +175,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = customerid,
-                VendorID = 2,
+                VendorID = 1,
                 VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,

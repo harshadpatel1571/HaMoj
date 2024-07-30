@@ -1,1 +1,1 @@
-E:\Project\Hamojnew\HamojApp\HamojApp.csproj;x64
+D:\project\HaMoj\HamojApp\HamojApp.csproj;x64
