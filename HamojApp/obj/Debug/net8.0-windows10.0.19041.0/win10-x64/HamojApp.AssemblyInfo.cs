@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HamojApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+37113f162c2e198413ae9df15192b73d98c59847")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+5b1b83c4666305257ed745716bb4803e9bf7a9f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("HamojApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HamojApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
