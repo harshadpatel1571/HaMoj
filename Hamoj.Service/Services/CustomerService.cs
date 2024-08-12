@@ -88,17 +88,19 @@ public class CustomerService : ICustomerService
 
     }
 
-    public async Task<CustomerDto> FindDuplicate(int? officeNo, string? mobileNo, int? Id)
+    public async Task<CustomerDto> FindDuplicate(int? officeNo, string? mobileNo, int? id)
     {
-
-        return await _context.Customer.Where(x => (x.Office_No == officeNo && x.Mobile == mobileNo) && x.Id != Id.Value).Select(x => new CustomerDto
-        {
-            Id = x.Id,
-            Office_No = x.Office_No,
-            Mobile = x.Mobile,
-        }).FirstOrDefaultAsync();
-
+        return await _context.Customer
+            .Where(x => (x.Office_No == officeNo || x.Mobile == mobileNo) && x.Id != id.Value)
+            .Select(x => new CustomerDto
+            {
+                Id = x.Id,
+                Office_No = x.Office_No,
+                Mobile = x.Mobile,
+            })
+            .FirstOrDefaultAsync();
     }
+
 
     public async Task<List<CustomerDto>> GetAllAsync()
     {

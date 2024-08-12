@@ -44,16 +44,29 @@ public class CustomerController : Controller
     [HttpPost]
     public async Task<IActionResult> AddEdit(CustomerDto dto)
     {
-        var duplicate = await _customerService.FindDuplicate(dto.Office_No,dto.Mobile, dto.Id);
+        var duplicate = await _customerService.FindDuplicate(dto.Office_No, dto.Mobile, dto.Id);
+
         if (duplicate != null)
         {
-            ModelState.AddModelError("Office_No", "Office Number already exists.");
-            ModelState.AddModelError("Mobile", "Mobile Number already exists.");
-            return View(dto); // Return the view with errors if duplicate found
+            if (duplicate.Office_No == dto.Office_No)
+            {
+                ModelState.AddModelError("Office_No", "Office Number already exists.");
+            }
+
+            if (duplicate.Mobile == dto.Mobile)
+            {
+                ModelState.AddModelError("Mobile", "Mobile Number already exists.");
+            }
+
+            return View(dto);
         }
-        var AddEdit = _customerService.AddEditCustomer(dto);
+
+        await _customerService.AddEditCustomer(dto);
+
         return RedirectToAction("Index");
     }
+
+
 
     public async Task<IActionResult> Delete(int id)
     {
