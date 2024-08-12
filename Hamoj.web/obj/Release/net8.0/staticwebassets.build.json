@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CAsQSWfDyK0crBmrd9UwbrBZAh4QWMvg9RB6D5R7SZM=",
+  "Hash": "0yqDXuaNwhnOCXP/inY4L0b8/plc5XrNbxBbdjfJqKI=",
   "Source": "Hamoj.web",
   "BasePath": "_content/Hamoj.web",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\CategoryImage\\Pasta_Cicatricosa.png"
+    },
+    {
+      "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\peppermint-tea-on-teacup-1417945.jpg",
+      "SourceId": "Hamoj.web",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\",
+      "BasePath": "_content/Hamoj.web",
+      "RelativePath": "CategoryImage/peppermint-tea-on-teacup-1417945.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CategoryImage\\peppermint-tea-on-teacup-1417945.jpg"
     },
     {
       "Identity": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\pexels-chevanon-312418.jpg",
