@@ -44,10 +44,11 @@ public class CustomerController : Controller
     [HttpPost]
     public async Task<IActionResult> AddEdit(CustomerDto dto)
     {
-        var duplicate = await _customerService.FindDuplicate(dto.Office_No, dto.Id);
+        var duplicate = await _customerService.FindDuplicate(dto.Office_No,dto.Mobile, dto.Id);
         if (duplicate != null)
         {
             ModelState.AddModelError("Office_No", "Office Number already exists.");
+            ModelState.AddModelError("Mobile", "Mobile Number already exists.");
             return View(dto); // Return the view with errors if duplicate found
         }
         var AddEdit = _customerService.AddEditCustomer(dto);

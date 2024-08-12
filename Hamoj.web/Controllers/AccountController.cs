@@ -192,13 +192,14 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult>CustomerAdded(CustomerDto dto)
+    public async Task<IActionResult> CustomerRegister(CustomerDto dto)
     {
-        var duplicate = await _customerService.FindDuplicates(dto.Office_No, dto.Id);
+        var duplicate = await _customerService.FindDuplicate(dto.Office_No, dto.Mobile, dto.Id);
         if (duplicate != null)
         {
             ModelState.AddModelError("Office_No", "Office Number already exists.");
-            return View(dto); // Return the view with errors if duplicate found
+            ModelState.AddModelError("Mobile", "Mobile Number already exists.");
+            return View();
         }
         var CustomerRegister = _customerService.CustomerRegister(dto);
         return RedirectToAction("CustomerLogin");

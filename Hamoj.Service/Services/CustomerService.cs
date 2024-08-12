@@ -88,13 +88,14 @@ public class CustomerService : ICustomerService
 
     }
 
-    public async Task<CustomerDto> FindDuplicate(int? officeNo, int? Id)
+    public async Task<CustomerDto> FindDuplicate(int? officeNo, string? mobileNo, int? Id)
     {
 
-        return await _context.Customer.Where(x => (x.Office_No == officeNo) && x.Id != Id.Value).Select(x => new CustomerDto
+        return await _context.Customer.Where(x => (x.Office_No == officeNo && x.Mobile == mobileNo) && x.Id != Id.Value).Select(x => new CustomerDto
         {
             Id = x.Id,
             Office_No = x.Office_No,
+            Mobile = x.Mobile,
         }).FirstOrDefaultAsync();
 
     }
@@ -186,14 +187,5 @@ public class CustomerService : ICustomerService
         return dto;
     }
 
-    public async Task<CustomerDto> FindDuplicates(int? officeNo, int? Id)
-    {
-
-        return await _context.Customer.Where(x => (x.Office_No == officeNo) && x.Id != Id.Value).Select(x => new CustomerDto
-        {
-            Id = x.Id,
-            Office_No = x.Office_No,
-        }).FirstOrDefaultAsync();
-
-    }
+    
 }
