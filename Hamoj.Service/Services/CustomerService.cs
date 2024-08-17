@@ -110,8 +110,8 @@ public class CustomerService : ICustomerService
             Office_No = x.Office_No,
             Name = x.Name,
             Mobile = x.Mobile,
-            is_Active = x.is_Active,
-            is_Delete = x.is_Delete,
+            //is_Active = x.is_Active,
+            //is_Delete = x.is_Delete,
         }).ToListAsync();
 
         return data;
@@ -132,8 +132,8 @@ public class CustomerService : ICustomerService
             State = x.State,
             Pincode = x.Pincode,
             Password = x.Password,
-            is_Active = x.is_Active,
-            is_Delete = x.is_Delete,
+            //is_Active = x.is_Active,
+            //is_Delete = x.is_Delete,
         }).FirstOrDefaultAsync();
     }
 

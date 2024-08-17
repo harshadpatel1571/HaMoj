@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hamoj.web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3329c5d057ee3ac06e8b459ca0e3984b01f33f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4d88eac87825a7178e4445aabc9199b47f90d85")]
 [assembly: System.Reflection.AssemblyProductAttribute("Hamoj.web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hamoj.web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

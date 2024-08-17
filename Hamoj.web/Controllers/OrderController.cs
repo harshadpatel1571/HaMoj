@@ -37,7 +37,6 @@ public class OrderController : Controller
         return RedirectToAction("Index");
     }
 
-
     public async Task<IActionResult> OrderList()
     {
         var data = await _orderService.OrderList();
@@ -61,7 +60,6 @@ public class OrderController : Controller
         var AssignOrder = await _orderService.AssignOrder(OrderId, VendorUserId, qty);
         return Json(new { msg = "Success", status = true });
     }
-
 
     public async Task<IActionResult> VendorUserOrderList()
     {

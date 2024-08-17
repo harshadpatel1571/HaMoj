@@ -16,13 +16,18 @@ namespace Hamoj.Service.Services
         {
             _context = context;
         }
-
         public async Task<bool> AddOrder(List<ProductDto> dto, int CustomerID)
         {
+            // Check if there is at least one product with Qty > 0
+            if (!dto.Any(item => item.Qty > 0))
+            {
+                return false; // Return false or handle the error as needed
+            }
+
             var order = new Order
             {
                 CustomerId = CustomerID,
-                VendorID = 1,
+                VendorID = 4,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Pending,
@@ -35,9 +40,13 @@ namespace Hamoj.Service.Services
 
             foreach (var item in dto)
             {
+                if (item.Qty <= 0) continue; 
+
                 var product = await _context.Product
                     .Where(x => x.Id == item.Id)
                     .FirstOrDefaultAsync();
+
+                if (product == null) continue; 
 
                 var orderDetails = new OrderDetails
                 {
@@ -175,7 +184,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = customerid,
-                VendorID = 1,
+                VendorID = 4,
                 VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,

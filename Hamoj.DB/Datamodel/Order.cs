@@ -11,6 +11,7 @@ public class Order : basemodel
     public decimal Gst { get; set; }
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }
+    public int OrderPaymentStatus { get; set; }
     [ForeignKey(nameof(VendorID))]
     public Vendor vendor { get; set; }
 

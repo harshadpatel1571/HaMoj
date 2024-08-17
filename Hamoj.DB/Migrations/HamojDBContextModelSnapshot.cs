@@ -153,6 +153,9 @@ namespace Hamoj.DB.Migrations
                     b.Property<int?>("Modified_by")
                         .HasColumnType("int");
 
+                    b.Property<int>("OrderPaymentStatus")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hamoj.Service.Dto;
 
-public class CustomerDto : BaseDto
+public class CustomerDto 
 {
     public int Id { get; set; }
     public string? CompanyName { get; set; }
@@ -25,7 +25,7 @@ public class CustomerDto : BaseDto
     [Required(ErrorMessage = "Password Is required !")]
     public String Password { get; set; }
 
-    public OrderDto OrderDtoList { get; set; }
+    //public OrderDto OrderDtoList { get; set; }
 
-    public OrderDetailsDto OrderDetailsDtoList { get; set; }
+    //public OrderDetailsDto OrderDetailsDtoList { get; set; }
 }

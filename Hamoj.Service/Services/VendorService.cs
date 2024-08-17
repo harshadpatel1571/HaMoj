@@ -59,8 +59,8 @@ public class VendorService : IVendorService
             _context.Vendor.Add(dbmodel);
 
         }
-        dbmodel.is_Active = dto.is_Active;
-        dbmodel.is_Delete = dto.is_Delete;
+        //dbmodel.is_Active = dto.is_Active;
+        //dbmodel.is_Delete = dto.is_Delete;
 
         //Save Database Transaction
         _context.SaveChanges();
@@ -128,8 +128,8 @@ public class VendorService : IVendorService
             MobileNumber = x.MobileNumber,
             Address = x.Address,
             Password = x.Password,
-            is_Active = x.is_Active,
-            is_Delete = x.is_Delete,
+            //is_Active = x.is_Active,
+            //is_Delete = x.is_Delete,
         }).FirstOrDefaultAsync();
     }
 }
