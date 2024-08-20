@@ -21,7 +21,6 @@ namespace Hamoj_Web_API.Controllers
         public async Task<IActionResult> BindData()
         {
             var vendorbind = await _vendorService.GetAllAsync();
-
             return Ok(new { data = vendorbind, status = true, });
         }
 
@@ -46,7 +45,6 @@ namespace Hamoj_Web_API.Controllers
             {
 
                 ModelState.AddModelError("mobileNumber", "Contact Phone already exists.");
-
                 return Ok(new { data = Duplicate, status = true, });
             }
             var AddEdit = await _vendorService.AddEditVendor(dto);
