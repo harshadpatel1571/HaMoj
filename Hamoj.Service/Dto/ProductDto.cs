@@ -21,11 +21,11 @@ public class ProductDto :BaseDto
     [RegularExpression(@"([a-zA-Z0-9\s_\\.\-():])+(.jpg|.jpeg|.png|.webp)$", ErrorMessage = "Only JPG, JPEG, PNG, and WEBP images are allowed.")]
     public IFormFile? Imagefile { get; set; }
 
-    public CategoryDto CategoryDto { get; set; }
+    //public CategoryDto CategoryDto { get; set; }
 
-    public OrderDetailsDto orderDetailsListDto { get; set; }
+    //public OrderDetailsDto orderDetailsListDto { get; set; }
 
-    public GetOrderDetailsDto getOrderDetailsDto {  get; set; }
+    //public GetOrderDetailsDto getOrderDetailsDto {  get; set; }
     public int Qty { get; set; }
 
     public int Office_no { get; set; }

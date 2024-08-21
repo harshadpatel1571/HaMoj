@@ -92,12 +92,12 @@ public class ProductService : IProductService
             Price = x.Price,
             Description = x.Description,
             Image = x.Image,
-            CategoryDto= new CategoryDto
-            {
-                Id=x.Category.Id,
-                Name=x.Category.Name,
-                Image = x.Category.Image,
-            },
+            //CategoryDto= new CategoryDto
+            //{
+            //    Id=x.Category.Id,
+            //    Name=x.Category.Name,
+            //    Image = x.Category.Image,
+            //},
             is_Active = x.is_Active,
             is_Delete = x.is_Delete,
         }).ToListAsync();

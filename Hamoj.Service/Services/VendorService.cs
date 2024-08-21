@@ -4,6 +4,8 @@ using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Linq;
 
 namespace Hamoj.Service.Services;
 

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<HamojDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Defaultconnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Data")));
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvc();

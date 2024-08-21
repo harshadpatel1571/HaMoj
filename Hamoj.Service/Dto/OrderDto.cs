@@ -11,10 +11,10 @@ public class OrderDto : BaseDto
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }
     public string UserName { get; set; }
-    public VendorDto vendorDto { get; set; }
-    public CustomerDto customerDto { get; set; }
-    public VendorUserDto? vendorUserDto { get; set; }
-    public List<OrderDetailsDto> orderDetailsListDto { get; set; }
+    //public VendorDto vendorDto { get; set; }
+    //public CustomerDto customerDto { get; set; }
+    //public VendorUserDto? vendorUserDto { get; set; }
+    //public List<OrderDetailsDto> orderDetailsListDto { get; set; }
 
 
 }

@@ -158,18 +158,18 @@ namespace Hamoj.Service.Services
             var orders = await _context.Order.Where(x => x.VendorUserId == null & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
-                orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
-                {
-                    Id = o.Id,
-                    Qty = o.Qty,
-                    ProductId = o.ProductId,
-                }).ToList(),
-                customerDto = new CustomerDto
-                {
-                    Id = x.Customer.Id,
-                    Name = x.Customer.Name,
-                    Office_No = x.Customer.Office_No
-                },
+                //orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
+                //{
+                //    Id = o.Id,
+                //    Qty = o.Qty,
+                //    ProductId = o.ProductId,
+                //}).ToList(),
+                //customerDto = new CustomerDto
+                //{
+                //    Id = x.Customer.Id,
+                //    Name = x.Customer.Name,
+                //    Office_No = x.Customer.Office_No
+                //},
                 GrandTotal = x.GrandTotal,
                 Gst = x.Gst
             }).ToListAsync();
@@ -237,18 +237,18 @@ namespace Hamoj.Service.Services
             var orders = await _context.Order.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
-                orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
-                {
-                    Id = o.Id,
-                    Qty = o.Qty,
-                    ProductId = o.ProductId,
-                }).ToList(),
-                customerDto = new CustomerDto
-                {
-                    Id = x.Customer.Id,
-                    Name = x.Customer.Name,
-                    Office_No = x.Customer.Office_No
-                },
+                //orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
+                //{
+                //    Id = o.Id,
+                //    Qty = o.Qty,
+                //    ProductId = o.ProductId,
+                //}).ToList(),
+                //customerDto = new CustomerDto
+                //{
+                //    Id = x.Customer.Id,
+                //    Name = x.Customer.Name,
+                //    Office_No = x.Customer.Office_No
+                //},
                 GrandTotal = x.GrandTotal,
                 Gst = x.Gst
             }).ToListAsync();
