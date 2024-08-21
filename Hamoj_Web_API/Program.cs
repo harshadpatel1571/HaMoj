@@ -21,6 +21,9 @@ builder.Services.AddScoped<IVendorService, VendorService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 builder.Services.AddScoped<IVendorUserService, VendorUserService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IDropDownBindService, DropDownBindService>();
 
 
 

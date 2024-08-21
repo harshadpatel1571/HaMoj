@@ -38,18 +38,19 @@ namespace Hamoj_Web_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddEdit(VendorDto dto)
+        public async Task<IActionResult> AddEdit([FromBody] VendorDto dto)
         {
-            var Duplicate = await _vendorService.FindDuplicate(dto.MobileNumber, dto.Id);
-            if (Duplicate != null)
+            var duplicate = await _vendorService.FindDuplicate(dto.MobileNumber, dto.Id);
+            if (duplicate != null)
             {
-
                 ModelState.AddModelError("mobileNumber", "Contact Phone already exists.");
-                return Ok(new { data = Duplicate, status = true, });
+                return Ok(new { data = duplicate, status = true });
             }
-            var AddEdit = await _vendorService.AddEditVendor(dto);
-            return Ok(new { data = AddEdit, status = true, });
+
+            var addEdit = await _vendorService.AddEditVendor(dto);
+            return Ok(new { data = addEdit, status = true });
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)

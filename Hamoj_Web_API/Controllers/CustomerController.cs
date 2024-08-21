@@ -61,5 +61,20 @@ namespace Hamoj_Web_API.Controllers
 
             return Ok();
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var delete = await _customerService.Delete(id);
+            return Ok(new { data = delete, status = true, });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Dashboard()
+        {
+            return Ok();
+
+        }
     }
 }
