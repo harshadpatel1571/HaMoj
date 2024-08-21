@@ -4,7 +4,7 @@ using Hamoj.DB.Datamodel;
 
 namespace Hamoj.Service.Dto;
 
-public class OrderDetailsDto:BaseDto
+public class OrderDetailsDto : BaseDto
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
