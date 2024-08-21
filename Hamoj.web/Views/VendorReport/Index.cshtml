@@ -1,5 +1,104 @@
-﻿@{
-    ViewData["Title"] = "Vendor List";
+﻿@model Hamoj.Service.Dto.CustomerDto;
+@{
+    Layout = "~/Views/Shared/_Vendor.cshtml";
+    ViewData["Title"] = "Vendor Report";
 }
 
 <partial name="~/Views/Shared/_Breadcrumb.cshtml" />
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Vendor Report</h4>
+    </div>
+    <div class="card-body">
+        <div class="basic-form">
+            <form method="post" asp-action="">
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label class="form-label">Customer</label>
+                        <select class="default-select form-control wide" asp-for="CompanyName" asp-items="@ViewBag.CustomerList" id="SelectCustomer">
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3" style="margin-top:30px">
+                        <button id="btnSearch" type="button" class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="col-md-5" id="totalAmount">
+                        <label for="" class="form-label">Total Amount</label>
+                        <input type="text" class="form-control" id="grandTotal" readonly>
+                    </div>
+                    <div class="mb-3 col-md-4" id="monthDropDown">
+                        <label class="form-label">Month</label>
+                        <select class="default-select form-control wide" id="">
+                            <option value="" id="selectMonthDropDown">Select Month</option>
+                        </select>
+                    </div>
+                    @* <div class="col-md-3" style="margin-top:30px">
+                    <button id="btnPaid" type="button" class="btn btn-primary">Paid</button>
+                    </div> *@
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $("#totalAmount").hide();
+        $("#btnPaid").hide();
+        $("#monthDropDown").hide();
+
+        $("#btnSearch").click(function () {
+            var customer = $("#SelectCustomer").val();
+            $.ajax({
+                url: `/VendorReport/BindData`,
+                type: 'POST',
+                data: { customer: customer },
+                success: function (result) {
+                    console.log(result); // Add this line to see what result contains
+                    $("#totalAmount").show();
+                    $("#monthDropDown").show();
+                    $("#btnPaid").show();
+
+                    var totalSum = 0;
+                    var seenMonths = new Set();
+                    var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+                    $.each(result, function (index, item) {
+                        $.each(item, function (key, value) {
+                            var grandTotal = value.grandTotal;
+                            totalSum += grandTotal;
+                            $("#grandTotal").val(totalSum);
+                            console.log(value.create_Date);
+
+                            var createDate = new Date(value.create_Date);
+                            if (!isNaN(createDate.getTime())) { 
+                                var monthName = monthNames[createDate.getMonth()];
+                                seenMonths.add(monthName);
+                            }
+                        });
+                    });
+
+                    var $monthDropDown = $("#monthDropDown");
+                    $monthDropDown.empty(); 
+                    $monthDropDown.append('<option value="">Select Month</option>');
+
+                    seenMonths.forEach(function (month) {
+                        $monthDropDown.append('<option value="' + month + '">' + month + '</option>');
+                    });
+                }
+            });
+        });
+
+        $("#btnPaid").click(function () {
+            var customer = $("#SelectCustomer").val();
+            $.ajax({
+                url: `/VendorReport/UpdateStatus`,
+                type: 'POST',
+                data: { customer: customer },
+                success: function (result) {
+                    window.location.reload();
+                },
+            });
+        });
+    </script>
+}

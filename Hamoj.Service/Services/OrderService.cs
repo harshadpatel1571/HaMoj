@@ -31,6 +31,7 @@ namespace Hamoj.Service.Services
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Pending,
+                OrderPaymentStatus = (int)OrderPaymentStatus.Pending,
                 is_Active = true,
                 is_Delete = false,
                 Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
