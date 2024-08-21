@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Hamoj_Web_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95c90c51c3f11fa5ee57d94c3c3d1de6de3c50e9")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11bd5bbfad9d6798dcf12361756a4b6595b9a07a")]
+>>>>>>> 2fade714ccca1685ebd073efa4e7213f80f73dd3
 [assembly: System.Reflection.AssemblyProductAttribute("Hamoj_Web_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Hamoj_Web_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

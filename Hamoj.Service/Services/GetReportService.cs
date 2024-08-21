@@ -1,5 +1,6 @@
 ﻿
 using Hamoj.DB.Context;
+using Hamoj.DB.Datamodel;
 using Hamoj.DB.Enum;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
@@ -28,7 +29,7 @@ public class GetReportService : IGetReportService
                 ID = x.ID,
                 Create_Date = x.Create_Date,
                 GrandTotal = x.GrandTotal,
-                UserName = x.VendorUserId != null ? x.vendorUser.Name : x.vendor.Name 
+                UserName = x.VendorUserId != null ? x.vendorUser.Name : x.vendor.Name
             })
             .ToListAsync();
 
@@ -57,5 +58,41 @@ public class GetReportService : IGetReportService
         }).ToListAsync();
 
         return orderDetails;
+    }
+    public async Task<List<OrderDto>> GetCustomerReport(int customerId)
+    {
+        var data = await _context.Order
+            .Where(x => x.CustomerId == customerId &&
+                        x.OrderStatus == (int)OrderEnum.Deliver && x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending)
+            .Select(x => new OrderDto
+            {
+                Create_Date = x.Create_Date,
+                GrandTotal = x.GrandTotal,
+             
+            })
+            .ToListAsync();
+
+        return data;
+    }
+
+    public async Task<bool> GetOrder(int customerId)
+    {
+        try
+        {
+            var order = await _context.Order.Where(x => x.CustomerId == customerId &&
+            x.OrderStatus == (int)OrderEnum.Deliver).ToListAsync();
+            foreach (var orders in order)
+            {
+                orders.OrderPaymentStatus = (int)OrderPaymentStatus.Paid;
+            }
+
+            _context.Order.UpdateRange(order);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch(Exception )
+        {
+            return false;
+        }
     }
 }
