@@ -111,12 +111,12 @@ public class GetReportService : IGetReportService
     }
 
 
-    public async Task<bool> GetOrder(int customerId)
-    {
+    public async Task<bool> GetOrder(int customerId, DateTime fromDate, DateTime toDate)
+        {
         try
         {
             var order = await _context.Order.Where(x => x.CustomerId == customerId &&
-            x.OrderStatus == (int)OrderEnum.Deliver).ToListAsync();
+            x.OrderStatus == (int)OrderEnum.Deliver && x.Create_Date >= fromDate && x.Create_Date <= toDate).ToListAsync();
             foreach (var orders in order)
             {
                 orders.OrderPaymentStatus = (int)OrderPaymentStatus.Paid;

@@ -9,7 +9,7 @@ public interface IGetReportService
 
     Task<List<OrderDetailsDto>> GetOrderDetails(int orderId);
     Task<List<OrderDto>> GetCustomerReport(int customerID, DateTime fromDate , DateTime toDate);
-    Task<bool> GetOrder(int customerID);
+    Task<bool> GetOrder(int customerID, DateTime fromDate, DateTime toDate);
 
 
 }
