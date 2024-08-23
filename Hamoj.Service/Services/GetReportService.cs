@@ -59,34 +59,70 @@ public class GetReportService : IGetReportService
 
         return orderDetails;
     }
-    public async Task<List<OrderDto>> GetCustomerReport(int customerId)
+    //public async Task<List<OrderDto>> GetCustomerReport(int customerId, DateTime fromDate, DateTime toDate)
+    //{
+
+    //    var fromMonthStart = new DateTime(fromDate.Year, fromDate.Month, 1); // Start of the from month
+    //    var toMonthEnd = new DateTime(toDate.Year, toDate.Month, DateTime.DaysInMonth(toDate.Year, toDate.Month)); // End of the to month
+
+    //    var data = await _context.Order
+    //        .Where(x => (customerId == 0 ? true : x.CustomerId == customerId) &&
+    //                    x.OrderStatus == (int)OrderEnum.Deliver &&
+    //                    x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending &&
+    //                    x.Create_Date >= fromMonthStart && x.Create_Date <= toMonthEnd)
+    //        .GroupBy(x => x.CustomerId)
+    //        .Select(g => new OrderDto
+    //        {
+    //            customerDto = new CustomerDto { 
+    //                Id = g.Key,
+    //                Name = g.FirstOrDefault().Customer.Name
+    //            },
+    //            GrandTotal = g.Sum(x => x.GrandTotal),
+    //        })
+    //        .ToListAsync();
+
+    //    return data;
+    //}
+
+    public async Task<List<OrderDto>> GetCustomerReport(int customerId, DateTime fromDate, DateTime toDate)
     {
+        var fromMonthStart = new DateTime(fromDate.Year, fromDate.Month, 1); // Start of the from month
+        var toMonthEnd = new DateTime(toDate.Year, toDate.Month, DateTime.DaysInMonth(toDate.Year, toDate.Month)); // End of the to month
+
         var data = await _context.Order
-            .Where(x => x.CustomerId == customerId &&
-                        x.OrderStatus == (int)OrderEnum.Deliver && x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending)
-            .Select(x => new OrderDto
+            .Where(x => (customerId == 0 ? true : x.CustomerId == customerId) &&
+                        x.OrderStatus == (int)OrderEnum.Deliver &&
+                        x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending &&
+                        x.Create_Date >= fromMonthStart && x.Create_Date <= toMonthEnd)
+            .GroupBy(x => new { x.CustomerId, Month = new DateTime(x.Create_Date.Year, x.Create_Date.Month, 1) })
+            .Select(g => new OrderDto
             {
-                Create_Date = x.Create_Date,
-                GrandTotal = x.GrandTotal,
-             
+                customerDto = new CustomerDto
+                {
+                    Id = g.Key.CustomerId,
+                    Name = g.FirstOrDefault().Customer.Name
+                },
+                Month = g.Key.Month.ToString("MMM yyyy"),
+                GrandTotal = g.Sum(x => x.GrandTotal),
             })
             .ToListAsync();
 
         return data;
     }
 
-    public async Task<bool> GetOrder(int customerId)
-    {
+
+    public async Task<bool> GetOrder(int customerId, DateTime fromDate, DateTime toDate)
+        {
         try
         {
             var order = await _context.Order.Where(x => x.CustomerId == customerId &&
-            x.OrderStatus == (int)OrderEnum.Deliver).ToListAsync();
+            x.OrderStatus == (int)OrderEnum.Deliver && x.Create_Date >= fromDate && x.Create_Date <= toDate).ToListAsync();
             foreach (var orders in order)
             {
                 orders.OrderPaymentStatus = (int)OrderPaymentStatus.Paid;
             }
 
-            _context.Order.UpdateRange(order);
+            _context.Order.UpdateRange(order); 
             await _context.SaveChangesAsync();
             return true;
         }

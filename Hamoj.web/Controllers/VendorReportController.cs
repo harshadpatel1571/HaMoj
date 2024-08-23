@@ -21,15 +21,15 @@ public class VendorReportController : Controller
         return View();
     }
 
-    public async Task<IActionResult> BindData(int customer)
+    public async Task<IActionResult> BindData(int customer, DateTime fromDate , DateTime toDate)
     {
-        var data = await _getReportService.GetCustomerReport(customer);
+        var data = await _getReportService.GetCustomerReport(customer , fromDate , toDate);
         return Json(new { data = data, status = true, });
     }
 
-    public async Task<IActionResult>UpdateStatus(int customer)
+    public async Task<IActionResult>UpdateStatus(int customerId, DateTime fromDate, DateTime toDate)
     {
-        var data = await _getReportService.GetOrder(customer);
+        var data = await _getReportService.GetOrder(customerId, fromDate, toDate);
         return Json(new { data = data, status = true, });
     }
 }

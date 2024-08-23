@@ -16,9 +16,9 @@ public class VendorDto : BaseDto
     [Required(ErrorMessage = "Please Enter Address")]
     public string Address { get; set; }
 
-    //public OrderDto orderDtoList { get; set; }
+    public OrderDto orderDtoList { get; set; }
 
-    //public VendorUserDto vendorUserDtoList { get; set; }
+    public VendorUserDto vendorUserDtoList { get; set; }
 
     [Required(ErrorMessage = "Please Enter Password")]
     public string Password { get; set; }
