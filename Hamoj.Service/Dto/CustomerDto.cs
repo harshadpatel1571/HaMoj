@@ -25,7 +25,7 @@ public class CustomerDto : BaseDto
     [Required(ErrorMessage = "Password Is required !")]
     public String Password { get; set; }
 
-    public OrderDto OrderDtoList { get; set; }
+    public List<OrderDto> OrderDtoList { get; set; }
 
     public OrderDetailsDto OrderDetailsDtoList { get; set; }
 }

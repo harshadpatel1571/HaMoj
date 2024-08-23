@@ -97,7 +97,7 @@ public class GetReportService : IGetReportService
             .GroupBy(x => new { x.CustomerId, Month = new DateTime(x.Create_Date.Year, x.Create_Date.Month, 1) })
             .Select(g => new OrderDto
             {
-                customerDto = new CustomerDto
+                CustomerDto = new CustomerDto
                 {
                     Id = g.Key.CustomerId,
                     Name = g.FirstOrDefault().Customer.Name

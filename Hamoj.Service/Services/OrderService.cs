@@ -4,6 +4,7 @@ using Hamoj.DB.Enum;
 using Hamoj.Service.Dto;
 using Hamoj.Service.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Security.AccessControl;
 
 namespace Hamoj.Service.Services
@@ -27,7 +28,7 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = CustomerID,
-                VendorID = 4,
+                VendorID = 1,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Pending,
@@ -159,18 +160,18 @@ namespace Hamoj.Service.Services
             var orders = await _context.Order.Where(x => x.VendorUserId == null & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
-                //orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
-                //{
-                //    Id = o.Id,
-                //    Qty = o.Qty,
-                //    ProductId = o.ProductId,
-                //}).ToList(),
-                //customerDto = new CustomerDto
-                //{
-                //    Id = x.Customer.Id,
-                //    Name = x.Customer.Name,
-                //    Office_No = x.Customer.Office_No
-                //},
+                orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
+                {
+                    Id = o.Id,
+                    Qty = o.Qty,
+                    ProductId = o.ProductId,
+                }).ToList(),
+                CustomerDto = new CustomerDto
+                {
+                    Id = x.Customer.Id,
+                    Name = x.Customer.Name,
+                    Office_No = x.Customer.Office_No
+                },
                 GrandTotal = x.GrandTotal,
                 Gst = x.Gst
             }).ToListAsync();
@@ -185,11 +186,12 @@ namespace Hamoj.Service.Services
             var order = new Order
             {
                 CustomerId = customerid,
-                VendorID = 4,
+                VendorID = 1,
                 VendorUserId = VendorUSerId,
                 Gst = 0,
                 GrandTotal = 0,
                 OrderStatus = (int)OrderEnum.Deliver,
+                OrderPaymentStatus = (int)OrderPaymentStatus.Pending,
                 is_Active = true,
                 is_Delete = false,
                 Create_Date = DateTime.UtcNow.AddHours(5).AddMinutes(30),
@@ -238,18 +240,18 @@ namespace Hamoj.Service.Services
             var orders = await _context.Order.Where(x => x.VendorUserId == Id & x.OrderStatus == (int)OrderEnum.Pending).Select(x => new OrderDto
             {
                 ID = x.ID,
-                //orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
-                //{
-                //    Id = o.Id,
-                //    Qty = o.Qty,
-                //    ProductId = o.ProductId,
-                //}).ToList(),
-                //customerDto = new CustomerDto
-                //{
-                //    Id = x.Customer.Id,
-                //    Name = x.Customer.Name,
-                //    Office_No = x.Customer.Office_No
-                //},
+                orderDetailsListDto = x.orderDetailsList.Select(o => new OrderDetailsDto
+                {
+                    Id = o.Id,
+                    Qty = o.Qty,
+                    ProductId = o.ProductId,
+                }).ToList(),
+                CustomerDto = new CustomerDto
+                {
+                    Id = x.Customer.Id,
+                    Name = x.Customer.Name,
+                    Office_No = x.Customer.Office_No
+                },
                 GrandTotal = x.GrandTotal,
                 Gst = x.Gst
             }).ToListAsync();
