@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Hamoj.Service.Dto;
 
 public class OrderDto : BaseDto
@@ -11,8 +13,12 @@ public class OrderDto : BaseDto
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }
     public string UserName { get; set; }
+    [ForeignKey(nameof(VendorUserId))]
     public VendorDto vendorDto { get; set; }
-    public CustomerDto customerDto { get; set; }
+    [ForeignKey(nameof(CustomerId))]
+    public CustomerDto CustomerDto { get; set; }
+    [ForeignKey(nameof(VendorID))]
+
     public VendorUserDto? vendorUserDto { get; set; }
     public List<OrderDetailsDto> orderDetailsListDto { get; set; }
 

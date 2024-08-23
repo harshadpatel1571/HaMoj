@@ -12,6 +12,7 @@
 <div class="row" id="card">
     @if (Model != null && productList != null)
     {
+<<<<<<< HEAD
         @foreach (var order in Model)
         {
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.ID">
@@ -22,6 +23,15 @@
                                 <div class="col-12">
                                     <h4 class="text-info">Office No: @(order.customerDto.Office_No)</h4>
                                 </div>
+=======
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0" id="card-@order.ID">
+            <div class="card shadow-sm border-0 rounded">
+                <div class="card-body p-0">
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="text-info">Office No: @(order.CustomerDto.Office_No)</h4>
+>>>>>>> 7417a32dc0c5ffbf735d35a55f9a72e6a39df5ab
                             </div>
                             <table class="table items-table">
                                 <tbody>
