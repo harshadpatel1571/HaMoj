@@ -25,7 +25,7 @@ namespace Hamoj_Web_API.Controllers
         public async Task<IActionResult> CustomerProductOrder(List<ProductDto> dto)
         {
             var order = await _orderService.AddOrder(dto.Where(d => d.Qty != 0).ToList(), _currentUserService.GetCurrentUserId());
-            return Ok();
+            return Ok(new { data = order, status = true });
         }
 
 
@@ -47,9 +47,24 @@ namespace Hamoj_Web_API.Controllers
                 })
             };
 
-            return Ok(result);
+            return Ok(new { data = result, status = true });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetOfficeNumber(string term)
+        {
+            var officeNoList = await _orderService.GetOfficeNumber(term);
+            return Ok(new { data = officeNoList, status = true });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> VendorAddOrder()
+        {
+            var CustomerList = await _dropDownBindService.BindCustomerDropDown();
+            var CustomerLists = new SelectList(CustomerList, "Id", "Name");
+            var productList = await _orderService.GetProductData();
+            return Ok(new { data = productList, status = true });
+        }
 
     }
 }
