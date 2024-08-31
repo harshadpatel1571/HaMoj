@@ -19,9 +19,11 @@ namespace Hamoj.web.Controllers
 
         public async Task<IActionResult> Index()
         {
-			var totalAmount = await _dashboardService.TotalAmount();
-			ViewBag.total = totalAmount;
-			return View();
+			var totalPaidAmount = await _dashboardService.TotalPaidAmount();
+			ViewBag.paidtotal = totalPaidAmount;
+            var totalPendingAmount = await _dashboardService.TotalPendingAmount();
+            ViewBag.pendingtotal = totalPendingAmount;
+            return View();
 		}
 
         public  async Task<IActionResult> CustomerDashboard()

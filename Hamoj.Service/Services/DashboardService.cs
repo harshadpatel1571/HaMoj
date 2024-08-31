@@ -18,19 +18,34 @@ public class DashboardService : IDashboardService
 		_context = context;
 	}
 
-	public async Task<decimal>TotalAmount()
+	public async Task<decimal> TotalPaidAmount()
 	{
-		var data = await _context.OrderDetails.Where(x => x.OrderStatus == (int)OrderEnum.Deliver)
+		var data = await _context.Order.Where(x => x.OrderStatus == (int)OrderEnum.Deliver 
+		&& x.OrderPaymentStatus == (int)OrderPaymentStatus.Paid)
 			.Select(x => new OrderDetailsDto
 			{
-				Id = x.Id,
-				TotalAmounnt = x.TotalAmounnt,
+				Id = x.ID,
+				TotalAmounnt = x.GrandTotal,
 			}).ToListAsync();
 
 		var totalAmount = data.Sum(x => x.TotalAmounnt);
 
 		return totalAmount;
 	}
+    public async Task<decimal> TotalPendingAmount()
+    {
+        var data = await _context.Order.Where(x => x.OrderStatus == (int)OrderEnum.Deliver
+        && x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending)
+            .Select(x => new OrderDetailsDto
+            {
+                Id = x.ID,
+                TotalAmounnt = x.GrandTotal,
+            }).ToListAsync();
+
+        var totalAmount = data.Sum(x => x.TotalAmounnt);
+
+        return totalAmount;
+    }
     public async Task<decimal> UserTotalAmount(int id)
     {
 
