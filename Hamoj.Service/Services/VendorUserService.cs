@@ -82,10 +82,10 @@ public class VendorUserService:IVendorUserService
         var data = await _context.VendorUsers.Where(x=>x.VendorId== vendorId).Select(x => new VendorUserDto
         {
             id = x.id,
-            //vendorDto = new VendorDto
-            //{
-            //    Name = x.vendor.Name,
-            //},
+            vendorDto = new VendorDto
+            {
+                Name = x.vendor.Name,
+            },
             Name = x.Name,
             MobileNumber = x.MobileNumber,
             Username = x.Username,

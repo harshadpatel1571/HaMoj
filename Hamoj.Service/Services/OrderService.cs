@@ -19,10 +19,9 @@ namespace Hamoj.Service.Services
         }
         public async Task<bool> AddOrder(List<ProductDto> dto, int CustomerID)
         {
-            // Check if there is at least one product with Qty > 0
             if (!dto.Any(item => item.Qty > 0))
             {
-                return false; // Return false or handle the error as needed
+                return false;
             }
 
             var order = new Order
@@ -91,7 +90,7 @@ namespace Hamoj.Service.Services
         }
 
 
-        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> qty)
+        public async Task<bool> ConfirmOrder(int OrdersID, OrderEnum status, List<OrderDataDto> Qty)
         {
             try
             {
@@ -103,7 +102,7 @@ namespace Hamoj.Service.Services
 
                 var OrderDetailsList = new List<OrderDetails>();
 
-                foreach (var item in qty)
+                foreach (var item in Qty)
                 {
                     var product = await _context.Product
                         .Where(x => x.Id == item.Id)

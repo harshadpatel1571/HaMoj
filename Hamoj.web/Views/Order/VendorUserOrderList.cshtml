@@ -118,7 +118,7 @@
                     $.ajax({
                         url: '/Order/ConfirmOrder',
                         type: 'POST',
-                        data: { id: OrderId, status: orderStatus, qty: Order },
+                        data: { OrderId: OrderId, status: orderStatus, Qty: Order },
                         success: function (result) {
                             if (result.status) {
                                 Swal.fire({

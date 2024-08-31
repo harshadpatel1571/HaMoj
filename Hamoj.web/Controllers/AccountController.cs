@@ -34,6 +34,7 @@ public class AccountController : Controller
     {
         var user = await _loginService.CheakVendorLogin(dto);
         var userRole = "";
+
         if (dto.IsVendor ?? true)
         {
             userRole = UserEnum.Vendor.ToString();
@@ -42,8 +43,6 @@ public class AccountController : Controller
         {
             userRole = UserEnum.vendorUser.ToString();
         }
-
-
 
         if (user != null)
         {
@@ -59,15 +58,22 @@ public class AccountController : Controller
                 CookieAuthenticationDefaults.AuthenticationScheme);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                    new ClaimsPrincipal(claimsIdentity),
-                    new AuthenticationProperties
-                    {
-                        ExpiresUtc = DateTimeOffset.Now.AddMinutes(500),
-                        IsPersistent = false
-                    })
-                .ConfigureAwait(false);
+                new ClaimsPrincipal(claimsIdentity),
+                new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTimeOffset.Now.AddMinutes(500),
+                    IsPersistent = false
+                })
+            .ConfigureAwait(false);
 
-            return RedirectToAction("Index", "Dashboard");
+            if (userRole == UserEnum.Vendor.ToString())
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else
+            {
+                return RedirectToAction("VendorUserOrderList", "Order");
+            }
         }
         else
         {
@@ -75,6 +81,7 @@ public class AccountController : Controller
             return View("Index");
         }
     }
+
 
     public async Task<IActionResult> Logout()
     {

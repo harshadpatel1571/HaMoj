@@ -45,12 +45,12 @@ public class GetReportService : IGetReportService
         {
             Id = x.Id,
             OrderId = x.OrderId,
-            //productDto = new ProductDto
-            //{
-            //    Id = x.ProductId,
-            //    Name = x.product.Name,
+            productDto = new ProductDto
+            {
+                Id = x.ProductId,
+                Name = x.product.Name,
 
-            //},
+            },
             Qty = x.Qty,
             TotalAmounnt = x.TotalAmounnt,
             Amount = x.Amount,
