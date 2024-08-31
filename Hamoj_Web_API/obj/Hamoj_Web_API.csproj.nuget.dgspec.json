@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj": {}
+    "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj": {}
   },
   "projects": {
-    "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj": {
+    "D:\\project\\HaMoj\\Hamoj.DB\\Hamoj.DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj",
+        "projectUniqueName": "D:\\project\\HaMoj\\Hamoj.DB\\Hamoj.DB.csproj",
         "projectName": "Hamoj.DB",
-        "projectPath": "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj",
-        "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\Hamojnew\\Hamoj.DB\\obj\\",
+        "projectPath": "D:\\project\\HaMoj\\Hamoj.DB\\Hamoj.DB.csproj",
+        "packagesPath": "C:\\Users\\hetal\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\HaMoj\\Hamoj.DB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -81,28 +81,24 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
->>>>>>> c9861cea3ffc39a1a82d6df5729c42ebc69d69a6
         }
       }
     },
-    "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj": {
+    "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj",
+        "projectUniqueName": "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj",
         "projectName": "Hamoj.Service",
-        "projectPath": "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj",
-        "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\Hamojnew\\Hamoj.Service\\obj\\",
+        "projectPath": "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj",
+        "packagesPath": "C:\\Users\\hetal\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\HaMoj\\Hamoj.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -118,8 +114,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj": {
-                "projectPath": "E:\\Project\\Hamojnew\\Hamoj.DB\\Hamoj.DB.csproj"
+              "D:\\project\\HaMoj\\Hamoj.DB\\Hamoj.DB.csproj": {
+                "projectPath": "D:\\project\\HaMoj\\Hamoj.DB\\Hamoj.DB.csproj"
               }
             }
           }
@@ -164,28 +160,24 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
->>>>>>> c9861cea3ffc39a1a82d6df5729c42ebc69d69a6
         }
       }
     },
-    "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj": {
+    "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
+        "projectUniqueName": "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
         "projectName": "Hamoj_Web_API",
-        "projectPath": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
-        "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\obj\\",
+        "projectPath": "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
+        "packagesPath": "C:\\Users\\hetal\\.nuget\\packages\\",
+        "outputPath": "D:\\project\\HaMoj\\Hamoj_Web_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -201,8 +193,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj": {
-                "projectPath": "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj"
+              "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj": {
+                "projectPath": "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj"
               }
             }
           }
@@ -246,11 +238,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
-=======
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
->>>>>>> c9861cea3ffc39a1a82d6df5729c42ebc69d69a6
         }
       }
     }
