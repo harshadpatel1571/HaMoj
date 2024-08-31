@@ -29,6 +29,7 @@ public class GetReportService : IGetReportService
                 ID = x.ID,
                 Create_Date = x.Create_Date,
                 GrandTotal = x.GrandTotal,
+                OrderPaymentStatus = x.OrderPaymentStatus,
                 UserName = x.VendorUserId != null ? x.vendorUser.Name : x.vendor.Name
             })
             .ToListAsync();
@@ -86,14 +87,15 @@ public class GetReportService : IGetReportService
 
     public async Task<List<OrderDto>> GetCustomerReport(int customerId, DateTime fromDate, DateTime toDate)
     {
-        var fromMonthStart = new DateTime(fromDate.Year, fromDate.Month, 1); // Start of the from month
-        var toMonthEnd = new DateTime(toDate.Year, toDate.Month, DateTime.DaysInMonth(toDate.Year, toDate.Month)); // End of the to month
+        var fromMonthStart = new DateTime(fromDate.Year, fromDate.Month, 1);
+
+        var toDateEnd = toDate.Date.AddDays(1).AddTicks(-1);
 
         var data = await _context.Order
             .Where(x => (customerId == 0 ? true : x.CustomerId == customerId) &&
                         x.OrderStatus == (int)OrderEnum.Deliver &&
                         x.OrderPaymentStatus == (int)OrderPaymentStatus.Pending &&
-                        x.Create_Date >= fromMonthStart && x.Create_Date <= toMonthEnd)
+                        x.Create_Date >= fromMonthStart && x.Create_Date <= toDateEnd)
             .GroupBy(x => new { x.CustomerId, Month = new DateTime(x.Create_Date.Year, x.Create_Date.Month, 1) })
             .Select(g => new OrderDto
             {

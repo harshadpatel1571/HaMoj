@@ -13,6 +13,8 @@ public class OrderDto : BaseDto
     public decimal GrandTotal { get; set; }
     public int OrderStatus { get; set; }
     public string UserName { get; set; }
+    public int OrderPaymentStatus { get; set; }
+
     [ForeignKey(nameof(VendorUserId))]
     public VendorDto vendorDto { get; set; }
     [ForeignKey(nameof(CustomerId))]
