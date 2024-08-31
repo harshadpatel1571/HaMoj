@@ -15027,9 +15027,9 @@ div, span, ol, ul {
 }
 
 .nav-header .brand-title {
-    margin-left: 20px;
-    max-width: 120px;
-    margin-top: 5px;
+    margin-left: 0px;
+    max-width: 180px;
+    margin-top: 0px;
 }
 
 [data-theme-version="dark"] .nav-header .brand-title {
