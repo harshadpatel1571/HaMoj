@@ -114,23 +114,29 @@ public class GetReportService : IGetReportService
 
 
     public async Task<bool> GetOrder(int customerId, DateTime fromDate, DateTime toDate)
-        {
+    {
         try
         {
-            var order = await _context.Order.Where(x => x.CustomerId == customerId &&
-            x.OrderStatus == (int)OrderEnum.Deliver && x.Create_Date >= fromDate && x.Create_Date <= toDate).ToListAsync();
-            foreach (var orders in order)
+            var orders = await _context.Order
+                .Where(x => x.CustomerId == customerId &&
+                            x.OrderStatus == (int)OrderEnum.Deliver &&
+                            x.Create_Date.Date >= fromDate.Date && // Use Date property to compare only the date part
+                            x.Create_Date.Date <= toDate.Date)
+                .ToListAsync();
+
+            foreach (var order in orders)
             {
-                orders.OrderPaymentStatus = (int)OrderPaymentStatus.Paid;
+                order.OrderPaymentStatus = (int)OrderPaymentStatus.Paid;
+                _context.Order.Update(order);
             }
 
-            _context.Order.UpdateRange(order); 
             await _context.SaveChangesAsync();
             return true;
         }
-        catch(Exception )
+        catch (Exception)
         {
             return false;
         }
     }
+
 }

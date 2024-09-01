@@ -18,7 +18,7 @@ public class Order : basemodel
     [ForeignKey(nameof(CustomerId))]
     public Customer Customer { get; set; }
 
-    public List<OrderDetails> orderDetailsList {  get; set; }
+    public List<OrderDetails> orderDetailsList { get; set; }
 
     [ForeignKey(nameof(VendorUserId))]
     public VendorUser? vendorUser { get; set; }
