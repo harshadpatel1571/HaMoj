@@ -25,6 +25,14 @@
       "PackagePath": "staticwebassets\\CategoryImage\\Pasta_Cicatricosa.png"
     },
     {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\bavrages.jpg",
+      "PackagePath": "staticwebassets\\CategoryImage\\bavrages.jpg"
+    },
+    {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\category image.jpg",
+      "PackagePath": "staticwebassets\\CategoryImage\\category image.jpg"
+    },
+    {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\CategoryImage\\peppermint-tea-on-teacup-1417945.jpg",
       "PackagePath": "staticwebassets\\CategoryImage\\peppermint-tea-on-teacup-1417945.jpg"
     },
@@ -43,6 +51,10 @@
     {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\Tea.jpg",
       "PackagePath": "staticwebassets\\ProductImage\\Tea.jpg"
+    },
+    {
+      "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\cofee.png",
+      "PackagePath": "staticwebassets\\ProductImage\\cofee.png"
     },
     {
       "Id": "E:\\Project\\Hamojnew\\Hamoj.web\\wwwroot\\ProductImage\\cofeee.jpg",

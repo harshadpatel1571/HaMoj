@@ -3083,23 +3083,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hetal\\.nuget\\packages\\": {},
+    "C:\\Users\\Sahil\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
+      "projectUniqueName": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
       "projectName": "Hamoj_Web_API",
-      "projectPath": "D:\\project\\HaMoj\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
-      "packagesPath": "C:\\Users\\hetal\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\HaMoj\\Hamoj_Web_API\\obj\\",
+      "projectPath": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Hamoj_Web_API.csproj",
+      "packagesPath": "C:\\Users\\Sahil\\.nuget\\packages\\",
+      "outputPath": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hetal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sahil\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3115,8 +3115,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj": {
-              "projectPath": "D:\\project\\HaMoj\\Hamoj.Service\\Hamoj.Service.csproj"
+            "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj": {
+              "projectPath": "E:\\Project\\Hamojnew\\Hamoj.Service\\Hamoj.Service.csproj"
             }
           }
         }
@@ -3160,23 +3160,8 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\Project\\Hamojnew\\Hamoj_Web_API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
-      }
-    }
   }
->>>>>>> 71eeb4d57b1889b36373c90e0030ad818360fb68
 }
