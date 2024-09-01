@@ -120,7 +120,7 @@ public class GetReportService : IGetReportService
             var orders = await _context.Order
                 .Where(x => x.CustomerId == customerId &&
                             x.OrderStatus == (int)OrderEnum.Deliver &&
-                            x.Create_Date.Date >= fromDate.Date && // Use Date property to compare only the date part
+                            x.Create_Date.Date >= fromDate.Date && 
                             x.Create_Date.Date <= toDate.Date)
                 .ToListAsync();
 
