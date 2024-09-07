@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Project\\Hamojnew\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|e:\\project\\hamojnew\\hamoj.service\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|solutionrelative:hamoj.service\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17CA51F-9820-410C-A0C5-6C14EA389A53}|Hamoj_Web_API\\Hamoj_Web_API.csproj|e:\\project\\hamojnew\\hamoj_web_api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17CA51F-9820-410C-A0C5-6C14EA389A53}|Hamoj_Web_API\\Hamoj_Web_API.csproj|solutionrelative:hamoj_web_api\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|e:\\project\\hamojnew\\hamoj.service\\interface\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|solutionrelative:hamoj.service\\interface\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}|Hamoj.web\\Hamoj.web.csproj|e:\\project\\hamojnew\\hamoj.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{120416DE-FFF0-43EC-A5DD-F457BABA1EB7}|Hamoj.web\\Hamoj.web.csproj|solutionrelative:hamoj.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|e:\\project\\hamojnew\\hamoj.service\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A22EBB56-098E-4698-A830-7C721617A3FF}|Hamoj.Service\\Hamoj.Service.csproj|solutionrelative:hamoj.service\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "E:\\Project\\Hamojnew\\Hamoj.Service\\Interface\\IOrderService.cs",
+              "RelativeDocumentMoniker": "Hamoj.Service\\Interface\\IOrderService.cs",
+              "ToolTip": "E:\\Project\\Hamojnew\\Hamoj.Service\\Interface\\IOrderService.cs",
+              "RelativeToolTip": "Hamoj.Service\\Interface\\IOrderService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T13:06:29.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "E:\\Project\\Hamojnew\\Hamoj.Service\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "Hamoj.Service\\Services\\OrderService.cs",
+              "ToolTip": "E:\\Project\\Hamojnew\\Hamoj.Service\\Services\\OrderService.cs",
+              "RelativeToolTip": "Hamoj.Service\\Services\\OrderService.cs",
+              "ViewState": "AgIAANsAAAAAAAAAAAAmwOYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:59:29.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "E:\\Project\\Hamojnew\\Hamoj.Service\\Dto\\ProductDto.cs",
+              "RelativeDocumentMoniker": "Hamoj.Service\\Dto\\ProductDto.cs",
+              "ToolTip": "E:\\Project\\Hamojnew\\Hamoj.Service\\Dto\\ProductDto.cs",
+              "RelativeToolTip": "Hamoj.Service\\Dto\\ProductDto.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA5wCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:35:25.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\Project\\Hamojnew\\Hamoj.web\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Hamoj.web\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\Project\\Hamojnew\\Hamoj.web\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Hamoj.web\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAApwHgAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T12:23:31.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Hamoj_Web_API\\Controllers\\OrderController.cs",
+              "ToolTip": "E:\\Project\\Hamojnew\\Hamoj_Web_API\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Hamoj_Web_API\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAowEsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T11:39:18.305Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

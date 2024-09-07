@@ -226,9 +226,12 @@ namespace Hamoj.Service.Services
             return true;
         }
 
-        public async Task<List<string?>> GetOfficeNumber(string officeNumber)
+        public async Task<List<CustomerDto>> GetOfficeNumber(string OfficeNumber)
         {
-            List<string?> officeNumbers = await _context.Customer.Where(x=> x.Office_No.ToString().Contains(officeNumber)).Select(x => x.Office_No.ToString()).ToListAsync();
+            List<CustomerDto> officeNumbers = await _context.Customer.Where(x=> x.Office_No.ToString().Contains(OfficeNumber)).Select(x=> new CustomerDto
+            {
+                Office_No = x.Office_No,
+            }).ToListAsync();
 
             return officeNumbers;
         }
@@ -245,12 +248,7 @@ namespace Hamoj.Service.Services
                     Qty = o.Qty,
                     ProductId = o.ProductId,
                 }).ToList(),
-                CustomerDto = new CustomerDto
-                {
-                    Id = x.Customer.Id,
-                    Name = x.Customer.Name,
-                    Office_No = x.Customer.Office_No
-                },
+                
                 GrandTotal = x.GrandTotal,
                 Gst = x.Gst
             }).ToListAsync();

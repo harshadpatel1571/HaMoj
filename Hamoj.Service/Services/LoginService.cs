@@ -31,7 +31,6 @@ namespace Hamoj.Service.Services
             }).FirstOrDefaultAsync();
 
         }
-
         public async Task<UserDto> CheakSuperAdminLogin(UserLoginDto dto)
         {
             return await _context.User.Where(x => x.Email == dto.Email && x.Password == dto.Password).Select(x => new UserDto
@@ -70,7 +69,6 @@ namespace Hamoj.Service.Services
                     is_Active = x.is_Active,
                     is_Delete = x.is_Delete
                 }).FirstOrDefaultAsync();
-
             }
         }
 

@@ -559,7 +559,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0-preview.3.24172.4"
         },
         "runtime": {
-          "Hamoj.DB.dll": {}
+          "Hamoj.DB.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

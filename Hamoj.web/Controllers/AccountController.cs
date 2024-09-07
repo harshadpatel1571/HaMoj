@@ -117,7 +117,7 @@ public class AccountController : Controller
             {
             new Claim("Id", user.Id.ToString()),
             new Claim(ClaimTypes.MobilePhone, user.MobileNumber),
-            new Claim(ClaimTypes.Name, user.Name),
+            new Claim("UserName", user.Name),
             new Claim(ClaimTypes.Role, UserEnum.Customer.ToString()),
         };
 

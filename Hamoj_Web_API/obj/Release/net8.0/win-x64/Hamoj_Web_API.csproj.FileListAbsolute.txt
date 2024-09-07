@@ -360,7 +360,6 @@ E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\createdump.exe
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\hostfxr.dll
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\hostpolicy.dll
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\mscordaccore.dll
-E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\mscordaccore_amd64_amd64_8.0.524.21615.dll
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\mscordbi.dll
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\mscorrc.dll
 E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\msquic.dll
@@ -391,3 +390,4 @@ E:\Project\Hamojnew\Hamoj_Web_API\obj\Release\net8.0\win-x64\refint\Hamoj_Web_AP
 E:\Project\Hamojnew\Hamoj_Web_API\obj\Release\net8.0\win-x64\Hamoj_Web_API.pdb
 E:\Project\Hamojnew\Hamoj_Web_API\obj\Release\net8.0\win-x64\Hamoj_Web_API.genruntimeconfig.cache
 E:\Project\Hamojnew\Hamoj_Web_API\obj\Release\net8.0\win-x64\ref\Hamoj_Web_API.dll
+E:\Project\Hamojnew\Hamoj_Web_API\bin\Release\net8.0\win-x64\mscordaccore_amd64_amd64_8.0.824.36612.dll

@@ -565,7 +565,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.0-preview.3.24172.4"
         },
         "runtime": {
-          "Hamoj.DB.dll": {}
+          "Hamoj.DB.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Hamoj.Service/1.0.0": {
@@ -575,7 +578,10 @@
           "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "runtime": {
-          "Hamoj.Service.dll": {}
+          "Hamoj.Service.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

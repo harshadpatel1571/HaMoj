@@ -14,5 +14,5 @@ public class CategoryDto:BaseDto
     [RegularExpression(@"([a-zA-Z0-9\s_\\.\-():])+(.jpg|.jpeg|.png|.webp)$", ErrorMessage = "Only JPG, JPEG, PNG, and WEBP images are allowed.")]
     public IFormFile? Imagefile { get; set; }
 
-    public ProductDto ProductDtoList { get; set; }
+    //public ProductDto ProductDtoList { get; set; }
 }
